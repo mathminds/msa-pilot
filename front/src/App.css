@@ -41,7 +41,7 @@ header.header button:nth-child(2) {
 
 .summary,.details, .data-sharing {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   margin-bottom: 1rem;
 
@@ -53,8 +53,8 @@ header.header button:nth-child(2) {
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1rem;
-  width: 400px;
-  margin-right: auto;
+  /* margin-right: auto; */
+  width: 30%;
 }
 
 .card h3 {
