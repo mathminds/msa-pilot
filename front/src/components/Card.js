@@ -4,7 +4,7 @@ import './Card.css';
 const Card = ({ title, count, details, button1, button2 }) => {
     return (
         <div className="card p-4 rounded-lg mb-4 border-2 mx-4 items-center">
-            <h3 className="my-4 text-xl font-bold">
+            <h3 className="my-4 text-xl font-bold text-black">
                 {title}
             </h3>
             <div className="flex sm:flex-col md:flex-row md:space-around">

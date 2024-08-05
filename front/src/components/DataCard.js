@@ -19,7 +19,7 @@ const DataCard = ({ title, count, details, button1, button2 }) => {
                     </button>
                 </a>
                 <a href={button2}>
-                    <button className="text-xs px-2 py-1 border-none bg-orange-300 text-grey-600 cursor-pointer rounded" >
+                    <button className="text-xs px-2 py-1 border-none bg-orange-300 text-black cursor-pointer rounded" >
                         활용 데이터 상세보기
                     </button>
                 </a>
