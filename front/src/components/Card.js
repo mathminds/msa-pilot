@@ -21,7 +21,7 @@ const Card = ({ title, count, details, button1, button2 }) => {
                         </button>
                     </a>
                     <a href={button2}>
-                        <button className="sm:mx-2 md:mx-2 md:mt-4 text-xs md:px-2 md:py-1 border-none bg-blue-300 text-grey-600 cursor-pointer rounded">
+                        <button className="sm:mx-2 md:mx-2 md:mt-4 text-xs md:px-2 md:py-1 border-none bg-blue-300 text-black cursor-pointer rounded">
                             탐험하기
                         </button>
                     </a>

@@ -1,13 +1,22 @@
 import React from 'react';
-import Header from './components/Header';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Dashboard from './components/Dashboard';
+import Service from './components/Service';
+import DataPage from './components/DataPage';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/service" element={<Service />} />
+          <Route path="/data" element={<DataPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

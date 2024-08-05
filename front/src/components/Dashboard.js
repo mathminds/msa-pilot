@@ -28,8 +28,8 @@ const Dashboard = () => {
                             title="[쿠팡] 상품추천 서비스"
                             count="정보수신자: 쿠팡"
                             details="활용 데이터: 구매내역, 위치정보 등"
-                            button1="서비스 상세정보 보기"
-                            button2="활용 데이터 상세보기"
+                            button1="/service"
+                            button2="/data"
 
                         /></div>
                     <div className='carousel-item'>
@@ -37,32 +37,32 @@ const Dashboard = () => {
                             title="[쿠팡] 상품추천 서비스"
                             count="정보수신자: 쿠팡"
                             details="활용 데이터: 구매내역, 위치정보 등"
-                            button1="https://www.coupang.com/"
-                            button2="https://www.coupang.com/"
+                            button1="/service"
+                            button2="/data"
 
                         /></div><div className='carousel-item'>
                         <ServiceCard
                             title="[쿠팡] 상품추천 서비스"
                             count="정보수신자: 쿠팡"
                             details="활용 데이터: 구매내역, 위치정보 등"
-                            button1="https://www.coupang.com/"
-                            button2="https://www.coupang.com/"
+                            button1="/service"
+                            button2="/data"
 
                         /></div><div className='carousel-item'>
                         <ServiceCard
                             title="[쿠팡] 상품추천 서비스"
                             count="정보수신자: 쿠팡"
                             details="활용 데이터: 구매내역, 위치정보 등"
-                            button1="https://www.coupang.com/"
-                            button2="https://www.coupang.com/"
+                            button1="/service"
+                            button2="/data"
 
                         /></div><div className='carousel-item'>
                         <ServiceCard
                             title="[쿠팡] 상품추천 서비스"
                             count="정보수신자: 쿠팡"
                             details="활용 데이터: 구매내역, 위치정보 등"
-                            button1="https://www.coupang.com/"
-                            button2="https://www.coupang.com/"
+                            button1="/service"
+                            button2="/data"
 
                         /></div>
                 </div>
