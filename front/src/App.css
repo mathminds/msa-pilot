@@ -43,12 +43,13 @@ header.header button:nth-child(2) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+
   
 }
 
 .card {
-  background-color: #F0D8EB;
+  background-color: #d4aeaf;
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -75,8 +76,7 @@ header.header button:nth-child(2) {
 .card button {
   margin-right: 0.5rem;
   padding: 0.5rem 1rem;
-  border: none;
-  color: white;
+  border: 1px solid #000000;
   cursor: pointer;
   border-radius: 4px;
   width: 100%;
