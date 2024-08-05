@@ -28,8 +28,8 @@ const Dashboard = () => {
                             title="[쿠팡] 상품추천 서비스"
                             count="정보수신자: 쿠팡"
                             details="활용 데이터: 구매내역, 위치정보 등"
-                            button1="/service"
-                            button2="/data"
+                            button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                            button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
 
                         /></div>
                     <div className='carousel-item'>
@@ -37,32 +37,32 @@ const Dashboard = () => {
                             title="[쿠팡] 상품추천 서비스"
                             count="정보수신자: 쿠팡"
                             details="활용 데이터: 구매내역, 위치정보 등"
-                            button1="/service"
-                            button2="/data"
+                            button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                            button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
 
                         /></div><div className='carousel-item'>
                         <ServiceCard
                             title="[쿠팡] 상품추천 서비스"
                             count="정보수신자: 쿠팡"
                             details="활용 데이터: 구매내역, 위치정보 등"
-                            button1="/service"
-                            button2="/data"
+                            button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                            button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
 
                         /></div><div className='carousel-item'>
                         <ServiceCard
                             title="[쿠팡] 상품추천 서비스"
                             count="정보수신자: 쿠팡"
                             details="활용 데이터: 구매내역, 위치정보 등"
-                            button1="/service"
-                            button2="/data"
+                            button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                            button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
 
                         /></div><div className='carousel-item'>
                         <ServiceCard
                             title="[쿠팡] 상품추천 서비스"
                             count="정보수신자: 쿠팡"
                             details="활용 데이터: 구매내역, 위치정보 등"
-                            button1="/service"
-                            button2="/data"
+                            button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                            button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
 
                         /></div>
                 </div>
@@ -76,12 +76,16 @@ const Dashboard = () => {
 
                         title="[유통] 구매내역 정보"
                         details="상세 데이터 항목: 구매한 상품목록..."
+                        button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                        button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
                     /></div>
                 <div className="carousel-item ">
                     <DataCard
                         // className="carousel-item w-1/2"
                         title="[통신] 휴대폰 위치정보"
                         details="상세 데이터 항목: 구매한 상품목록..."
+                        button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                        button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
                     /></div>
 
                 <div className="carousel-item ">
@@ -89,23 +93,31 @@ const Dashboard = () => {
                         // className="carousel-item w-1/2 "
                         title="[통신] 휴대폰 위치정보"
                         details="상세 데이터 항목: 구매한 상품목록..."
+                        button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                        button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
                     /></div>
                 <div className="carousel-item ">
                     <DataCard
                         // className="carousel-item w-1/2"
                         title="[통신] 휴대폰 위치정보"
                         details="상세 데이터 항목: 구매한 상품목록..."
+                        button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                        button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
                     /></div>
                 <div className="carousel-item ">
                     <DataCard
                         className="carousel-item w-1/2"
                         title="[통신] 휴대폰 위치정보"
                         details="상세 데이터 항목: 구매한 상품목록..."
+                        button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                        button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
                     /></div><div className="carousel-item ">
                     <DataCard
                         className="carousel-item w-1/2"
                         title="[통신] 휴대폰 위치정보"
                         details="상세 데이터 항목: 구매한 상품목록..."
+                        button1="https://github.com/mathminds-sd/public-assets/blob/main/serv2.jpg?raw=true"
+                        button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
                     />
                 </div>
 
