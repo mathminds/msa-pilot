@@ -10,7 +10,10 @@ const Card = ({ title, count, details, button1, button2 }) => {
             </h3>
             <div className="flex grid-column" >
 
-            <div className="text-3xl font-bold bg-white flex flex-col items-center justify-center px-2">{count}</div>
+            <div className="text-3xl  font-bold bg-white flex flex-row items-center justify-center px-4">{count}
+            <div className="text-sm"> {details}</div>
+            </div>
+            
             <div className="ml-4">
             <a href={button1}>
                     <button className="text-xs px-2 py-1 border-none bg-orange-300 text-black cursor-pointer rounded mx-2">
