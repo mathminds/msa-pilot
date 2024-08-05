@@ -8,9 +8,9 @@ const Card = ({ title, count, details, button1, button2 }) => {
                 {title}
             </h3>
             <div className="flex sm:flex-col md:flex-row md:space-around">
-                <div className="text-3xl font-bold bg-white flex flex-row items-end justify-center px-4 sm:py-8 sm:text-5xl mb-4">
+                <div className="text-3xl font-bold bg-white flex flex-row items-end justify-center px-4 sm:py-8 sm:text-5xl mb-4 text-black">
                     {count}
-                    <div className="text-sm"> 
+                    <div className="text-sm text-black"> 
                         {details}</div>
                 </div>
                 
