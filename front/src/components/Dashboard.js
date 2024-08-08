@@ -7,9 +7,6 @@ import DataCard from './DataCard';
 const Dashboard = () => {
     return (
         <div className='bg-white'>
-            <div className='bg-blue-700 p-4'>
-            </div>
-
 
             <h1 className='text-5xl font-bold my-2 mx-4 text-black pt-4'>홍길동 님</h1>
             <p className='text-xl text-gray-400 mx-4'>마이데이터 대시보드</p>
