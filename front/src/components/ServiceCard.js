@@ -15,7 +15,7 @@ const ServiceCard = ({ title, count, details, button1, button2 }) => {
                 {details}
             </div>
             <div className="mt-4 flex justify-around">
-                <a href="https://github.com/mathminds-sd/public-assets/blob/main/c.png?raw=true">
+                <a href="https://github.com/mathminds-sd/public-assets/blob/main/b.png?raw=true">
                     <button className="border border-gray-400 bg-[#E3E3E3] text-black text-xs px-2 py-1 cursor-pointer rounded mr-2 w-100%">
                         서비스 상세정보 보기
                     </button>
