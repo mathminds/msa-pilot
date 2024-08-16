@@ -1,190 +1,231 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import './Dashboard.css';
 import ServiceCard from './ServiceCard';
 import DataCard from './DataCard';
+import ServicesContainer from './ServicesContainer';
+import DataTypesContainer from './DataTypesContainer';
+import TabComponent from './TabComponent';
+import CardFullWidthTabs from './CardFullWidthTabs';
+import RowsOfSnippets from './RowsOfSnippets';
 
 const Dashboard = () => {
+
+    const DropDown_2 = () => {
+        <div>
+
+            <button id="dropdownSmallButton" data-dropdown-toggle="dropdownSmall" class="inline-flex items-center px-3 py-2 mb-3 me-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg md:mb-0 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Small dropdown <svg class="w-2 h-2 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+            </svg>
+            </button>
+
+
+            <div id="dropdownSmall" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                    <div>Bonnie Green</div>
+                    <div class="font-medium truncate">name@flowbite.com</div>
+                </div>
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSmallButton">
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                    </li>
+                </ul>
+                <div class="py-2">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                </div>
+            </div>
+
+            <button id="dropdownLargeButton" data-dropdown-toggle="dropdownLarge" class="inline-flex items-center px-5 py-3 mb-3 font-medium text-center text-white bg-blue-700 rounded-lg md:mb-0 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Large dropdown <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+            </svg>
+            </button>
+
+
+            <div id="dropdownLarge" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                    <div>Bonnie Green</div>
+                    <div class="font-medium truncate">name@flowbite.com</div>
+                </div>
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLargeButton">
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                    </li>
+                </ul>
+                <div class="py-2">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    const [visibleView, setVisibleView] = useState(null);
+    const [isVisibleServices, setIsVisibleServices] = useState(false);
+    const [isVisibleDataProviders, setIsVisibleDataProviders] = useState(false);
+    const [isVisibleDataTypes, setIsVisibleDataTypes] = useState(false);
+
+    const handleServicesClick = () => {
+        setIsVisibleServices(!isVisibleServices);
+        setIsVisibleDataProviders(false)
+        setIsVisibleDataTypes(false)
+        setVisibleView('services')
+    }
+
+    const handleDataProvidersClick = () => {
+        setIsVisibleDataProviders(!isVisibleDataProviders);
+        { isVisibleDataProviders && setIsVisibleServices(false) }
+        { isVisibleDataProviders && setIsVisibleDataTypes(false) }
+        { isVisibleDataProviders && setVisibleView('dataProviders') }
+
+    }
+
+    const handleDataTypesClick = () => {
+        setIsVisibleDataTypes(!isVisibleDataTypes);
+        setIsVisibleServices(false)
+        setIsVisibleDataProviders(false)
+        setVisibleView('dataTypes')
+    }
+
+    useEffect(() => {
+        console.log("");
+        console.log('visibleView changed to', visibleView);
+        console.log('isVisibleServices changed to', isVisibleServices);
+        console.log('isVisibleDataProviders changed to', isVisibleDataProviders);
+        console.log('isVisibleDataTypes changed to', isVisibleDataTypes);
+
+
+    }
+        , [isVisibleServices, isVisibleDataProviders, isVisibleDataTypes]);
+
+
     return (
         <div className='bg-white'>
+            <RowsOfSnippets />
+            {/* <DropDown_2 /> */}
+
 
             <h1 className='text-5xl font-bold my-2 mx-4 text-black pt-4'>홍길동 님</h1>
             <p className='text-xl text-gray-400 mx-4'>마이데이터 대시보드</p>
+                <CardFullWidthTabs />   
+
+            
 
 
-            <div className="dashboard">
-                <div className=" bg-white pr-4 rounded-xl">
-                    <h2 className='text-2xl font-bold text-black pt-4 px-4 mb-4'>이번 달 내 마이데이터 활동 현황</h2>
-                    <div className="summary flex-col md:flex-row ">
-                        <Card title="내 데이터를 활용중인 서비스" count="14" details="개" button1="https://github.com/mathminds-sd/public-assets/blob/main/tab2.jpg?raw=true" button2="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true" />
-                        <Card title="내가 전송요구한 데이터 종류" count="24" details="종" button1="https://github.com/mathminds-sd/public-assets/blob/main/tab2.jpg?raw=true" button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true" />
-                        <Card title="내가 철회한 전송요구 건수" count="2" details="건" button1="https://github.com/mathminds-sd/public-assets/blob/main/tab2.jpg?raw=true" button2="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true" />
-                    </div>
-                </div>
-                <h2 className='text-2xl font-bold text-black p-4'> 이번달 내 마이데이터 활동 상세정보</h2>
+</div>
 
-                <div className="bg-[#D0F7D8] px-4 ">
-                    <h2 className='text-xl font-bold text-black pt-4'> 최근 이용한 마이데이터 서비스 </h2>
-                    <h3 className='text-md text-gray-500'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
+        //     <TabComponent />
+        //     <div className="dashboard border-2 border-red-900 "> Dashboard STart
+        //         <div className="border-2 border-blue-900 bg-white pr-4 rounded-xl">a
+        //             <h2 className='border-2 border-red-900 text-2xl font-bold text-black pt-4 px-4 mb-4'>이번 달 내 마이데이터 현황</h2>
 
+        //             <TabComponent />
 
-                    <div className="details carousel carousel-centerrounded-box max-w-100 space-x-4 p-4">
+        //             <div className="border-2 border-red-900 summary p-4 flex-col md:flex-row ">
+        //                 <div className="border-2 border-red-900 ">  b
+        //                     <Card title="어떤 서비스에 이용되었나요?" count="14" details="개" onClick={handleServicesClick} />
+        //                     <Card title="어떤 기관에서 제공하였나요?" count="24" details="종" button1="https://github.com/mathminds-sd/public-assets/blob/main/tab2.jpg?raw=true" button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true" onClick={handleDataTypesClick} />
+        //                     <Card title="어떤 데이터가 공유되었나요?" count="2" details="건" button1="https://github.com/mathminds-sd/public-assets/blob/main/tab2.jpg?raw=true" button2="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true" onClick={handleDataProvidersClick} />
+        //                     b_END</div>
 
-                        <div id="item1" className='carousel-item'>
+        //                 {isVisibleServices && (<ServicesContainer />)}
+        //                 {isVisibleDataTypes && (<DataTypesContainer />)}
+        //                 {isVisibleDataProviders && (<DropDown_2 />)}
+        //             </div>
 
-
-                            <ServiceCard
-                                title="[쿠팡] 상품추천 서비스"
-                                count="정보수신자: 쿠팡"
-                                details="활용 데이터: 구매내역, 위치정보 등"
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-
-                        <div id="item2" className='carousel-item'>
+        //             c
+        //             {/* <h2 className='text-2xl font-bold text-black p-4'> 이번달 내 마이데이터 활동 상세정보</h2> */}
 
 
-                            <ServiceCard
-                                title="[국민카드] 소비패턴 개선 서비스"
-                                count="정보수신자: 국민카드"
-                                details="활용 데이터: 거래내역, 연령 등"
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-
-                        <div id="item3" className='carousel-item'>
-
-                            <ServiceCard
-                                title="[뱅크샐러드] 본인 신용 정보 통합조회 서비스"
-                                count="정보수신자: 뱅크샐러드"
-                                details="활용 데이터: 신용등급/점수, 대출정보 등"
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-
-                        <div id="item4" className='carousel-item'>
-
-                            <ServiceCard
-                                title="[엘지유플러스] 요금제 추천 서비스"
-                                count="정보수신자: 엘지유플러스"
-                                details="활용 데이터: 통신요금내역, 요금제정보, 데이터사용량 등"
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-
-                        <div id="item5" className='carousel-item'>
-
-                            <ServiceCard
-                                title="[네이버쇼핑] 멤버십 및 포인트 관리 서비스"
-                                count="정보수신자: 네이버쇼핑"
-                                details="활용 데이터: 멤버십정보, 포인트사용내역 등"
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-
-                        <div id="item6" className='carousel-item'>
-
-                            <ServiceCard
-                                title="[동양생명] 보험 상품 추천 서비스"
-                                count="정보수신자: 동양생명"
-                                details="활용 데이터: 현재상품내역, 소득정보, 가족구성정보 등"
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-
-                    </div>
-
-                    <div className="flex w-full justify-center gap-1 py-2">
-                        <a href="#item1" className="btn btn-xs">1</a>
-                        <a href="#item2" className="btn btn-xs">2</a>
-                        <a href="#item3" className="btn btn-xs">3</a>
-                        <a href="#item4" className="btn btn-xs">4</a>
-                        <a href="#item5" className="btn btn-xs">5</a>
-                        <a href="#item6" className="btn btn-xs">6</a>
-                    </div>
 
 
-                </div>
-                <div className="bg-[#D7E9FF] px-4 mt-4">
 
-                    <h2 className='text-xl font-bold text-black pt-4'>현재 내가 공유하는 데이터들</h2>
-                    <h3 className='text-md text-gray-500'>내 전송요구 권리 행사로 정보수신자에게 전송되는 데이터 종류 </h3>
 
-                    <div className="data-sharing carousel carousel-centerrounded-box max-w-100 space-x-4 p-4">
-                    <div id='data1' className="carousel-item ">
-                            <DataCard
 
-                                title="[유통] 구매내역 정보"
-                                details="상세 데이터 항목: 구매한 상품목록..."
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-                        <div id='data2' className="carousel-item ">
-                            <DataCard
-                                // className="carousel-item w-1/2"
-                                title="[통신] 통화 및 데이터 사용 정보"
-                                details="상세 데이터 항목: 음성 통화 기록..."
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-                        <div id='data3' className="carousel-item ">
-                            <DataCard
-                                // className="carousel-item w-1/2"
-                                title="[금융] 계좌 및 거래 정보"
-                                details="상세 데이터 항목: 계좌 잔액..."
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-                        <div id='data4' className="carousel-item ">
-                            <DataCard
-                                // className="carousel-item w-1/2"
-                                title="[금융] 신용 정보"
-                                details="상세 데이터 항목: 신용 등급..."
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-                        <div id='data5' className="carousel-item ">
-                            <DataCard
-                                // className="carousel-item w-1/2"
-                                title="[통신] 요금제 및 결제 정보"
-                                details="상세 데이터 항목: 현재 요금제..."
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
-                        <div id='data6' className="carousel-item ">
-                            <DataCard
-                                // className="carousel-item w-1/2"
-                                title="[금융] 보험 가입 및 납입 정보"
-                                details="상세 데이터 항목: 보험 가입 내역..."
-                                button1="https://github.com/mathminds-sd/public-assets/blob/main/serv3.jpg?raw=true"
-                                button2="https://github.com/mathminds-sd/public-assets/blob/main/data2.jpg?raw=true"
-                            />
-                        </div>
 
-                    </div>
-                    <div className="flex w-full justify-center gap-1 py-2">
-                        <a href="#data1" className="btn btn-xs">1</a>
-                        <a href="#data2" className="btn btn-xs">2</                        a>
-                        <a href="#data3" className="btn btn-xs">3</a>
-                        <a href="#data4" className="btn btn-xs">4</a>
-                        <a href="#data5" className="btn btn-xs">5</a>
-                        <a href="#data6" className="btn btn-xs">6</a>
-                    </div>
+        //         </div>
+        //         Dashboard End</div>
 
-                </div>
-            </div></div>
+
+
+        //     <button id="dropdownSmallButton" data-dropdown-toggle="dropdownSmall" class="inline-flex items-center px-3 py-2 mb-3 me-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg md:mb-0 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Small dropdown <svg class="w-2 h-2 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        //         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+        //     </svg>
+        //     </button>
+
+        //     <div id="dropdownSmall" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+        //         <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+        //             <div>Bonnie Green</div>
+        //             <div className="font-medium truncate">name@flowbite.com</div>
+        //         </div>
+        //         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSmallButton">
+        //             <li>
+        //                 <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+        //             </li>
+        //             <li>
+        //                 <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+        //             </li>
+        //             <li>
+        //                 <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+        //             </li>
+        //         </ul>
+        //         <div className="py-2">
+        //             <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+        //         </div>
+        //     </div>
+
+
+
+
+
+        //     <button id="dropdownLargeButton" data-dropdown-toggle="dropdownLarge" class="inline-flex items-center px-5 py-3 mb-3 font-medium text-center text-white bg-blue-700 rounded-lg md:mb-0 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Large dropdown <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        //         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+        //     </svg>
+        //     </button>
+
+        //     <DropDown_1 />
+        //     <DropDown_2 />
+        // </div>
     );
 };
+
+
+const DropDown_1 = () => {
+    <div id="dropdownSmall" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div>Bonnie Green</div>
+            <div class="font-medium truncate">name@flowbite.com</div>
+        </div>
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSmallButton">
+            <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+            </li>
+            <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+            </li>
+            <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+            </li>
+        </ul>
+        <div class="py-2">
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+        </div>
+    </div>
+}
+
+
+
+
 
 export default Dashboard;
