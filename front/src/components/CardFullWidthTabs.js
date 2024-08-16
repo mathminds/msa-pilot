@@ -106,8 +106,8 @@ const CardFullWidthTabs = () => {
                             role="tabpanel"
                             aria-labelledby="dataProviders-tab"
                         >
-                            <RowsOfSnippets />
-                            {/* <DataTypesContainer /> */}
+                            
+                            <DataTypesContainer />
 
                             {/* Data Providers List */}
                         </div>
