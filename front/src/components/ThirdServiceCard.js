@@ -1,15 +1,34 @@
 import React from 'react';
 import './Card.css';
 
-const ServiceCard = ({ title, count, details, button1, button2 }) => {
+
+
+
+import {
+    ExclamationTriangleIcon
+} from '@heroicons/react/20/solid'
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+
+
+
+
+
+const ThirdServiceCard = ({ title, count, details, button1, button2 }) => {
     const handleClick = (buttonUrl) => {
         window.location.href = buttonUrl;
     }
     return (
-        <div className="border border-green-300 rounded-md bg-white p-4 mb-4 text-gray-600 h-[159px]" >
-            <h3 className="mt-5 font-bold">
+        <div className="border border-red-300 rounded-md bg-red-50 pb-4 px-4 mb-4 text-black">
+             <div className="relative mt-1 btn btn-xs h-auto w-auto border-2 border-red-600 bg-red-100">
+                <div className="flex items-center text-xs text-red-500">
+                        <ExclamationTriangleIcon aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-red-400" />
+                        제3자 제공
+                    </div>
+                </div>
+            <h3 className="mt-1 font-bold">
                 {title}
             </h3>
+           
             <div className="text-sm ">{count}</div>
             <div className="text-sm ">
                 {details}
@@ -30,4 +49,4 @@ const ServiceCard = ({ title, count, details, button1, button2 }) => {
     );
 };
 
-export default ServiceCard;
+export default ThirdServiceCard;

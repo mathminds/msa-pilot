@@ -1,6 +1,6 @@
 import React from 'react';
 import ServiceCard from './ServiceCard';
-
+import ThirdServiceCard from './ThirdServiceCard';
 
 
 const services = [
@@ -305,7 +305,7 @@ const ServicesContainer = () => {
 
           <div id={`service${service.id}`} className="carousel-item">
             
-            <ServiceCard
+            <ThirdServiceCard
                                 title={service.title}
                                 count={service.count}
                                 details={service.details}
@@ -375,18 +375,39 @@ const ServicesContainer = () => {
             <div className="details carousel carousel-centerrounded-box max-w-100 space-x-4 p-4">
             
             {services.map((service) => (
-            
+
+
 
           <div id={`new-service${service.id}`} className="carousel-item">
+            {/* if service.id is 2 or 3 then */}
+            {service.id % 2 ===0 ? 
+            
+            <ThirdServiceCard
+                                title={service.title}
+                                count={service.count}
+                                details={service.details}
+                                button1="/service"
+                            />
+                            :
+
             
             <ServiceCard
                                 title={service.title}
                                 count={service.count}
                                 details={service.details}
+                               
                             />
+            }
             </div>
-          
-        ))}
+
+            
+
+
+        ))
+        }
+
+
+
         </div>
         
         <div className="flex w-full justify-center gap-1 py-2">
@@ -412,7 +433,7 @@ const ServicesContainer = () => {
             {services.map((service) => (
             
 
-          <div id={`service${service.id}`} className="carousel-item">
+          <div id={`service${service.id}`} className="carousel-item h-[159]">
             
             <ServiceCard
                                 title={service.title}
