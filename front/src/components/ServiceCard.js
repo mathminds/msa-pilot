@@ -1,12 +1,24 @@
 import React from 'react';
 import './Card.css';
 
-const ServiceCard = ({ title, count, details, button1, button2 }) => {
+const ServiceCard = ({ title, count, details, thirdPartyRecipients, button1, button2 }) => {
     const handleClick = (buttonUrl) => {
         window.location.href = buttonUrl;
     }
     return (
-        <div className="border border-green-300 rounded-md bg-white p-4 mb-4 text-gray-600 h-[159px]" >
+  
+
+        <div className="w-[290px] h-[190px]  grid place-content-center grid-cols-6 grid-rows-4">
+            <div className=' bg-transparent cursor-pointer group rounded-3xl perspective-1000 col-start-1 col-end-7 row-start-1 row-end-5 '>
+            <div className='relative w-full h-full preserve-3d group-hover:rotate-y-180 duration-500'>
+
+
+            <div className='w-full h-full absolute rounded-3xl rotate-y-180 overflow-hidden backface-hidden'>
+            <img src='/c.png' className='w-fill h-fill overflow-visible'/>
+          </div>  
+
+          <div className='absolute  w-full h-full bg-[#0F1823] bg-opacity-95 rounded-3xl overflow-hidden  text-neutral-300 space-y-5 backface-hidden'>
+        <div className="border border-green-300 rounded-md bg-white p-4 mb-4 text-gray-600 h-full" >
             <h3 className="mt-5 font-bold">
                 {title}
             </h3>
@@ -27,6 +39,11 @@ const ServiceCard = ({ title, count, details, button1, button2 }) => {
                 </a>
             </div>
         </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
     );
 };
 

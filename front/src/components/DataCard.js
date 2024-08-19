@@ -4,7 +4,8 @@ import './Card.css';
 const DataCard = ({ title, count, details, button1, button2 }) => {
 
     return (
-        <div className="border border-blue-300 rounded-md bg-white p-4 text-gray-600 w-full flex flex-col justify-center items-start " style={{ aspectRatio: '21/9' }}>
+        
+        <div className="border border-blue-300 rounded-md bg-white p-4 text-gray-600 w-full h-full flex flex-col justify-center items-start " style={{ aspectRatio: '21/9' }}>
             {/* <div className="border-none border-black text-4xl h-24 w-24 font-bold bg-white flex flex-row items-center rounded-xl justify-center px-4 sm:py-8 text-black sm:mx-1 sm:rounded-xl md:rounded-2xl lg:rounded-3xl" > */}
             <h3 className="mt-0 font-bold text-2xl">
                 {title}

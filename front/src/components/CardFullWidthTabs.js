@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import ProductsList from './ProductsList';
-import RowsOfSnippets from './RowsOfSnippets';
+// import ProductsList from './ProductsList';
+// import RowsOfSnippets from './RowsOfSnippets';
 import DataTypesContainer from './DataTypesContainer';
 import ServicesContainer from './ServicesContainer';
-import Card from './Card';
-import DataCard from './DataCard';
+// import Card from './Card';
+// import DataCard from './DataCard';
+import DataProvidersContainer from './DataProvidersContainer';
 // import DataTypesContainer from './DataTypesContainer';
 
 const CardFullWidthTabs = () => {
@@ -45,14 +46,14 @@ const CardFullWidthTabs = () => {
 
                         {/* DATA PROVIDERS */}
 
-                        <li className={`w-full ${activeTab === 'dataProviders' ? 'bg-blue-500' : 'bg-gray-100'}`}>
+                        <li className={`w-full ${activeTab === 'dataProviders' ? 'bg-blue-500' : ''}`}>
                             <button
                                 id="dataProviders-tab"
                                 data-tabs-target="#dataProviders"
                                 type="button"
                                 role="tab"
                                 aria-controls="dataProviders"
-                                aria-selected={activeTab === 'about'}
+                                aria-selected={activeTab === 'dataProviders'}
                                 className={`inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600 ${activeTab === 'dataProviders' ? 'bg-blue-500 hover:bg-blue-700 text-white' :''}`}
                                 onClick={() => handleTabClick('dataProviders')}
                             >
@@ -100,14 +101,14 @@ const CardFullWidthTabs = () => {
 
 
                         <div
-                            className={`p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800 ${activeTab === 'dataProviders' ? '' : 'hidden'
+                            className={`p-0 bg-white rounded-lg md:p-0 dark:bg-gray-800 ${activeTab === 'dataProviders' ? '' : 'hidden'
                                 }`}
                             id="dataProviders"
                             role="tabpanel"
                             aria-labelledby="dataProviders-tab"
                         >
                             
-                            <DataTypesContainer />
+                            <DataProvidersContainer />
 
                             {/* Data Providers List */}
                         </div>
@@ -118,7 +119,7 @@ const CardFullWidthTabs = () => {
                             role="tabpanel"
                             aria-labelledby="faq-tab"
                         >
-                            Data Types List
+                            <DataTypesContainer />
                         </div>
                     </div>
                 </div>

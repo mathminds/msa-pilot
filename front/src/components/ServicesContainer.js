@@ -6,123 +6,100 @@ import ThirdServiceCard from './ThirdServiceCard';
 const services = [
     {
         id: 1,
-        title: '[쿠팡] 상품추천 서비스',
-        count: '정보수신자: 쿠팡',
-        details: '활용 데이터: 구매내역, 위치정보 등'
+        title: '상품추천 서비스',
+        serviceProvider: '쿠팡',
+        details: ['구매내역', '위치정보'],
+        thirdPartySharedData: [],
+        thirdPartyRecipients: [],
     },
     {
         id: 2,
-        title: '[국민카드] 소비패턴 개선 서비스',
-        count: '정보수신자: 국민카드',
-        details: '활용 데이터: 거래내역, 연령 등'
+        title: '소비패턴 개선 서비스',
+        serviceProvider: '국민카드',
+        details: ['거래내역', '연령'],
+        thirdPartySharedData: [],
+        thirdPartyRecipients: [],
+    
     },
     {
         id: 3,
-        title: '[뱅크샐러드] 본인 신용 정보 통합조회 서비스',
-        count: '정보수신자: 뱅크샐러드',
-        details: '활용 데이터: 신용등급/점수, 대출정보 등'
+        title: '본인 신용 정보 통합조회 서비스',
+        serviceProvider: '뱅크샐러드',
+        details: ['신용등급', '대출정보', '거래내역', '소득정보'],
+        thirdPartySharedData: ['신용등급', '대출정보'],
+        thirdPartyRecipients: ['KT', '삼성병원', '서울시', '롯데마트', '신한은행']
     },
     {
         id: 4,
-        title: '[엘지유플러스] 요금제 추천 서비스',
-        count: '정보수신자: 엘지유플러스',
-        details: '활용 데이터: 통신요금내역, 요금제정보, 데이터사용량 등'
+        title: '요금제 추천 서비스',
+        serviceProvider: '정보수신자: 엘지유플러스',
+        details: ['통신요금내역', '요금제정보', '데이터사용량'],
+        thirdPartySharedData: [],
+        thirdPartyRecipients: [],
     },
     {
         id: 5,
-        title: '[네이버쇼핑] 멤버십 및 포인트 관리 서비스',
-        count: '정보수신자: 네이버쇼핑',
-        details: '활용 데이터: 멤버십정보, 포인트사용내역 등'
+        title: '데이터 분석 서비스',
+        serviceProvider: '빅데이터 주식회사',
+        details: ['사용자 행동 데이터', '구매 기록'],
+        thirdPartySharedData: ['사용자 행동 데이터'],
+        thirdPartyRecipients: ['구글', '페이스북', '아마존']
     },
     {
         id: 6,
-        title: '[동양생명] 보험 상품 추천 서비스',
-        count: '정보수신자: 동양생명',
-        details: '활용 데이터: 현재상품내역, 소득정보, 가족구성정보 등'
+        title: '맞춤 광고 서비스',
+        serviceProvider: '애드테크 주식회사',
+        details: ['광고 선호도', '검색 기록'],
+        thirdPartySharedData: ['광고 선호도'],
+        thirdPartyRecipients: ['네이버', '카카오', '티몬']
     },
     {
         id: 7,
-        title: '[티몬] 할인 쿠폰 제공 서비스',
-        count: '정보수신자: 티몬',
-        details: '활용 데이터: 구매내역, 관심사 등'
+        title: '위치 기반 서비스',
+        serviceProvider: '로케이션 주식회사',
+        details: ['위치 정보', '주변 가게 정보'],
+        thirdPartySharedData: ['위치 정보'],
+        thirdPartyRecipients: ['구글', '네이버', '카카오']
     },
     {
         id: 8,
-        title: '[카카오뱅크] 예금 상품 추천 서비스',
-        count: '정보수신자: 카카오뱅크',
-        details: '활용 데이터: 예금내역, 소득정보 등'
+        title: '음악 추천 서비스',
+        serviceProvider: '뮤직테크 주식회사',
+        details: ['음악 장르 선호도', '재생 기록'],
+        thirdPartySharedData: ['음악 장르 선호도'],
+        thirdPartyRecipients: ['스포티파이', '애플 뮤직', '멜론']
     },
     {
         id: 9,
-        title: '[우리은행] 대출 상품 추천 서비스',
-        count: '정보수신자: 우리은행',
-        details: '활용 데이터: 대출내역, 신용등급 등'
+        title: '건강 관리 서비스',
+        serviceProvider: '헬스테크 주식회사',
+        details: ['운동 기록', '수면 패턴'],
+        thirdPartySharedData: ['운동 기록'],
+        thirdPartyRecipients: ['피트빗', '스트라바', '애플 헬스']
     },
     {
         id: 10,
-        title: '[마켓컬리] 장보기 팁 제공 서비스',
-        count: '정보수신자: 마켓컬리',
-        details: '활용 데이터: 구매내역, 식단정보 등'
+        title: '책 추천 서비스',
+        serviceProvider: '북테크 주식회사',
+        details: ['독서 기록', '선호 장르'],
+        thirdPartySharedData: ['독서 기록'],
+        thirdPartyRecipients: ['알라딘', '교보문고', '예스24']
     },
     {
         id: 11,
-        title: '[우아한형제들] 배달 음식 추천 서비스',
-        count: '정보수신자: 우아한형제들',
-        details: '활용 데이터: 주문내역, 식문화정보 등'
+        title: '영화 추천 서비스',
+        serviceProvider: '영테크 주식회사',
+        details: ['시청 기록', '선호 장르'],
+        thirdPartySharedData: ['시청 기록'],
+        thirdPartyRecipients: ['넷플릭스', '왓챠', '웨이브']
     },
     {
         id: 12,
-        title: '[토스] 결제 서비스',
-        count: '정보수신자: 토스',
-        details: '활용 데이터: 결제내역, 소비패턴 등'
-    },
-    {
-        id: 13,
-        title: '[카카오페이] 포인트 적립 서비스',
-        count: '정보수신자: 카카오페이',
-        details: '활용 데이터: 결제내역, 포인트사용 등'
-    },
-    {
-        id: 14,
-        title: '[배민라이더스] 배달 주문 서비스',
-        count: '정보수신자: 배민라이더스',
-        details: '활용 데이터: 주문내역, 배달위치 등'
-    },
-    {
-        id: 15,
-        title: '[쿠팡이츠] 음식 배달 서비스',
-        count: '정보수신자: 쿠팡이츠',
-        details: '활용 데이터: 주문내역, 음식선호도 등'
-    },
-    {
-        id: 16,
-        title: '[네이버페이] 결제 서비스',
-        count: '정보수신자: 네이버페이',
-        details: '활용 데이터: 결제내역, 소비패턴 등'
-    },
-    {
-        id: 17,
-        title: '[카카오맵] 위치 기반 서비스',
-        count: '정보수신자: 카카오맵',
-        details: '활용 데이터: 위치정보, 검색기록 등'
-    },
-    {
-        id: 18,
-        title: '[우체국] 우편물 배송 서비스',
-        count: '정보수신자: 우체국',
-        details: '활용 데이터: 배송정보, 수령인 정보 등'
-    },
-    {
-        id: 19,
-        title: '[다나와] 제품 추천 서비스',
-        count: '정보수신자: 다나와',
-        details: '활용 데이터: 검색기록, 관심상품 등'
-    },
-    {
-        id: 20,
-        title: '[스타벅스] 음료 추천 서비스',
-        count: '정보수신자: 스타벅스',
-        details: '활용 데이터: 주문내역, 음료선호도 등'
+        title: '뉴스 추천 서비스',
+        serviceProvider: '뉴스테크 주식회사',
+        details: ['클릭 기록', '선호 주제'],
+        thirdPartySharedData: ['클릭 기록'],
+        thirdPartyRecipients: ['네이버뉴스', '다음뉴스', '네이트뉴스']
     }
 ];
 
@@ -366,7 +343,7 @@ const ServicesContainer = () => {
     return (
 
         <div>
-
+            
 
         <div className="bg-[#78ed91]  px-4 w-fill h-fill">
             <h2 className='text-xl font-bold text-black pt-4'> 이번 달에 새로 이용하기 시작한 서비스 </h2>
@@ -379,8 +356,16 @@ const ServicesContainer = () => {
 
 
           <div id={`new-service${service.id}`} className="carousel-item">
+            <ThirdServiceCard 
+                                title={service.title}   
+                                serviceProvider={service.serviceProvider}
+                                details={service.details}
+                                thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []} 
+                                thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []} 
+                            />
+
             {/* if service.id is 2 or 3 then */}
-            {service.id % 2 ===0 ? 
+            {/* {service.id % 2 ===0 ? 
             
             <ThirdServiceCard
                                 title={service.title}
@@ -397,7 +382,7 @@ const ServicesContainer = () => {
                                 details={service.details}
                                
                             />
-            }
+            } */}
             </div>
 
             
