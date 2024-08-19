@@ -13,6 +13,7 @@ const CardFullWidthTabs = () => {
 
     const handleTabClick = (tabId) => {
         setActiveTab(tabId);
+        console.log(tabId);
     };
 
     return (
@@ -36,7 +37,7 @@ const CardFullWidthTabs = () => {
                                 role="tab"
                                 aria-controls="services"
                                 aria-selected={activeTab === 'services'}
-                                className={`inline-block w-full p-4 rounded-ss-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600 ${activeTab === 'services' ? 'bg-green-500 hover:bg-green-700 text-white' :''}`}
+                                className={`inline-block w-full p-4 rounded-ss-lg ${activeTab === 'services' ? 'bg-green-500 hover:bg-green-700 text-white' :''}`}
                                 onClick={() => handleTabClick('services')}
                             >
                                 <h1 className='text-2xl'>어떤 서비스에 이용되었나요?</h1>
@@ -54,7 +55,7 @@ const CardFullWidthTabs = () => {
                                 role="tab"
                                 aria-controls="dataProviders"
                                 aria-selected={activeTab === 'dataProviders'}
-                                className={`inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600 ${activeTab === 'dataProviders' ? 'bg-blue-500 hover:bg-blue-700 text-white' :''}`}
+                                className={`inline-block w-full p-4  ${activeTab === 'dataProviders' ? 'bg-blue-500 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-700 text-white' :''}`}
                                 onClick={() => handleTabClick('dataProviders')}
                             >
                                 <h1 className='text-2xl'>어떤 기관에서 제공되었나요?</h1>
@@ -69,16 +70,16 @@ const CardFullWidthTabs = () => {
 
 
 
-                        <li className='border-3 border-red-300 w-full bg-red-500' >
+                        <li className={`w-full ${activeTab === 'dataTypes' ? 'bg-orange-500' : ''}`}>
                             <button
-                                id="faq-tab"
-                                data-tabs-target="#faq"
+                                id="dataTypes-tab"
+                                data-tabs-target="#dataTypes"
                                 type="button"
                                 role="tab"
-                                aria-controls="faq"
-                                aria-selected={activeTab === 'faq'}
-                                className="inline-block w-full p-4 rounded-se-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
-                                onClick={() => handleTabClick('faq')}
+                                aria-controls="dataTypes"
+                                aria-selected={activeTab === 'dataTypes'}
+                                className={`inline-block w-full p-4 ${activeTab === 'dataTypes' ? 'bg-orange-500 hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-700 text-white' :''}`}
+                                onClick={() => handleTabClick('dataTypes')}
                             >
                                 <h1 className='text-2xl'>어떤 데이터가 공유되었나요?</h1>
                             </button>
@@ -101,7 +102,7 @@ const CardFullWidthTabs = () => {
 
 
                         <div
-                            className={`p-0 bg-white rounded-lg md:p-0 dark:bg-gray-800 ${activeTab === 'dataProviders' ? '' : 'hidden'
+                            className={`p-4 bg-white rounded-lg md:p-0 dark:bg-gray-800 ${activeTab === 'dataProviders' ? '' : 'hidden'
                                 }`}
                             id="dataProviders"
                             role="tabpanel"
@@ -113,11 +114,11 @@ const CardFullWidthTabs = () => {
                             {/* Data Providers List */}
                         </div>
                         <div
-                            className={`p-4 bg-white rounded-lg dark:bg-gray-800 ${activeTab === 'faq' ? '' : 'hidden'
+                            className={`p-4 bg-white rounded-lg md:p-0 dark:bg-gray-800 ${activeTab === 'dataTypes' ? '' : 'hidden'
                                 }`}
-                            id="faq"
+                            id="dataTypes"
                             role="tabpanel"
-                            aria-labelledby="faq-tab"
+                            aria-labelledby="dataTypes-tab"
                         >
                             <DataTypesContainer />
                         </div>

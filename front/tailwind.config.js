@@ -26,6 +26,12 @@ const CustomStyle = plugin(function ({addUtilities}) {
 }) 
 
 module.exports = {
+  resolve: {
+    fallback: {
+      "fs": require.resolve("browserify-fs"),
+      "path": require.resolve("path-browserify")
+    }
+  },
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {},

@@ -8,6 +8,7 @@ import DataTypesContainer from './DataTypesContainer';
 import TabComponent from './TabComponent';
 import CardFullWidthTabs from './CardFullWidthTabs';
 import RowsOfSnippets from './RowsOfSnippets';
+import DataFlow from './DataFlow';
 
 const Dashboard = () => {
 
@@ -112,11 +113,12 @@ const Dashboard = () => {
 
     return (
         <div className='bg-white'>
-            <RowsOfSnippets />
+            {/* <RowsOfSnippets /> */}
             {/* <DropDown_2 /> */}
 
 
             <h1 className='text-5xl font-bold my-2 mx-4 text-black pt-4'>홍길동 님</h1>
+            {/* <DataFlow /> */}
             <p className='text-xl text-gray-400 mx-4'>마이데이터 대시보드</p>
                 <CardFullWidthTabs />   
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Card.css';
-
+import DataFlow from './DataFlow';
 
 
 
@@ -29,7 +29,7 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
                     <ExclamationTriangleIcon aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-white" />
                     제3자 제공</span>
             )}
-            <div className="w-[290px] h-[190px] grid place-content-center grid-cols-12 grid-rows-12">
+            <div className="w-[390px] h-[190px] grid place-content-center grid-cols-12 grid-rows-12">
 
                 <div className=' cursor-pointer group rounded-3xl perspective-1000 col-start-1 col-end-13 row-start-1 row-end-13'>
 
@@ -38,7 +38,7 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
                         {/* front card */}
                         <div className='absolute  w-full h-full bg-[#0F1823] bg-opacity-95 rounded-3xl overflow-hidden  text-neutral-300 space-y-5 backface-hidden'>
                             <div className="h-full border border-red-200 rounded-md bg-white pb-4 px-4 mb-4 text-black" >
-                                <h3 className="mt-4 font-bold">
+                                <h3 className="mt-4 font-bold text-2xl">
                                     {title}
                                 </h3>
 
@@ -63,8 +63,10 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
                                         {/* show third party recipients as buttons */}
                                         <div className="text-xs font-bold  text-red-500">제3자 제공 대상 기관: <span className='text-red-500 text-xs font-normal' >{thirdPartyRecipients.map
                                             ((recipient, index) => (
+                                                
+
                                                 <span>{recipient}
-                                                    {index < thirdPartySharedData.length - 1 ? ', ' : ''}
+                                                    {index < thirdPartyRecipients.length - 1 ? ', ' : ''}
                                                 </span>
                                             ))}
                                         </span>
