@@ -77,11 +77,18 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
                         {/* back card */}
 
                         <div className='bg-white w-full h-full absolute rounded-3xl rotate-y-180 overflow-hidden backface-hidden grid grid-rows-12'>
+                            {lengthOfThirdPartyRecipients === 0 && (
+                                <div className='row-start-1 row-end-11 border-b-2 border-gray-300'>    
+                                <img src='/b.png' className='w-full h-full overflow-visible' />
+                                </div>
+                            )
+                            }
+
                             {lengthOfThirdPartyRecipients > 0 && (
                                 <div className='row-start-1 row-end-5 border-b-2 border-gray-300'>
                                     <div className='p-2'>
                                         <h2 className="text-xs font-bold">제3자 제공 데이터</h2>
-                                        <div className="justify-end gap-1 grid grid-cols-3">
+                                        <div className="justify-start gap-1 grid grid-flow-col">
                                             {thirdPartySharedData.map((data, index) => (
                                                 <div className='btn btn-xs bg-red-200 border-2 border-red-200 text-black hover:bg-red-300 hover:text-black'>
                                                     <a key={`data-${index}`} href="https://github.com/mathminds-sd/public-assets/blob/main/b.png?raw=true">
@@ -112,8 +119,8 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
                                 <div className='row-start-5 row-end-11 border-b-2 border-gray-300'>
                                     <div className='p-2'>
                                         <h2 className="text-xs font-bold">제3자 제공 대상 기관</h2>
-                                        <div className="justify-end gap-1 grid grid-cols-3">
-                                            {thirdPartyRecipients.map((recipient, index) => (
+                                        <div className="justify-start gap-1 grid grid-flow-col grid-rows-2">
+                                                {thirdPartyRecipients.map((recipient, index) => (
                                                 <div className='btn btn-xs bg-red-200 border-2 border-red-200 text-black hover:bg-red-300 hover:text-black'>
 
                                                     <a key={`third-${index}`} href="https://github.com/mathminds-sd/public-assets/blob/main/f.png?raw=true">
