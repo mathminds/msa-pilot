@@ -13,7 +13,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 
 
 
-const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedData, thirdPartyRecipients}) => {
+const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedData, thirdPartyRecipients }) => {
     const handleClick = (buttonUrl) => {
         window.location.href = buttonUrl;
     }
@@ -37,7 +37,7 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
 
                         {/* front card */}
                         <div className='absolute  w-full h-full bg-[#0F1823] bg-opacity-95 rounded-3xl overflow-hidden  text-neutral-300 space-y-5 backface-hidden'>
-                            <div className="h-full border border-red-200 rounded-md bg-red-50 pb-4 px-4 mb-4 text-black" >
+                            <div className="h-full border border-red-200 rounded-md bg-white pb-4 px-4 mb-4 text-black" >
                                 <h3 className="mt-4 font-bold">
                                     {title}
                                 </h3>
@@ -46,39 +46,57 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
                                 <div className="text-sm ">활용 데이터: <span>
                                     {details.map((detail, index) => (
                                         <span>{detail}
-                                        {index < details.length - 1 ? ', ' : ''}
+                                            {index < details.length - 1 ? ', ' : ''}
                                         </span>
-                                    ))} 
-                                    </span>
+                                    ))}
+                                </span>
                                 </div>
                                 {lengthOfThirdPartyRecipients > 0 && (
-<div>                                
-                                <div className="mt-2 text-xs font-bold text-red-500 ">제3자 제공 데이터: <span className='text-red-500  text-xs font-normal' >{thirdPartySharedData.map
-                                    ((data, index) => (
-                                        <span>{data}
-                                        {index < thirdPartySharedData.length - 1 ? ', ' : ''}   
+                                    <div>
+                                        <div className="mt-2 text-xs font-bold text-red-500 ">제3자 제공 데이터: <span className='text-red-500  text-xs font-normal' >{thirdPartySharedData.map
+                                            ((data, index) => (
+                                                <span>{data}
+                                                    {index < thirdPartySharedData.length - 1 ? ', ' : ''}
+                                                </span>
+                                            ))
+                                        }</span></div>
+                                        {/* show third party recipients as buttons */}
+                                        <div className="text-xs font-bold  text-red-500">제3자 제공 대상 기관: <span className='text-red-500 text-xs font-normal' >{thirdPartyRecipients.map
+                                            ((recipient, index) => (
+                                                <span>{recipient}
+                                                    {index < thirdPartySharedData.length - 1 ? ', ' : ''}
+                                                </span>
+                                            ))}
                                         </span>
-                                    ))
-                                    }</span></div>
-                                {/* show third party recipients as buttons */}
-                                    <div className="text-xs font-bold  text-red-500">제3자 제공 대상 기관: <span className='text-red-500 text-xs font-normal' >{thirdPartyRecipients.map
-                                        ((recipient, index) => (
-                                            <span>{recipient}
-                                            {index < thirdPartySharedData.length - 1 ? ', ' : ''}
-                                            </span>
-                                        ))}
-                                        </span>
+                                        </div>
                                     </div>
-</div>
                                 )
                                 }
-                                </div>
                             </div>
+                        </div>
                         {/* back card */}
 
                         <div className='bg-white w-full h-full absolute rounded-3xl rotate-y-180 overflow-hidden backface-hidden grid grid-rows-12'>
-                            <div className='row-start-1 row-end-4'>
-                                {/* <div className='relative flex flex-col justify-center items-center h-full w-full'>
+                            {lengthOfThirdPartyRecipients > 0 && (
+                                <div className='row-start-1 row-end-5 border-b-2 border-gray-300'>
+                                    <div className='p-2'>
+                                        <h2 className="text-xs font-bold">제3자 제공 데이터</h2>
+                                        <div className="justify-end gap-1 grid grid-cols-3">
+                                            {thirdPartySharedData.map((data, index) => (
+                                                <div className='btn btn-xs bg-red-200 border-2 border-red-200 text-black hover:bg-red-300 hover:text-black'>
+                                                    <a key={`data-${index}`} href="https://github.com/mathminds-sd/public-assets/blob/main/b.png?raw=true">
+                                                        {`${data}`}
+                                                    </a>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                            }
+
+
+                            {/* <div className='relative flex flex-col justify-center items-center h-full w-full'>
                                     {(lengthOfThirdPartyRecipients > 0) ? (
                                         <a href="https://github.com/mathminds-sd/public-assets/blob/main/f.png?raw=true">
                                             <img src='/c.png' className='overflow-visible' />
@@ -90,31 +108,34 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
                                     )
                                     }
                                 </div> */}
-                                <div className='row-start-4 row-end-12'>
-                                    {lengthOfThirdPartyRecipients > 0 && (
-                                        <div className='p-4'>
-                                            <h2 className="text-xs font-bold mt-2">제3자 제공 대상 기관</h2>
-                                            <div className="justify-around gap-1 grid grid-cols-3">
-                                                {thirdPartyRecipients.map((recipient, index) => (
-                                                    <a key={`third-${index}`} href="https://github.com/mathminds-sd/public-assets/blob/main/f.png?raw=true">
-                                                        <button className="col-span-1 w-full bg-red-100 text-red-600 text-xs px-1 py-1 cursor-pointer rounded mr-2 ">
-                                                            {`${recipient}`}
-                                                        </button>
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )
-                                    }
-                                </div>
-                                <div className="bg-red-200 flex">
-                                    
-                                    <div className='justify-center btn btn-xs items-center'>서비스 철회하기</div>
-                                    
-                                </div>
-                            </div>    </div>
+                            {lengthOfThirdPartyRecipients > 0 && (
+                                <div className='row-start-5 row-end-11 border-b-2 border-gray-300'>
+                                    <div className='p-2'>
+                                        <h2 className="text-xs font-bold">제3자 제공 대상 기관</h2>
+                                        <div className="justify-end gap-1 grid grid-cols-3">
+                                            {thirdPartyRecipients.map((recipient, index) => (
+                                                <div className='btn btn-xs bg-red-200 border-2 border-red-200 text-black hover:bg-red-300 hover:text-black'>
 
-                                {/* 
+                                                    <a key={`third-${index}`} href="https://github.com/mathminds-sd/public-assets/blob/main/f.png?raw=true">
+
+                                                        {`${recipient}`}
+
+                                                    </a>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                            }
+                            <div className="bg-transparent p-1 row-start-11 row-end-13 flex justify-center">
+
+                                <div className='btn btn-xs bg-red-500 text-white '>서비스 철회하기</div>
+
+                            </div>
+                        </div>    </div>
+
+                    {/* 
             <div className="mt-4 flex justify-around">
                 <a href="https://github.com/mathminds-sd/public-assets/blob/main/e.gif?raw=true">
                     <button className="border border-gray-400 bg-[#E3E3E3] text-black text-xs px-2 py-1 cursor-pointer rounded mr-2 w-100%">
@@ -127,10 +148,10 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
                     </button>
                 </a>
             </div> */}
-                            </div>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
+        // </div>
         //     </div>
         // </div>
     );
