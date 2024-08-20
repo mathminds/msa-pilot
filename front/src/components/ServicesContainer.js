@@ -1,16 +1,17 @@
 import React from 'react';
 import ServiceCard from './ServiceCard';
 import ThirdServiceCard from './ThirdServiceCard';
-
-
+import FlipCard from './reusables/FlipCard';
+import ServiceFrontCard from './ServiceFrontCard';
+import ServiceBackCard from './ServiceBackCard';
 const services = [
     {
         id: 1,
         title: '상품추천 서비스',
         serviceProvider: '쿠팡',
         details: ['구매내역', '위치정보'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
+        thirdPartySharedData: ['위치정보'],
+        thirdPartyRecipients: ['네이버', '카카오', '티몬']
     },
     {
         id: 2,
@@ -42,24 +43,24 @@ const services = [
         title: '데이터 분석 서비스',
         serviceProvider: '빅데이터 주식회사',
         details: ['사용자 행동 데이터', '구매 기록'],
-        thirdPartySharedData: ['사용자 행동 데이터'],
-        thirdPartyRecipients: ['구글', '페이스북', '아마존']
+        thirdPartySharedData: [],
+        thirdPartyRecipients: [],
     },
     {
         id: 6,
         title: '맞춤 광고 서비스',
         serviceProvider: '애드테크 주식회사',
         details: ['광고 선호도', '검색 기록'],
-        thirdPartySharedData: ['광고 선호도'],
-        thirdPartyRecipients: ['네이버', '카카오', '티몬']
+        thirdPartySharedData: [],
+        thirdPartyRecipients: [],
     },
     {
         id: 7,
         title: '위치 기반 서비스',
         serviceProvider: '로케이션 주식회사',
         details: ['위치 정보', '주변 가게 정보'],
-        thirdPartySharedData: ['위치 정보'],
-        thirdPartyRecipients: ['구글', '네이버', '카카오']
+        thirdPartySharedData: [],
+        thirdPartyRecipients: [],
     },
     {
         id: 8,
@@ -235,110 +236,9 @@ const dataProviders = [
 
 const ServicesContainer = () => {
 
-    const NewServicesContainer =() => {
-        <div className="bg-[#D0F7D8] px-4 w-fill h-fill">
-            <h2 className='text-xl font-bold text-black pt-4'> 이번 달에 새로 이용하기 시작한 서비스 </h2>
-            <h3 className='text-md text-gray-500'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
-
-            <div className="details carousel carousel-centerrounded-box max-w-100 space-x-4 p-4">
-            
-            {services.map((service) => (
-            
-
-          <div id={`new-service${service.id}`} className="carousel-item">
-            
-            <ServiceCard
-                                title={service.title}
-                                count={service.count}
-                                details={service.details}
-                            />
-            </div>
-          
-        ))}
-        </div>
-        
-        <div className="flex w-full justify-center gap-1 py-2">
-            
-            {services.map((service) => (
-                 <a href={`#new-service${service.id}`} className="btn btn-xs">{service.id}</a>            
-            ))}
-                    
-         </div>
-
-
-        </div>
-    }
-
-
-    const ContinuingServicesContainer =() => {
-        <div className="bg-[#34643e] px-4 w-fill h-fill">
-            <h2 className='text-xl font-bold text-black pt-4'> 지난달에 이어 이번달에도 이용한 서비스 </h2>
-            <h3 className='text-md text-gray-500'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
-
-            <div className="details carousel carousel-centerrounded-box max-w-100 space-x-4 p-4">
-            
-            {services.map((service) => (
-            
-
-          <div id={`service${service.id}`} className="carousel-item">
-            
-            <ThirdServiceCard
-                                title={service.title}
-                                count={service.count}
-                                details={service.details}
-                            />
-            </div>
-          
-        ))}
-        </div>
-        
-        <div className="flex w-full justify-center gap-1 py-2">
-            
-            {services.map((service) => (
-                 <a href={`#service${service.id}`} className="btn btn-xs">{service.id}</a>            
-            ))}
-                    
-         </div>
-
-
-        </div>
-    }
-
-
-    const RejectedServicesContainer =() => {
-        <div className="bg-[#606e63] px-4 w-fill h-fill">
-            <h2 className='text-xl font-bold text-black pt-4'> 이번 달 철회시킨 서비스가 있나요? </h2>
-            <h3 className='text-md text-gray-500'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
-
-            <div className="details carousel carousel-centerrounded-box max-w-100 space-x-4 p-4">
-            
-            {services.map((service) => (
-            
-
-          <div id={`rejected-service${service.id}`} className="carousel-item">
-            
-            <ServiceCard
-                                title={service.title}
-                                count={service.count}
-                                details={service.details}
-                            />
-            </div>
-          
-        ))}
-        </div>
-        
-        <div className="flex w-full justify-center gap-1 py-2">
-            
-            {services.map((service) => (
-                 <a href={`#rejected-service${service.id}`} className="btn btn-xs">{service.id}</a>            
-            ))}
-                    
-         </div>
-
-
-        </div>
-        
-    }
+    const newServices = services.slice(0, 3);
+    const lastMonthServices = services.slice(3, 9);
+    const rejectedServices = services.slice(9, 12);
 
     return (
 
@@ -349,9 +249,9 @@ const ServicesContainer = () => {
             <h2 className='text-xl font-bold text-black pt-4'> 이번 달에 새로 이용하기 시작한 서비스 </h2>
             <h3 className='text-md text-gray-500'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
 
-            <div className="details carousel carousel-centerrounded-box max-w-100 space-x-4 p-4">
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
-            {services.map((service) => (
+            {newServices.map((service) => (
 
 
 
@@ -363,26 +263,6 @@ const ServicesContainer = () => {
                                 thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []} 
                                 thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []} 
                             />
-
-            {/* if service.id is 2 or 3 then */}
-            {/* {service.id % 2 ===0 ? 
-            
-            <ThirdServiceCard
-                                title={service.title}
-                                count={service.count}
-                                details={service.details}
-                                button1="/service"
-                            />
-                            :
-
-            
-            <ServiceCard
-                                title={service.title}
-                                count={service.count}
-                                details={service.details}
-                               
-                            />
-            } */}
             </div>
 
             
@@ -397,7 +277,7 @@ const ServicesContainer = () => {
         
         <div className="flex w-full justify-center gap-1 py-2">
             
-            {services.map((service) => (
+            {newServices.map((service) => (
                  <a href={`#new-service${service.id}`} className="btn btn-xs">{service.id}</a>            
             ))}
                     
@@ -413,18 +293,22 @@ const ServicesContainer = () => {
             <h2 className='text-xl font-bold text-black pt-4'> 지난달에 이어 이번달에도 이용한 서비스 </h2>
             <h3 className='text-md text-gray-500'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
 
-            <div className="details carousel carousel-centerrounded-box max-w-100 space-x-4 p-4">
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
-            {services.map((service) => (
+            {lastMonthServices.map((service) => (
             
 
           <div id={`service${service.id}`} className="carousel-item h-[159]">
             
-            <ServiceCard
-                                title={service.title}
-                                count={service.count}
+                <ThirdServiceCard 
+                                title={service.title}   
+                                serviceProvider={service.serviceProvider}
                                 details={service.details}
+                                thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []}
+                                thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []}
                             />
+
+
             </div>
           
         ))}
@@ -432,12 +316,12 @@ const ServicesContainer = () => {
         
         <div className="flex w-full justify-center gap-1 py-2">
             
-            {services.map((service) => (
-                 <a href={`#service${service.id}`} className="btn btn-xs">{service.id}</a>            
+            {lastMonthServices.map((service) => (
+                 <a href={`#service${service.id}`} className="btn btn-xs">{service.id-3}</a>            
             ))}
                     
          </div>
-
+ 
 
         </div>
         
@@ -445,27 +329,37 @@ const ServicesContainer = () => {
             <h2 className='text-xl font-bold text-white pt-4'> 이번 달 철회시킨 서비스가 있나요? </h2>
             <h3 className='text-md text-white'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
 
-            <div className="details carousel carousel-centerrounded-box max-w-100 space-x-4 p-4">
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
-            {services.map((service) => (
+            {rejectedServices.map((service) => (
             
 
           <div id={`rejected-service${service.id}`} className="carousel-item">
+                 <div className="indicator">
             
-            <ServiceCard
-                                title={service.title}
-                                count={service.count}
+                <span className="indicator-item indicator-bottom indicator-center badge bg-green-500 text-white h-8 w-20">
+                    {/* < aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-white" /> */}
+                    철회 성공
+                </span>
+            
+                <ThirdServiceCard
+                                title={service.title}   
+                                serviceProvider={service.serviceProvider}
                                 details={service.details}
+                                thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []}
+                                thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []}
                             />
+
             </div>
-          
+            </div>
+                
         ))}
         </div>
         
         <div className="flex w-full justify-center gap-1 py-2">
             
-            {services.map((service) => (
-                 <a href={`#rejected-service${service.id}`} className="btn btn-xs">{service.id}</a>            
+            {rejectedServices.map((service) => (
+                 <a href={`#rejected-service${service.id}`} className="btn btn-xs">{service.id-9}</a>            
             ))}
                     
          </div>
