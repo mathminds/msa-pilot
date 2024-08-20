@@ -40,6 +40,14 @@ const ThirdServiceCard = (props) => {
 
 
     return (
+        <div>
+        {isModalOpen ? (
+                    <div className='w-full h-full bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-50'>
+            <Modal isOpen={isModalOpen} onClose={handleCloseModal} >
+                    <ServiceDetailsCard serviceData={serviceData} />
+                </Modal>
+            </div>
+        ):(
         <div className="indicator z-10">
             {thirdPartyRecipients.length > 0 && (
                 <span className="indicator-item xs:indicator-start xs:mx-12 md:indicator-center badge bg-red-500 text-white">
@@ -48,12 +56,6 @@ const ThirdServiceCard = (props) => {
                 </span>
             )}
 
-            
-                <Modal isOpen={isModalOpen} onClose={handleCloseModal} >
-                        {/* <div className='w-full h-full bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-50'> */}
-                        <ServiceDetailsCard serviceData={serviceData} />
-                {/* </div> */}
-                    </Modal>
             
             <div className="w-[450px] h-[50px] xs:border-4 xs:border-black xs:w-[600px] xs:h-[100px] md:w-[390px] md:h-[190px] grid place-content-center grid-cols-12 grid-rows-12 z-0">
 
@@ -158,6 +160,11 @@ const ThirdServiceCard = (props) => {
                     </div>
                 </div>
             </div>
+        </div>
+
+        
+        )
+        }
         </div>
     );
 };

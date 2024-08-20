@@ -60,7 +60,7 @@ export default function ServiceDetailsCard(props) {
                 서비스 상세 설명
             </div>
             <div className="col-start-4 col-end-13 row-start-3 row-end-11 bg-orange-500 z-50">
-                <img src='/b.png' className=' h-full overflow-clip ' />
+                <img src='/b.png' className=' h-full overflow-clip z-50' />
             </div>
             {/* <div className="col-start-9 col-end-13 row-start-3 row-end-10 bg-red-500">
                 SERVICE CATEGORY

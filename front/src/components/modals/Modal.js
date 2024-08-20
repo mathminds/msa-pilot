@@ -6,7 +6,7 @@ const Modal = ({ isOpen, onClose, children }) => {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50" onClick={onClose}>
             <div
-                className="relative w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 h-5/6 bg-white rounded-lg p-6 overflow-y-auto"
+                className="relative w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 h-5/6 bg-white rounded-lg p-6 overflow-y-auto z-50"
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
