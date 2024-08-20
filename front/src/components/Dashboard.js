@@ -118,7 +118,7 @@ const Dashboard = () => {
         <div className='bg-white'>
             {/* <RowsOfSnippets /> */}
             {/* <DropDown_2 /> */}
-            <ParentComponent />
+            {/* <ParentComponent /> */}
 
             <h1 className='text-5xl font-bold my-2 mx-4 text-black pt-4'>홍길동 님</h1>
             {/* <DataFlow /> */}

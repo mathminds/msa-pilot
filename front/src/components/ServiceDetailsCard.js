@@ -6,15 +6,15 @@ export default function ServiceDetailsCard(props) {
 
     if (!serviceData) {
         return (
-            <div className="w-full h-full bg-white grid grid-cols-12 grid-rows-12">
+            <div className="w-fit h-fit bg-white grid grid-cols-12 grid-rows-12 z-50">
 
-            <div className="col-start-1 col-end-13 row-start-1 row-end-2 bg-slate-300">
+            <div className="col-start-1 col-end-13 row-start-1 row-end-2 bg-slate-300 z-50">
                 TITLE
             </div>
-            <div className="col-start-1 col-end-13 row-start-2 row-end-3 bg-slate-400 text-black">
+            <div className="col-start-1 col-end-13 row-start-2 row-end-3 bg-slate-400 text-black z-50">
                 PROVIDER
             </div>
-            <div className="col-start-1 col-end-5 row-start-3 row-end-12 bg-slate-500">
+            <div className="col-start-1 col-end-5 row-start-3 row-end-12 bg-slate-500 z-50">
                 서비스 상세 설명
             </div>
             <div className="col-start-5 col-end-13 row-start-3 row-end-12 bg-orange-500">
@@ -48,7 +48,7 @@ export default function ServiceDetailsCard(props) {
     
 
     return (
-        <div className="w-fit h-fit bg-slate-200 grid grid-cols-12 grid-rows-11 p-2 rounded-lg">
+        <div className="w-full h-full bg-blue-200 grid grid-cols-12 grid-rows-11 p-2 rounded-lg z-50">
 
             <div className="col-start-1 col-end-13 row-start-1 row-end-2 bg-slate-300">
                 {serviceData.title}
@@ -56,10 +56,10 @@ export default function ServiceDetailsCard(props) {
             <div className="col-start-1 col-end-13 row-start-2 row-end-3 bg-slate-400 text-black">
                 {serviceData.serviceProvider}
             </div>
-            <div className="col-start-1 col-end-4 row-start-3 row-end-11 bg-slate-500">
+            <div className="col-start-1 col-end-4 row-start-3 row-end-11 bg-slate-500 z-50">
                 서비스 상세 설명
             </div>
-            <div className="col-start-4 col-end-13 row-start-3 row-end-11 bg-orange-500">
+            <div className="col-start-4 col-end-13 row-start-3 row-end-11 bg-orange-500 z-50">
                 <img src='/b.png' className=' h-full overflow-clip ' />
             </div>
             {/* <div className="col-start-9 col-end-13 row-start-3 row-end-10 bg-red-500">
@@ -67,15 +67,16 @@ export default function ServiceDetailsCard(props) {
             </div> */}
 
 
-            <div className="col-start-1 col-end-13 row-start-11 row-end-12 bg-purple-500">
-                <div className="grid grid-cols-12">
-                    <div className="bg-green-500 text-white font-bold btn  row-start-11 row-end-12 col-start-1 col-end-5 m-1 mx-3">
+            <div className="col-start-1 col-end-13 row-start-11 row-end-13 bg-purple-500">
+                
+                <div className="grid grid-cols-12 grid-rows-3">
+                    <div className="bg-green-500 text-white font-bold btn h-full row-start-2 row-end-3 col-start-1 col-end-5 m-1 mx-3 text-2xl">
                         서비스 상세보기
                     </div>
-                    <div className="bg-red-500 text-white font-bold btn  row-start-11 row-end-12 col-start-5 col-end-9 m-1 mx-3">
+                    <div className="bg-red-500 text-white font-bold btn h-full row-start-2 row-end-3 col-start-5 col-end-9 m-1 mx-3 text-2xl">
                         서비스 철회하기
                     </div>
-                    <div className="bg-blue-500 text-white font-bold btn row-start-11 row-end-12 col-start-9 col-end-13 m-1 mx-3">
+                    <div className="bg-blue-500 text-white font-bold btn h-full row-start-2 row-end-3 col-start-9 col-end-13 m-1 mx-3 text-2xl">
                         데이터 흐름보기
                     </div>
                 </div>

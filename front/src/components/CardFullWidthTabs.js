@@ -10,6 +10,7 @@ import ServiceDetailsCard from './ServiceDetailsCard';
 // import DataTypesContainer from './DataTypesContainer';
 
 const CardFullWidthTabs = () => {
+
     const [activeTab, setActiveTab] = useState('services');
 
     const handleTabClick = (tabId) => {
@@ -18,7 +19,7 @@ const CardFullWidthTabs = () => {
     };
 
     return (
-        <div className="w-screen h-screen bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-screen h-screen bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-10">
             <div className="dashboard w-screen h-screen grid grid-cols-12 grid-rows-12">
 
                 <div className='col-start-1 col-end-13 row-start-1 row-end-2 bg-slate-300'>
@@ -113,7 +114,7 @@ const CardFullWidthTabs = () => {
                             aria-labelledby="dataProviders-tab"
                         >
 
-                            {/* <DataProvidersContainer /> */}
+                            <DataProvidersContainer />
 
                             {/* Data Providers List */}
                         </div>
@@ -124,7 +125,7 @@ const CardFullWidthTabs = () => {
                             role="tabpanel"
                             aria-labelledby="dataTypes-tab"
                         >
-                            {/* <DataTypesContainer /> */}
+                            <DataTypesContainer />
                         </div>
                     </div>
                 </div>
