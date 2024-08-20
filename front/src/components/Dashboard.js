@@ -9,6 +9,7 @@ import TabComponent from './TabComponent';
 import CardFullWidthTabs from './CardFullWidthTabs';
 import RowsOfSnippets from './RowsOfSnippets';
 import DataFlow from './DataFlow';
+import ParentComponent from './modals/ParentComponent';
 
 const Dashboard = () => {
 
@@ -110,17 +111,22 @@ const Dashboard = () => {
     }
         , [isVisibleServices, isVisibleDataProviders, isVisibleDataTypes]);
 
+    const screenWidth = window.innerWidth;
+    console.log("screenWidth", screenWidth);
 
     return (
         <div className='bg-white'>
             {/* <RowsOfSnippets /> */}
             {/* <DropDown_2 /> */}
-
+            <ParentComponent />
 
             <h1 className='text-5xl font-bold my-2 mx-4 text-black pt-4'>홍길동 님</h1>
             {/* <DataFlow /> */}
             <p className='text-xl text-gray-400 mx-4'>마이데이터 대시보드</p>
+
+            <div className="md:border-2 md:border-blue-900 md:bg-white md:pr-4 md:rounded-xl">
                 <CardFullWidthTabs />   
+            </div>
 
             
 

@@ -4,6 +4,9 @@ import ThirdServiceCard from './ThirdServiceCard';
 import FlipCard from './reusables/FlipCard';
 import ServiceFrontCard from './ServiceFrontCard';
 import ServiceBackCard from './ServiceBackCard';
+import DropdownComponent from './reusables/DropdownComponent';
+import ServiceDetailsCard from './ServiceDetailsCard';
+import ParentComponent from './modals/ParentComponent';
 const services = [
     {
         id: 1,
@@ -234,144 +237,144 @@ const dataProviders = [
 }
 ];
 
-const ServicesContainer = () => {
+const ServicesContainer = ({handleClick}) => {
 
     const newServices = services.slice(0, 3);
     const lastMonthServices = services.slice(3, 9);
     const rejectedServices = services.slice(9, 12);
+    const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
+    
     return (
+        <div className='border border-red-500 flex flex-col bg-black'>
 
-        <div>
-            
-
-        <div className="bg-[#78ed91]  px-4 w-fill h-fill">
-            <h2 className='text-xl font-bold text-black pt-4'> 이번 달에 새로 이용하기 시작한 서비스 </h2>
-            <h3 className='text-md text-gray-500'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
-
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
-            
             {newServices.map((service) => (
-
-
-
-          <div id={`new-service${service.id}`} className="carousel-item">
-            <ThirdServiceCard 
-                                title={service.title}   
-                                serviceProvider={service.serviceProvider}
-                                details={service.details}
-                                thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []} 
-                                thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []} 
-                            />
-            </div>
-
-            
-
-
-        ))
-        }
-
-
-
-        </div>
-        
-        <div className="flex w-full justify-center gap-1 py-2">
-            
-            {newServices.map((service) => (
-                 <a href={`#new-service${service.id}`} className="btn btn-xs">{service.id}</a>            
-            ))}
-                    
-         </div>
-
-
-        </div>
-
-        
-        
-        
-        <div className="bg-[#D0F7D8] px-4 w-fill h-fill">
-            <h2 className='text-xl font-bold text-black pt-4'> 지난달에 이어 이번달에도 이용한 서비스 </h2>
-            <h3 className='text-md text-gray-500'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
-
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
-            
-            {lastMonthServices.map((service) => (
-            
-
-          <div id={`service${service.id}`} className="carousel-item h-[159]">
-            
-                <ThirdServiceCard 
-                                title={service.title}   
-                                serviceProvider={service.serviceProvider}
-                                details={service.details}
-                                thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []}
-                                thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []}
-                            />
-
-
-            </div>
-          
-        ))}
-        </div>
-        
-        <div className="flex w-full justify-center gap-1 py-2">
-            
-            {lastMonthServices.map((service) => (
-                 <a href={`#service${service.id}`} className="btn btn-xs">{service.id-3}</a>            
-            ))}
-                    
-         </div>
- 
-
-        </div>
-        
-        <div className="bg-[#91a595] px-4 w-fill h-fill">
-            <h2 className='text-xl font-bold text-white pt-4'> 이번 달 철회시킨 서비스가 있나요? </h2>
-            <h3 className='text-md text-white'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
-
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
-            
-            {rejectedServices.map((service) => (
-            
-
-          <div id={`rejected-service${service.id}`} className="carousel-item">
-                 <div className="indicator">
-            
-                <span className="indicator-item indicator-bottom indicator-center badge bg-green-500 text-white h-8 w-20">
-                    {/* < aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-white" /> */}
-                    철회 성공
-                </span>
-            
-                <ThirdServiceCard
-                                title={service.title}   
-                                serviceProvider={service.serviceProvider}
-                                details={service.details}
-                                thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []}
-                                thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []}
-                            />
-
-            </div>
-            </div>
                 
-        ))}
-        </div>
-        
-        <div className="flex w-full justify-center gap-1 py-2">
-            
-            {rejectedServices.map((service) => (
-                 <a href={`#rejected-service${service.id}`} className="btn btn-xs">{service.id-9}</a>            
-            ))}
-                    
-         </div>
+
+<div className="my-1 border border-purple-500 bg-white">
 
 
-        </div>
+<ParentComponent message={`[${service.serviceProvider}] ${service.title}`} component={<ServiceDetailsCard serviceData={service} handleClick={handleClick('services')} />} />
+{/* <DropdownComponent message={`[${service.serviceProvider}] ${service.title}`} component={<ServiceDetailsCard serviceData={service} handleClick={handleClick('services')} />} /> */}
+
 </div>
-     
+
+            )
+            )
+            }
+
+            </div>
+//         <div>
+
+//         <div className="bg-[#78ed91]  px-4 w-fill h-fill">
+//             <h2 className='text-xl font-bold text-black pt-4'> 이번 달에 새로 이용하기 시작한 서비스 </h2>
+//             <h3 className='text-md text-gray-500'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
+
+//             <div className="  xs:dropdown xs:w-[500px] md:carousel md:carousel-center md:rounded-box">
+            
+//             {newServices.map((service) => (
 
 
-);
-}
+
+//           <div id={`new-service${service.id}`} className="border border-blue-500 bg-white xs:border-red-500 xs:dropdown-content md:border md:border-red-500  md:carousel-item">
+            
+//             <div className={`xs:hidden xs:visible xs:backface-hidden xs:w-screen xs:h-[100px] xs: ${document.getElementById(`new-service${service.id}`)}.className `}>
+
+        
+//             <ThirdServiceCard 
+//                                 title={service.title}   
+//                                 serviceProvider={service.serviceProvider}
+//                                 details={service.details}
+//                                 thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []} 
+//                                 thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []} 
+//                             />
+//             </div>
+//             </div>
+
+            
+
+
+//         ))
+//         }
+
+
+
+//         </div>
+        
+//         <div className="flex w-full justify-center gap-1 py-2">
+            
+//             {newServices.map((service) => (
+//                  <a href={`#new-service${service.id}`} className="btn btn-xs">{service.id}</a>            
+//             ))}
+                    
+//          </div>
+//          </div>
+
+
+        
+        
+//         <div className="bg-[#91a595] px-4 w-fill h-fill">
+//             <h2 className='text-xl font-bold text-white pt-4'> 이번 달 철회시킨 서비스가 있나요? </h2>
+//             <h3 className='text-md text-white'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
+        
+        
+// {(windowWidth < 600) ?
+// (
+        
+//             <DropdownComponent />
+        
+//     ) :
+//     (
+//         <div>
+//             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
+            
+//             {rejectedServices.map((service) => (
+            
+
+//           <div id={`rejected-service${service.id}`} className="carousel-item">
+//                  <div className="indicator">
+            
+//                 <span className="indicator-item indicator-bottom indicator-center badge bg-green-500 text-white h-8 w-20">
+//                     {/* < aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-white" /> */}
+//                     철회 성공
+//                 </span>
+            
+//                 <ThirdServiceCard
+//                                 title={service.title}   
+//                                 serviceProvider={service.serviceProvider}
+//                                 details={service.details}
+//                                 thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []}
+//                                 thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []}
+//                             />
+
+//             </div>
+//             </div>
+                
+//         ))}
+//         </div>
+        
+//         <div className="flex w-full justify-center gap-1 py-2">
+            
+//             {rejectedServices.map((service) => (
+//                  <a href={`#rejected-service${service.id}`} className="btn btn-xs">{service.id-9}</a>            
+//             ))}
+                    
+//          </div>
+
+
+//         </div>
+//     )
+// }
+// </div>
+
+// </div>
+// </div>
+    );
+};
+
+
+
+
 
 export default ServicesContainer;
 

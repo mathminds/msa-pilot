@@ -13,17 +13,19 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
     return (
         <div className="indicator">
             {thirdPartyRecipients.length > 0 && (
-                <span className="indicator-item indicator-center badge bg-red-500 text-white">
+                <span className="indicator-item xs:indicator-start xs:mx-12 md:indicator-center badge bg-red-500 text-white">
                     <ExclamationTriangleIcon aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-white" />
                     제3자 제공
                 </span>
             )}
 
-            <div className="w-[390px] h-[190px] grid place-content-center grid-cols-12 grid-rows-12">
-                <div className='cursor-pointer group rounded-3xl perspective-1000 col-start-1 col-end-13 row-start-1 row-end-13'>
+            <div className="w-[450px] h-[50px] xs:border-4 xs:border-black xs:w-[600px] xs:h-[100px] md:w-[390px] md:h-[190px] grid place-content-center grid-cols-12 grid-rows-12">
+                
+
+                <div className='cursor-pointer group rounded-3xl  perspective-1000 col-start-1 col-end-13 row-start-1 row-end-13'>
                     <div className='relative w-full h-full preserve-3d group-hover:rotate-y-180 duration-500'>
 
-                        <div className='absolute w-full h-full bg-[#0F1823] bg-opacity-95 rounded-3xl overflow-hidden text-neutral-300 backface-hidden'>
+                        <div className='absolute w-full h-full bg-[#0F1823] bg-opacity-95 rounded-lg md:rounded-3xl overflow-hidden text-neutral-300 backface-hidden'>
                             
                             <div className="border-0 border-red-500 rounded-md bg-white px-4 text-black">
                                 <h3 className="pt-2 font-bold text-2xl">
@@ -103,7 +105,7 @@ const ThirdServiceCard = ({ title, serviceProvider, details, thirdPartySharedDat
                                 </div>
                             )}
                             
-                            <div className="bg-green-500 text-white font-bold btn btn-xs row-start-11 row-end-13 col-start-1 col-end-5 m-1 mx-3">
+                            <div className="bg-green-500 text-white font-bold btn btn-xs row-start-11 row-end-13 col-start-1 col-end-5 m-1 mx-3" >
                                 서비스 상세보기
                             </div>
                             

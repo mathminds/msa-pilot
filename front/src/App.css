@@ -36,13 +36,13 @@ header.header button:nth-child(2) {
 
 .dashboard {
   background-color: #ffffff;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   /* padding: 1rem; */
 }
 
 .summary,.details, .data-sharing {
   display: flex;
-  width: 100%;
+  /* width:  */
   justify-content: items-left;
   align-items: center;
   /* margin-bottom: 1rem; */
