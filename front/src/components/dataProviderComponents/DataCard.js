@@ -1,5 +1,5 @@
 import React from 'react';
-import './Card.css';
+
 
 const DataCard = ({ title, count, details, button1, button2 }) => {
 

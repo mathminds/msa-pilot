@@ -1,5 +1,5 @@
 import React from 'react';
-import DataProviderCard from './DataProviderCard';
+import DataProviderCard from '../dataProviderComponents/DataProviderCard';
 
 const DataTypesContainer = () => {
     return (

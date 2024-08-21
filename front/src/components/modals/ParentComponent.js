@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 import ServiceDetailsCard from '../ServiceDetailsCard';
-import CardFullWidthTabs from '../CardFullWidthTabs';
+import CardFullWidthTabs from '../layout/CardFullWidthTabs';
 
 const ParentComponent = ({message, component}) => {
     const [isModalOpen, setIsModalOpen] = useState(true);

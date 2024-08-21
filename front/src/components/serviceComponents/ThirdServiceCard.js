@@ -1,11 +1,11 @@
 import React from 'react';
-import './Card.css';
+// import './Card.css';
 import { ExclamationTriangleIcon } from '@heroicons/react/20/solid';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import FlipCard from './reusables/FlipCard';
-import ParentComponent from './modals/ParentComponent';
+// import FlipCard from './reusables/FlipCard';
+// import ParentComponent from './modals/ParentComponent';
 import ServiceDetailsCard from './ServiceDetailsCard';
-import Modal from './modals/Modal';
+import Modal from '../modals/Modal';
 
 const ThirdServiceCard = (props) => {
     const { serviceData } = props;

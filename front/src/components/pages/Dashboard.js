@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Card from './Card';
 import './Dashboard.css';
-import ServiceCard from './ServiceCard';
-import DataCard from './DataCard';
-import ServicesContainer from './ServicesContainer';
-import DataTypesContainer from './DataTypesContainer';
-import TabComponent from './TabComponent';
-import CardFullWidthTabs from './CardFullWidthTabs';
-import RowsOfSnippets from './RowsOfSnippets';
-import DataFlow from './DataFlow';
-import ParentComponent from './modals/ParentComponent';
+import CardFullWidthTabs from '../layout/CardFullWidthTabs';
+// import Card from '../components/layout/Card';
+// import ServiceCard from './ServiceCard';
+// import DataCard from '../components/dataTypeComponents/DataCard';
+// import ServicesContainer from './ServicesContainer';
+// import DataTypesContainer from '../components/dataTypeComponents/DataTypesContainer';
+// import TabComponent from '../components/layout/TabComponent';
+// import RowsOfSnippets from '../components/layout/RowsOfSnippets';
+// import DataFlow from '../components/dataTypeComponents/DataFlow';
+// import ParentComponent from '../components/modals/ParentComponent';
 
 const Dashboard = () => {
 

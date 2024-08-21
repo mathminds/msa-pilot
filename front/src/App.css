@@ -50,6 +50,14 @@ header.header button:nth-child(2) {
   
 }
 
+.bb{
+  border: 1px solid #000000;
+}
+
+.br {
+  border: 1px solid #ff0000;
+}
+
 .card {
   background-color: #F0D8EB;
   padding: 1rem;

@@ -1,6 +1,6 @@
 import React from 'react';
-import DataCard from './DataCard';
-import DataProviderCard from './DataProviderCard';
+import DataCard from '../dataProviderComponents/DataCard';
+import DataProviderCard from '../dataProviderComponents/DataProviderCard';
 
 const DataProvidersContainer = () => {
     return (
