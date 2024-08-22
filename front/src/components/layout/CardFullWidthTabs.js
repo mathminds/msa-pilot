@@ -64,7 +64,7 @@ const CardFullWidthTabs = () => {
                             </button>
                         </li>
 
-                        <li className={`w-full ${activeTab === 'dataTypes' ? 'bg-orange-500' : ''}`}>
+                        {/* <li className={`w-full ${activeTab === 'dataTypes' ? 'bg-orange-500' : ''}`}>
                             <button
                                 id="dataTypes-tab"
                                 data-tabs-target="#dataTypes"
@@ -77,7 +77,7 @@ const CardFullWidthTabs = () => {
                             >
                                 <h1 className='text-2xl'>어떤 데이터가 공유되었나요?</h1>
                             </button>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
 
