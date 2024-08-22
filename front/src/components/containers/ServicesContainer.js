@@ -30,7 +30,7 @@ const services = [
         serviceProvider: '뱅크샐러드',
         details: ['신용등급', '대출정보', '거래내역', '소득정보'],
         thirdPartySharedData: ['신용등급', '대출정보'],
-        thirdPartyRecipients: ['KT', '삼성병원', '서울시', '롯데마트', '신한은행']
+        thirdPartyRecipients: ['KT', '삼성병원']
     },
     {
         id: 4,
@@ -253,8 +253,8 @@ const ServicesContainer = () => {
             
 
         <div className="bg-[#78ed91]  px-4 w-fill h-fill">
-            <h2 className='text-xl font-bold text-black pt-4'>8월 가입 서비스</h2>
-            <h3 className='text-md text-gray-500'> 2024년 8월 1일 ~ 현재 </h3>
+            <h2 className='text-4xl font-bold text-black pt-4'>내가 최근 가입한 서비스</h2>
+            <h3 className='text-2xl text-gray-500'> 2024년 7월 23일 ~ 현재 </h3>
 
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
@@ -292,8 +292,8 @@ const ServicesContainer = () => {
         
         
         <div className="bg-[#D0F7D8] px-4 w-fill h-fill">
-            <h2 className='text-xl font-bold text-black pt-4'>7월 가입 서비스</h2>
-            <h3 className='text-md text-gray-500'>2024년 7월 1일 ~ 2024년 7월 31일</h3>
+            <h2 className='text-4xl font-bold text-black pt-4'>내가 이용중인 서비스 </h2>
+            <h3 className='text-2xl text-gray-500'>2023년 6월 1일 ~ 현재</h3>
 
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
@@ -322,8 +322,8 @@ const ServicesContainer = () => {
         </div>
         
         <div className="bg-[#91a595] px-4 w-fill h-fill">
-            <h2 className='text-xl font-bold text-white pt-4'>8월 철회 서비스 </h2>
-            <h3 className='text-md text-white'>2024년 8월 1월 ~ 현재</h3>
+            <h2 className='text-4xl font-bold text-white pt-4'>내가 철회한 서비스 </h2>
+            <h3 className='text-2xl text-white'>2024년 2월 25일 ~ 현재</h3>
 
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             

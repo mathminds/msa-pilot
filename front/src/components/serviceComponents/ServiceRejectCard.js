@@ -48,7 +48,6 @@ export default function ServiceDetailsCard(props) {
     
 
     return (
-        
         <div className="bb w-full h-full gap-1 bg-slate-100 grid grid-cols-12 grid-rows-11 p-2 rounded-lg z-50" loading="lazy" >
 
             {/* <div className="col-start-1 col-end-13 row-start-1 row-end-2 bg-slate-100 text-5xl font-bold flex justify-center items-center">
@@ -99,7 +98,7 @@ export default function ServiceDetailsCard(props) {
 </p>
             </div> */}
             <div className="bb w-full col-start-1 col-end-13 row-start-1 row-end-11 bg-orange-500 z-50">
-                <img src='/f.png' className=' h-full w-full overflow-clip z-50' alt={`${serviceData.title}`} loading="lazy"  />
+                <img src='/rejectModal.png' className=' h-full w-full overflow-clip z-50' alt={`${serviceData.title}`} loading="lazy"  />
             </div>
             {/* <div className="col-start-9 col-end-13 row-start-3 row-end-10 bg-red-500">
                 SERVICE CATEGORY
