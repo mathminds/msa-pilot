@@ -322,8 +322,8 @@ const ServicesContainer = () => {
         </div>
         
         <div className="bg-[#91a595] px-4 w-fill h-fill">
-            <h2 className='text-xl font-bold text-white pt-4'> 이번 달 철회시킨 서비스가 있나요? </h2>
-            <h3 className='text-md text-white'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
+            <h2 className='text-xl font-bold text-white pt-4'>8월 철회 서비스 </h2>
+            <h3 className='text-md text-white'>2024년 8월 1월 ~ 현재</h3>
 
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             

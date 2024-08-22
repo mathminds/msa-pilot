@@ -64,19 +64,22 @@ export default function ServiceDetailsCard(props) {
             
             </div>
             <div className="bb col-start-4 col-end-13 row-start-2 row-end-3 bg-slate-100 text-black text-2xl font-bold flex justify-start items-center text-center">
-            <p className="bb h-full flex-auto pt-2 bg-blue-50" > <span className="font-bold  text-blue-800">[통신] 정보제공자: </span> 
+            <p className="bb h-full flex-auto pt-2 bg-blue-50" > 
+                <span className="font-bold  text-blue-800">[통신] 정보전송자: </span> 
                 <div className=" flex justify-center items-center">
                 
                         SK 텔레콤
                 </div>
                 </p>
-                <p className="bb h-full flex-auto pt-2  bg-green-50" > <span className="font-bold text-green-800">[금융] 정보제공자: </span> 
+                <p className="bb h-full flex-auto pt-2  bg-green-50" > 
+                <span className="font-bold text-green-800">[금융] 정보전송자: </span> 
                 <div className="flex justify-center items-center">
                 
                         우리은행, 하나은행 
                 </div>
                 </p>
-                <p className="bb h-full flex-auto pt-2 " ><span className="font-bold  text-orange-800">[의료] 정보제공자: </span> 
+                <p className="bb h-full flex-auto pt-2 " >
+                <span className="font-bold  text-orange-800">[의료] 정보전송자: </span> 
                 <div className="flex justify-center items-center">
                 
                         종세병원, 아산병원
