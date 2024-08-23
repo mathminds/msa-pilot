@@ -10,7 +10,7 @@ const services = [
     {
         id: 1,
         title: '상품추천 서비스',
-        serviceProvider: '서울대병원',
+        serviceProvider: '쿠팡',
         details: ['구매내역', '위치정보'],
         thirdPartySharedData: ['위치정보'],
         thirdPartyRecipients: ['네이버', '카카오', '티몬']
