@@ -18,7 +18,7 @@ export default function ServiceDetailsCard(props) {
                 서비스 상세 설명
             </div>
             <div className="col-start-5 col-end-13 row-start-3 row-end-12 bg-orange-500">
-                <img src='/b.png' className='w-full h-full overflow-clip ' alt="no service data" />
+                <img src='/sb.png' className='w-full h-full overflow-clip ' alt="no service data" />
             </div>
             {/* <div className="col-start-9 col-end-13 row-start-3 row-end-10 bg-red-500">
                 SERVICE CATEGORY
@@ -99,7 +99,7 @@ export default function ServiceDetailsCard(props) {
 </p>
             </div> */}
             <div className="bb w-full col-start-1 col-end-13 row-start-1 row-end-11 bg-orange-500 z-50">
-                <img src='/f.png' className=' h-full w-full overflow-clip z-50' alt={`${serviceData.title}`} loading="lazy"  />
+                <img src='/sb.png' className=' h-full w-full overflow-clip z-50' alt={`${serviceData.title}`} loading="lazy"  />
             </div>
             {/* <div className="col-start-9 col-end-13 row-start-3 row-end-10 bg-red-500">
                 SERVICE CATEGORY

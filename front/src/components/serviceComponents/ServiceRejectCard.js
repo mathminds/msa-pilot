@@ -111,12 +111,12 @@ export default function ServiceDetailsCard(props) {
                     {/* <div className="bg-green-500 text-white font-bold btn row-start-1 row-end-2 col-start-1 col-end-5 m-1 mx-3 text-2xl">
                         서비스 상세보기
                     </div> */}
-                    <div className="bg-blue-500 text-white h-16 font-bold btn row-start-1 row-end-2 col-start-1 col-end-7 m-1 mx-3 text-2xl">
+                    {/* <div className="bg-blue-500 text-white h-16 font-bold btn row-start-1 row-end-2 col-start-1 col-end-7 m-1 mx-3 text-2xl">
                         데이터 흐름보기
                     </div>
                     <div className="bg-red-500 text-white h-16 font-bold btn row-start-1 row-end-2 col-start-7 col-end-13 m-1 mx-3 text-2xl">
                         서비스 철회하기
-                    </div>
+                    </div> */}
                 </div>
             </div>
         
