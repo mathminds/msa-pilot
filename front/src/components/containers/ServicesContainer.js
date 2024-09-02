@@ -2,6 +2,7 @@ import React from 'react';
 // import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
 // import ServiceCard from '../serviceComponents/ServiceCard';
 import ThirdServiceCard from '../serviceComponents/ThirdServiceCard';
+import RejectedServiceCard from '../serviceComponents/RejectedServiceCard';
 // import FlipCard from './reusables/FlipCard';
 // import ServiceFrontCard from '../serviceComponents/ServiceFrontCard';
 // import ServiceBackCard from '../serviceComponents/ServiceBackCard';
@@ -333,12 +334,12 @@ const ServicesContainer = () => {
           <div id={`rejected-service${service.id}`} className="carousel-item">
                  <div className="indicator z-0">
             
-                <span className="indicator-item indicator-top indicator-center badge bg-green-500 text-white h-8 w-24 z-40">
+                {/* <span className="indicator-item indicator-top indicator-center badge bg-green-500 text-white h-8 w-24 z-40"> */}
                     {/* < aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-white" /> */}
-                    철회 성공
-                </span>
+                    {/* 철회 성공 */}
+                {/* </span> */}
             
-                <ThirdServiceCard serviceData={service} />
+                <RejectedServiceCard serviceData={service} />
 
             </div>
             </div>
