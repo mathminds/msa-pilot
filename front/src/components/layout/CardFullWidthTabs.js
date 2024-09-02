@@ -46,7 +46,7 @@ const CardFullWidthTabs = () => {
                             </button>
                         </li>
                         {/* DATA PROVIDERS */}
-
+{/* 
                         <li className={`w-full ${activeTab === 'dataProviders' ? 'bg-blue-500' : ''}`}>
                             <button
                                 id="dataProviders-tab"
@@ -62,7 +62,7 @@ const CardFullWidthTabs = () => {
 
 
                             </button>
-                        </li>
+                        </li> */}
 
                         {/* <li className={`w-full ${activeTab === 'dataTypes' ? 'bg-orange-500' : ''}`}>
                             <button

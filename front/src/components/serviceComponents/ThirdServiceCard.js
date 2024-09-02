@@ -128,7 +128,7 @@ const ThirdServiceCard = (props) => {
                             </h3>
                             <div className="text-sm pt-1">정보수신자: {serviceProvider}</div>
                             <div className="text-sm pt-1 ">활용 데이터: {details.join(', ')}</div>
-                            <div className="text-sm pt-1 ">정보전송자: DataProvider1, DataProvider2, etc.</div>
+                            <div className="text-sm pt-1 ">정보전송자: 신한은행, 우리은행, 현대카드 등</div>
                             {/* <div className="text-sm pt-1 ">활용데이터 분야: 금융, 통신, 의료</div> */}
 
 
