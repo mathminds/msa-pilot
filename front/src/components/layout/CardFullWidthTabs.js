@@ -31,7 +31,7 @@ const CardFullWidthTabs = () => {
                         data-tabs-toggle="#fullWidthTabContent"
                         role="tablist"
                     >
-                        <li className={`w-full ${activeTab === 'services' ? 'bg-green-500 ' : ''}`}>
+                        <li className={`w-full ${activeTab === 'services' ? 'bg-[#48ABFB] ' : ''}`}>
                             <button
                                 id="services-tab"
                                 data-tabs-target="#services"
@@ -39,7 +39,7 @@ const CardFullWidthTabs = () => {
                                 role="tab"
                                 aria-controls="services"
                                 aria-selected={activeTab === 'services'}
-                                className={`inline-block w-full p-4 rounded-ss-lg ${activeTab === 'services' ? 'bg-green-500 hover:bg-green-700 text-white' : ''}`}
+                                className={`inline-block w-full p-4 rounded-ss-lg ${activeTab === 'services' ? 'bg-[#48ABFB] hover:bg-[#48ABFB] text-white' : ''}`}
                                 onClick={() => handleTabClick('services')}
                             >
                                 <h1 className='text-2xl'>어떤 서비스에 이용되었나요?</h1>
@@ -114,7 +114,7 @@ const CardFullWidthTabs = () => {
                             aria-labelledby="dataProviders-tab"
                         >
 
-                            <DataProvidersContainer />
+                            {/* <DataProvidersContainer /> */}
 
                             {/* Data Providers List */}
                         </div>
@@ -125,7 +125,7 @@ const CardFullWidthTabs = () => {
                             role="tabpanel"
                             aria-labelledby="dataTypes-tab"
                         >
-                            <DataTypesContainer />
+                            {/* <DataTypesContainer /> */}
                         </div>
                     </div>
                 </div>

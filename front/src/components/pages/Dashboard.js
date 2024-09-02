@@ -120,9 +120,9 @@ const Dashboard = () => {
             {/* <DropDown_2 /> */}
             {/* <ParentComponent /> */}
 
-            <h1 className='text-6xl font-bold my-2 mx-4 text-black pt-4'>홍길동 님</h1>
+            <h1 className='text-6xl font-bold my-2 mx-4 text-black pt-4'><span className="font-bold">홍길동 님</span><span className='text-gray-500 font-normal'>의 서비스 현황</span></h1>
             {/* <DataFlow /> */}
-            <p className='text-4xl text-gray-400 m-4'>마이데이터 대시보드</p>
+            {/* <p className='text-4xl text-gray-400 m-4'>마이데이터 대시보드</p> */}
 
             <div className="md:border-2 md:border-blue-900 md:bg-white md:pr-4 md:rounded-xl">
                 <CardFullWidthTabs />   

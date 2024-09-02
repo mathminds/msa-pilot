@@ -70,6 +70,8 @@ const ThirdServiceCard = (props) => {
 <div className="indicator z-10">
     <div className="w-[450px] h-[50px] xs:border-4 xs:border-black xs:w-[600px] xs:h-[100px] md:w-[390px] md:h-[190px] grid place-content-center grid-cols-12 grid-rows-12 z-0">
         {thirdPartyRecipients.length === 0 && (
+            
+
             <div className='absolute w-full h-full bg-[#0F1823] bg-opacity-95 rounded-lg md:rounded-3xl overflow-hidden text-neutral-300 backface-hidden'>
 
                 <div className="border-0 border-red-500 rounded-md bg-white px-4 text-black">
@@ -88,16 +90,19 @@ const ThirdServiceCard = (props) => {
                         <div>
 
                             <div className='grid grid-cols-12 grid-rows-2'>
-                                <div className="bg-green-500 text-white font-bold btn row-start-1 row-end-3 col-start-1 col-end-7 m-1 mx-3" onClick={handleOpenModal}>
-                                    서비스 상세보기
+                                <div className="bg-blue-500 text-white font-bold btn row-start-1 row-end-3 col-start-1 col-end-5 m-1 mx-3" onClick={handleOpenModal}>
+                                서비스 상세보기
                                 </div>
 
-                                <div className="bg-red-500 text-white font-bold btn  row-start-1 row-end-3 col-start-7 col-end-13 m-1 mx-3" onClick={handleOpenRejectModal}>
-                                    서비스 철회하기
+                                <div className="bg-red-500 text-white font-bold btn  row-start-1 row-end-3 col-start-5 col-end-9 m-1 mx-3" onClick={handleOpenRejectModal}>
+                                서비스 철회하기
+                                </div>
+                                <div className="bg-yellow-500 text-white font-bold btn  row-start-1 row-end-3 col-start-9 col-end-13 m-1 mx-3" onClick={handleOpenRejectModal}>
+                                제3자 제공내역 보기
                                 </div>
                             </div>
 
-
+                            
                         </div>
 
                     </div>
@@ -132,18 +137,19 @@ const ThirdServiceCard = (props) => {
 
 
 
-                                <div className='border-t-4 border-red-500 w-full indicator'>
-                                    <div className='border-2 border-red-500 badge inset-x-7 indicator-item indicator-start  text-red-500 font-bold'>
-                                        제3자 제공
-                                    </div>
-
-                                    <div className='px-4 pt-3 col-start-2 col-stop-5'>
-                                        <div className=" text-sm font-bold text-red-500">데이터 항목: <span className='text-red-500 text-sm font-bold'>{thirdPartySharedData.join(', ')}</span></div>
-
-                                        <div className="text-sm font-bold text-red-500">대상 기관: <span className='text-red-500 text-sm font-bold'>{thirdPartyRecipients.join(', ')}</span></div>
-
-                                    </div>
+                               
+                            <div className='grid grid-cols-12 grid-rows-2'>
+                                <div className="bg-blue-500 text-white font-bold btn row-start-1 row-end-3 col-start-1 col-end-5 m-1 mx-3" onClick={handleOpenModal}>
+                                서비스 상세보기
                                 </div>
+
+                                <div className="bg-red-500 text-white font-bold btn  row-start-1 row-end-3 col-start-5 col-end-9 m-1 mx-3" onClick={handleOpenRejectModal}>
+                                서비스 철회하기
+                                </div>
+                                <div className="bg-yellow-500 text-white font-bold btn  row-start-1 row-end-3 col-start-9 col-end-13 m-1 mx-3" onClick={handleOpenRejectModal}>
+                                제3자 제공내역 보기
+                                </div>
+                            </div>
 
                             </div>
 

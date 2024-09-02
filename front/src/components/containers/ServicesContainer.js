@@ -252,9 +252,9 @@ const ServicesContainer = () => {
         <div className='z-10'>
             
 
-        <div className="bg-[#78ed91]  px-4 w-fill h-fill">
-            <h2 className='text-4xl font-bold text-black pt-4'>내가 최근 가입한 서비스</h2>
-            <h3 className='text-2xl text-gray-500'> 2024년 7월 23일 ~ 현재 </h3>
+        <div className="bg-[#48ABFB]  px-4 w-fill h-fill">
+            <h2 className='text-4xl font-bold text-white pt-4'>내가 최근 가입한 서비스</h2>
+            <h3 className='text-2xl text-white'> 2024년 7월 23일 ~ 현재 </h3>
 
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
@@ -291,9 +291,9 @@ const ServicesContainer = () => {
         
         
         
-        <div className="bg-[#D0F7D8] px-4 w-fill h-fill">
-            <h2 className='text-4xl font-bold text-black pt-4'>내가 이용중인 서비스 </h2>
-            <h3 className='text-2xl text-gray-500'>2023년 6월 1일 ~ 현재</h3>
+        <div className="bg-[#8AD0FB] px-4 w-fill h-fill">
+            <h2 className='text-4xl font-bold text-[#085195] pt-4'>내가 이용중인 서비스 </h2>
+            <h3 className='text-2xl text-[#085195]'>2023년 6월 1일 ~ 현재</h3>
 
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
@@ -321,9 +321,9 @@ const ServicesContainer = () => {
 
         </div>
         
-        <div className="bg-[#91a595] px-4 w-fill h-fill">
-            <h2 className='text-4xl font-bold text-white pt-4'>내가 철회한 서비스 </h2>
-            <h3 className='text-2xl text-white'>2024년 2월 25일 ~ 현재</h3>
+        <div className="bg-[#D6F1FF] px-4 w-fill h-fill">
+            <h2 className='text-4xl font-bold text-[#085195] pt-4'>내가 철회한 서비스 </h2>
+            <h3 className='text-2xl text-[#085195]'>2024년 2월 25일 ~ 현재</h3>
 
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
