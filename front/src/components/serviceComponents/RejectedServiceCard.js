@@ -69,9 +69,9 @@ const RejectedServiceCard = (props) => {
                                 <div className='bg-blue-500 text-white font-bold btn btn-xs col-start-1 col-end-5 m-1 mx-3' onClick={handleOpenModal}>
                                     서비스 상세보기
                                 </div>
-                                <div className='bg-gray-200 text-white font-bold btn btn-xs col-start-5 col-end-9 m-1 mx-3'>
+                                {/* <div className='bg-gray-200 text-white font-bold btn btn-xs col-start-5 col-end-9 m-1 mx-3'>
                                     서비스 철회하기
-                                </div>
+                                </div> */}
                                 {thirdPartyRecipients.length > 0 ? 
                                 <div className='bg-yellow-500 text-white font-bold btn btn-xs col-start-9 col-end-13 m-1 mx-3' onClick={handleFlip}>
                                     제3자 제공내역
