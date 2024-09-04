@@ -1,0 +1,42 @@
+.consent-card {
+    background-color: #d3d3d3; /* Light grey background */
+    border-radius: 10px;
+    padding: 10px;
+    width: 400px;
+    height: 200px;
+    /* margin: 20px auto; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .consent-header {
+    font-weight: bold;
+    font-size: 20px;
+    /* margin-bottom: 20px; */
+    text-align: center;
+  }
+  
+  .consent-table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .consent-row {
+    display: table-row;
+  }
+  
+  .consent-cell {
+    display: table-cell;
+    /* padding: 10px; */
+    text-align: center;
+    border: 1px solid #000; /* Black border */
+    font-size: 12px;
+  }
+  
+  .header-cell {
+    font-weight: bold;
+    font-size: 14px;
+    border-bottom: 2px solid #000; /* Thicker bottom border for header */
+  }
+  

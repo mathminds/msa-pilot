@@ -3,6 +3,8 @@ import React from 'react';
 // import ServiceCard from '../serviceComponents/ServiceCard';
 import ThirdServiceCard from '../serviceComponents/ThirdServiceCard';
 import RejectedServiceCard from '../serviceComponents/RejectedServiceCard';
+import FlipCard from '../reusables/FlipCard';
+import FinalServiceCard from '../serviceComponents/FinalServiceCard';
 // import FlipCard from './reusables/FlipCard';
 // import ServiceFrontCard from '../serviceComponents/ServiceFrontCard';
 // import ServiceBackCard from '../serviceComponents/ServiceBackCard';
@@ -264,7 +266,7 @@ const ServicesContainer = () => {
 
 
           <div id={`new-service${service.id}`} className="carousel-item">
-            <ThirdServiceCard serviceData={service} />
+            <FinalServiceCard serviceData={service} />
                                 
             </div>
 
@@ -303,7 +305,7 @@ const ServicesContainer = () => {
 
           <div id={`service${service.id}`} className="carousel-item h-[159]">
             
-            <ThirdServiceCard serviceData={service} />
+            <FinalServiceCard serviceData={service} />
 
 
             </div>

@@ -6,7 +6,7 @@ import Modal from '../modals/Modal';
 import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
 import ServiceRejectCard from '../serviceComponents/ServiceRejectCard';
 
-const RejectedServiceCard = (props) => {
+const FlipCard = (props) => {
     const {serviceData}=props
 
     const { id, title, serviceProvider, details, thirdPartySharedData, thirdPartyRecipients } = serviceData;
@@ -58,8 +58,8 @@ const RejectedServiceCard = (props) => {
                 <div className="flip-card-front grid grid-cols-12 grid-rows-12 ">
                     {/* <FrontCard serviceData={serviceData} /> */}
                     <div className='pt-4  border-red-500  bg-white px-4 text-black w-full h-full grid grid-cols-12 grid-rows-12 rounded-xl'>
-                        <h3 className='font-bold text-2xl row-start-1 row-end-3 col-start-1 col-end-13 text-gray-400'>[철회] {title}</h3>
-                        <ul className='row-start-3 row-end-9 col-start-1 col-end-13 text-gray-400'>
+                        <h3 className='font-bold text-2xl row-start-1 row-end-3 col-start-1 col-end-13'>{title}</h3>
+                        <ul className='row-start-3 row-end-9 col-start-1 col-end-13'>
                         <li className='text-base pt-1 row-start-3 row-end-5 col-start-1 col-end-13 '>정보수신자: {serviceProvider}</li>
                         <li className='text-base  col-start-1 col-end-13 row-start-5 row-end-7 '>활용데이터: {details.join(', ')}</li>
                         <li className='text-base  col-start-1 col-end-13 row-start-7 row-end-9 '>정보전송자: 신한은행, 우리은행, 현대카드 등</li>
@@ -69,7 +69,7 @@ const RejectedServiceCard = (props) => {
                                 <div className='bg-blue-500 text-white font-bold btn btn-xs col-start-1 col-end-5 m-1 mx-3' onClick={handleOpenModal}>
                                     서비스 상세보기
                                 </div>
-                                <div className='bg-gray-200 text-white font-bold btn btn-xs col-start-5 col-end-9 m-1 mx-3'>
+                                <div className='bg-red-500 text-white font-bold btn btn-xs col-start-5 col-end-9 m-1 mx-3' onClick={handleOpenRejectModal}>
                                     서비스 철회하기
                                 </div>
                                 {thirdPartyRecipients.length > 0 ? 
@@ -111,4 +111,4 @@ const RejectedServiceCard = (props) => {
     );
 };
 
-export default RejectedServiceCard;
+export default FlipCard;
