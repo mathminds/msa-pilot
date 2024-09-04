@@ -6,7 +6,7 @@ import Modal from '../modals/Modal';
 import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
 import ServiceRejectCard from '../serviceComponents/ServiceRejectCard';
 
-const FlipCard = (props) => {
+const FinalServiceCard = (props) => {
     const {serviceData}=props
 
     const { id, title, serviceProvider, details, thirdPartySharedData, thirdPartyRecipients } = serviceData;
@@ -85,7 +85,7 @@ const FlipCard = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="flip-card-back grid grid-cols-12 grid-rows-12" onClick={handleFlip}>
+                <div className="flip-card-back grid grid-cols-12 grid-rows-12 text-black" onClick={handleFlip}>
                 <div className="consent-card col-start-2 col-end-12">
       <div className="consent-header row-start-1 row-end-2 ">
         [동의 일자] 2024년 8월 13일 18:32
@@ -111,4 +111,4 @@ const FlipCard = (props) => {
     );
 };
 
-export default FlipCard;
+export default FinalServiceCard;
