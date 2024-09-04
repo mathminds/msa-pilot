@@ -85,7 +85,7 @@ const RejectedServiceCard = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="flip-card-back grid grid-cols-12 grid-rows-12" onClick={handleFlip}>
+                <div className="flip-card-back grid grid-cols-12 grid-rows-12 text-black" onClick={handleFlip}>
                 <div className="consent-card col-start-2 col-end-12">
       <div className="consent-header row-start-1 row-end-2 ">
         [동의 일자] 2024년 8월 13일 18:32
@@ -96,7 +96,7 @@ const RejectedServiceCard = (props) => {
           <div className="consent-cell header-cell">제공 데이터</div>
         </div>
         {thirdPartyRecipients.map((recipient, index) => (
-          <div className="consent-row">
+          <div className="consent-row text-black">
             <div className="consent-cell">{recipient}</div>
             <div className="consent-cell">{thirdPartySharedData[index]}</div>
           </div>    
