@@ -8,106 +8,11 @@ import FinalServiceCard from '../serviceComponents/FinalServiceCard';
 // import FlipCard from './reusables/FlipCard';
 // import ServiceFrontCard from '../serviceComponents/ServiceFrontCard';
 // import ServiceBackCard from '../serviceComponents/ServiceBackCard';
+import exampleServices from '../../data/exampleServices';
 
-const services = [
-    {
-        id: 1,
-        title: '상품추천 서비스',
-        serviceProvider: '쿠팡',
-        details: ['구매내역', '위치정보'],
-        thirdPartySharedData: ['위치정보'],
-        thirdPartyRecipients: ['네이버', '카카오', '티몬']
-    },
-    {
-        id: 2,
-        title: '소비패턴 개선 서비스',
-        serviceProvider: '국민카드',
-        details: ['거래내역', '연령'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
-    
-    },
-    {
-        id: 3,
-        title: '본인 신용 정보 통합조회 서비스',
-        serviceProvider: '뱅크샐러드',
-        details: ['신용등급', '대출정보', '거래내역', '소득정보'],
-        thirdPartySharedData: ['신용등급', '대출정보'],
-        thirdPartyRecipients: ['KT', '삼성병원']
-    },
-    {
-        id: 4,
-        title: '요금제 추천 서비스',
-        serviceProvider: '정보수신자: 엘지유플러스',
-        details: ['통신요금내역', '요금제정보', '데이터사용량'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
-    },
-    {
-        id: 5,
-        title: '데이터 분석 서비스',
-        serviceProvider: '빅데이터 주식회사',
-        details: ['사용자 행동 데이터', '구매 기록'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
-    },
-    {
-        id: 6,
-        title: '맞춤 광고 서비스',
-        serviceProvider: '애드테크 주식회사',
-        details: ['광고 선호도', '검색 기록'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
-    },
-    {
-        id: 7,
-        title: '위치 기반 서비스',
-        serviceProvider: '로케이션 주식회사',
-        details: ['위치 정보', '주변 가게 정보'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
-    },
-    {
-        id: 8,
-        title: '음악 추천 서비스',
-        serviceProvider: '뮤직테크 주식회사',
-        details: ['음악 장르 선호도', '재생 기록'],
-        thirdPartySharedData: ['음악 장르 선호도'],
-        thirdPartyRecipients: ['스포티파이', '애플 뮤직', '멜론']
-    },
-    {
-        id: 9,
-        title: '건강 관리 서비스',
-        serviceProvider: '헬스테크 주식회사',
-        details: ['운동 기록', '수면 패턴'],
-        thirdPartySharedData: ['운동 기록'],
-        thirdPartyRecipients: ['피트빗', '스트라바', '애플 헬스']
-    },
-    {
-        id: 10,
-        title: '책 추천 서비스',
-        serviceProvider: '북테크 주식회사',
-        details: ['독서 기록', '선호 장르'],
-        thirdPartySharedData: ['독서 기록'],
-        thirdPartyRecipients: ['알라딘', '교보문고', '예스24']
-    },
-    {
-        id: 11,
-        title: '영화 추천 서비스',
-        serviceProvider: '영테크 주식회사',
-        details: ['시청 기록', '선호 장르'],
-        thirdPartySharedData: ['시청 기록'],
-        thirdPartyRecipients: ['넷플릭스', '왓챠', '웨이브']
-    },
-    {
-        id: 12,
-        title: '뉴스 추천 서비스',
-        serviceProvider: '뉴스테크 주식회사',
-        details: ['클릭 기록', '선호 주제'],
-        thirdPartySharedData: ['클릭 기록'],
-        thirdPartyRecipients: ['네이버뉴스', '다음뉴스', '네이트뉴스']
-    }
-];
+const services = exampleServices;
+console.log(services);
+console.log(typeof(services));
 
 const dataProviders = [
 
@@ -241,9 +146,9 @@ const dataProviders = [
 
 const ServicesContainer = () => {
 
-    const newServices = services.slice(0, 3);
-    const lastMonthServices = services.slice(3, 9);
-    const rejectedServices = services.slice(9, 12);
+    const newServices = services.slice(0, 7);
+    const lastMonthServices = services.slice(0, 15);
+    const rejectedServices = services.slice(16, 19);
 
 
 
@@ -255,10 +160,11 @@ const ServicesContainer = () => {
         <div className='z-10'>
             
 
-        <div className="bg-[#48ABFB]  px-4 w-fill h-fill">
-            <h2 className='text-4xl font-bold text-white pt-4'>내가 최근 가입한 서비스</h2>
-            <h3 className='text-2xl text-white'> 2024년 7월 23일 ~ 현재 </h3>
-
+        <div className="bg-[#48ABFB]  px-4 w-fill h-fill pt-4">
+            <p>
+                <span className='text-4xl font-bold text-white'>내가 최근 가입한 서비스</span>
+                <span className='text-2xl text-white mx-4'>2024년 7월 23일 ~ 현재</span>
+            </p>
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
             {newServices.map((service) => (
@@ -281,7 +187,6 @@ const ServicesContainer = () => {
         </div>
         
         <div className="flex w-full justify-center gap-1 py-2">
-            
             {newServices.map((service) => (
                  <a href={`#new-service${service.id}`} className="btn btn-xs">{service.id}</a>            
             ))}
@@ -294,9 +199,11 @@ const ServicesContainer = () => {
         
         
         
-        <div className="bg-[#8AD0FB] px-4 w-fill h-fill">
-            <h2 className='text-4xl font-bold text-[#085195] pt-4'>내가 이용중인 서비스 </h2>
-            <h3 className='text-2xl text-[#085195]'>2023년 6월 1일 ~ 현재</h3>
+        <div className="bg-[#8AD0FB] px-4 w-fill h-fill pt-4">
+            <p>
+                <span className='text-4xl font-bold text-[#085195] '>내가 이용중인 서비스</span>
+                <span className='text-2xl text-[#085195] mx-4'> 2023년 6월 1일 ~ 현재</span>
+            </p>
 
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
@@ -324,10 +231,11 @@ const ServicesContainer = () => {
 
         </div>
         
-        <div className="bg-[#D6F1FF] px-4 w-fill h-fill">
-            <h2 className='text-4xl font-bold text-[#085195] pt-4'>내가 철회한 서비스 </h2>
-            <h3 className='text-2xl text-[#085195]'>2024년 2월 25일 ~ 현재</h3>
-
+        <div className="bg-[#D6F1FF] px-4 w-fill h-fill pt-4">
+            <p>
+                <span className='text-4xl font-bold text-[#085195] '>내가 철회한 서비스</span>
+                <span className='text-2xl text-[#085195] mx-4'> 2024년 2월 25일 ~ 현재</span>
+            </p>
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
             
             {rejectedServices.map((service) => (
