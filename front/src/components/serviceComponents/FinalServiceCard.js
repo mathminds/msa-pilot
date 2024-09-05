@@ -70,7 +70,7 @@ const FinalServiceCard = (props) => {
                         <li className='text-sm md:text-xl pt-1 row-start-5 row-end-7 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>활용데이터: {dataProvidedList}</li>
                         <li className='text-sm md:text-xl pt-1 row-start-7 row-end-9 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>정보전송자: {dataProvidersList}</li>
                         </ul>
-                        <div className='py-2 border-black bg-white w-full col-start-1 col-end-13 row-start-9 row-end-13 flex justify-center gap-1 md:justify-between items-end'>
+                        <div className='py-2 border-white bg-white w-full col-start-1 col-end-13 row-start-9 row-end-13 flex justify-center gap-1 md:justify-between items-end'>
                             {/* <div className='grid grid-cols-12 grid-rows-2'> */}
                                 <div className='bg-blue-500 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-1 col-end-5' onClick={handleOpenModal}>
                                     서비스 상세보기
