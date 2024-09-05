@@ -39,10 +39,10 @@ const CardFullWidthTabs = () => {
                                 role="tab"
                                 aria-controls="services"
                                 aria-selected={activeTab === 'services'}
-                                className={`inline-block w-full p-4 rounded-ss-lg ${activeTab === 'services' ? 'bg-[#48ABFB] hover:bg-[#48ABFB] text-white' : ''}`}
+                                className={`inline-block w-full p-2 md:p-4 rounded-ss-lg ${activeTab === 'services' ? 'bg-[#48ABFB] hover:bg-[#48ABFB] text-white' : ''}`}
                                 onClick={() => handleTabClick('services')}
                             >
-                                <h1 className='text-2xl'>어떤 서비스에 이용되었나요?</h1>
+                                <h1 className='text-lg md:text-3xl'>어떤 서비스에 이용되었나요?</h1>
                             </button>
                         </li>
                         {/* DATA PROVIDERS */}

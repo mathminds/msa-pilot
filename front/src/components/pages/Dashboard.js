@@ -120,7 +120,7 @@ const Dashboard = () => {
             {/* <DropDown_2 /> */}
             {/* <ParentComponent /> */}
 
-            <h1 className='text-6xl font-bold my-2 mx-4 text-black pt-4'><span className="font-bold">홍길동 님</span><span className='text-gray-500 font-normal'>의 서비스 현황</span></h1>
+            <h1 className='text-4xl md:text-6xl font-bold my-2 mx-4 text-black pt-4'><span className="font-bold">홍길동 님</span><span className='text-gray-500 font-normal text-2xl md:text-4xl'>의 서비스 현황</span></h1>
             {/* <DataFlow /> */}
             {/* <p className='text-4xl text-gray-400 m-4'>마이데이터 대시보드</p> */}
 
@@ -209,28 +209,6 @@ const Dashboard = () => {
 };
 
 
-const DropDown_1 = () => {
-    <div id="dropdownSmall" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-            <div>Bonnie Green</div>
-            <div class="font-medium truncate">name@flowbite.com</div>
-        </div>
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSmallButton">
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-            </li>
-        </ul>
-        <div class="py-2">
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-        </div>
-    </div>
-}
 
 
 

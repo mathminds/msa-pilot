@@ -160,12 +160,13 @@ const ServicesContainer = () => {
         <div className='z-10'>
             
 
-        <div className="bg-[#48ABFB]  px-4 w-fill h-fill pt-4">
+        <div className="bg-[#48ABFB] px-2 md:px-4 w-fill h-fill pt-2 md:pt-4">
             <p>
-                <span className='text-4xl font-bold text-white'>내가 최근 가입한 서비스</span>
-                <span className='text-2xl text-white mx-4'>2024년 7월 23일 ~ 현재</span>
+                <span className='text-xl md:text-4xl font-bold ml-2 md:ml-4 text-white '>내가 최근 가입한 서비스</span>
+                <br className='block md:hidden' />
+                <span className='text-base md:text-2xl mx-2 md:mx-4 text-white '>2024년 7월 23일 ~ 현재</span>
             </p>
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 md:space-x-4 p-2 md:p-4">
             
             {newServices.map((service) => (
 
@@ -186,7 +187,7 @@ const ServicesContainer = () => {
 
         </div>
         
-        <div className="flex w-full justify-center gap-1 py-2">
+        <div className="flex w-full justify-center gap-1 py-1 md:py-2">
             {newServices.map((service) => (
                  <a href={`#new-service${service.id}`} className="btn btn-xs">{service.id}</a>            
             ))}
@@ -199,13 +200,14 @@ const ServicesContainer = () => {
         
         
         
-        <div className="bg-[#8AD0FB] px-4 w-fill h-fill pt-4">
+        <div className="bg-[#8AD0FB] px-2 md:px-4 w-fill h-fill pt-2 md:pt-4">
             <p>
-                <span className='text-4xl font-bold text-[#085195] '>내가 이용중인 서비스</span>
-                <span className='text-2xl text-[#085195] mx-4'> 2023년 6월 1일 ~ 현재</span>
+                <span className='text-xl md:text-4xl font-bold ml-2 md:ml-4 text-[#085195] '>내가 이용중인 서비스</span>
+                <br className='block md:hidden' />
+                <span className='text-base md:text-2xl mx-2 md:mx-4text-[#085195]'> 2023년 6월 1일 ~ 현재</span>
             </p>
 
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 md:space-x-4 p-2 md:p-4">
             
             {lastMonthServices.map((service) => (
             
@@ -220,7 +222,7 @@ const ServicesContainer = () => {
         ))}
         </div>
         
-        <div className="flex w-full justify-center gap-1 py-2">
+        <div className="flex w-full justify-center gap-1 py-1 md:py-2">
             
             {lastMonthServices.map((service) => (
                  <a href={`#service${service.id}`} className="btn btn-xs">{service.id-3}</a>            
@@ -231,12 +233,13 @@ const ServicesContainer = () => {
 
         </div>
         
-        <div className="bg-[#D6F1FF] px-4 w-fill h-fill pt-4">
+        <div className="bg-[#D6F1FF] px-2 md:px-4 w-fill h-fill pt-2 md:pt-4">
             <p>
-                <span className='text-4xl font-bold text-[#085195] '>내가 철회한 서비스</span>
-                <span className='text-2xl text-[#085195] mx-4'> 2024년 2월 25일 ~ 현재</span>
+                <span className='text-xl md:text-4xl font-bold ml-2 md:ml-4 text-[#085195] '>내가 철회한 서비스</span>
+                <br className='block md:hidden' />
+                <span className='text-base md:text-2xl mx-2 md:mx-4text-[#085195]'> 2024년 2월 25일 ~ 현재</span>
             </p>
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 md:space-x-4 p-2 md:p-4">
             
             {rejectedServices.map((service) => (
             
