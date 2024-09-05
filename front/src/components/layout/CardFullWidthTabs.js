@@ -19,14 +19,14 @@ const CardFullWidthTabs = () => {
     };
 
     return (
-        <div className="w-screen h-screen bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-10">
-            <div className="dashboard w-screen h-screen grid grid-cols-12 grid-rows-12">
+            <div className="dashboard w-screen h-screen grid grid-cols-12 grid-rows-12 ">
+                <div className="w-screen h-screen bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-10">
 
-                <div className='col-start-1 col-end-13 row-start-1 row-end-2 bg-slate-300'>
+                <div className='col-start-1 col-end-13 row-start-1 row-end-3 bg-slate-300'>
 
 
                     <ul
-                        className="text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
+                        className="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
                         id="fullWidthTab"
                         data-tabs-toggle="#fullWidthTabContent"
                         role="tablist"
@@ -39,10 +39,10 @@ const CardFullWidthTabs = () => {
                                 role="tab"
                                 aria-controls="services"
                                 aria-selected={activeTab === 'services'}
-                                className={`inline-block w-full p-2 md:p-4 rounded-ss-lg ${activeTab === 'services' ? 'bg-[#48ABFB] hover:bg-[#48ABFB] text-white' : ''}`}
+                                className={`inline-block w-full p-2 md:p-4 rounded-ss-lg ${activeTab === 'services' ? 'bg-blue-500 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-700 text-white' : 'bg-slate-200 text-slate-400 border border-slate-600 '}`}
                                 onClick={() => handleTabClick('services')}
                             >
-                                <h1 className='text-lg md:text-3xl'>어떤 서비스에 이용되었나요?</h1>
+                                <h1 className='text-lg sm:text-xl md:text-2xl lg:text-3xl'>어떤 서비스에 이용되었나요?</h1>
                             </button>
                         </li>
                         {/* DATA PROVIDERS */}
@@ -55,16 +55,16 @@ const CardFullWidthTabs = () => {
                                 role="tab"
                                 aria-controls="dataProviders"
                                 aria-selected={activeTab === 'dataProviders'}
-                                className={`inline-block w-full p-4  ${activeTab === 'dataProviders' ? 'bg-blue-500 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-700 text-white' : ''}`}
+                                className={`inline-block w-full p-4  ${activeTab === 'dataProviders' ? 'bg-blue-500 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-700 text-white' : 'bg-slate-200 text-slate-400  border border-slate-600'}`}
                                 onClick={() => handleTabClick('dataProviders')}
                             >
-                                <h1 className='text-2xl'>어떤 기관에서 제공되었나요?</h1>
+                                <h1 className='text-lg sm:text-xl md:text-2xl lg:text-3xl'>어떤 기관에서 제공되었나요?</h1>
 
 
                             </button>
-                        </li> */}
+                        </li> 
 
-                        {/* <li className={`w-full ${activeTab === 'dataTypes' ? 'bg-orange-500' : ''}`}>
+                        <li className={`w-full ${activeTab === 'dataTypes' ? 'bg-orange-500' : ''}`}>
                             <button
                                 id="dataTypes-tab"
                                 data-tabs-target="#dataTypes"
@@ -72,18 +72,18 @@ const CardFullWidthTabs = () => {
                                 role="tab"
                                 aria-controls="dataTypes"
                                 aria-selected={activeTab === 'dataTypes'}
-                                className={`inline-block w-full p-4 ${activeTab === 'dataTypes' ? 'bg-orange-500 hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-700 text-white' : ''}`}
+                                className={`inline-block w-full p-4 ${activeTab === 'dataTypes' ? 'bg-blue-500 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-700 text-white' : 'bg-slate-200 text-slate-400 border border-slate-600'}`}
                                 onClick={() => handleTabClick('dataTypes')}
                             >
-                                <h1 className='text-2xl'>어떤 데이터가 공유되었나요?</h1>
+                                <h1 className='text-lg sm:text-xl md:text-2xl lg:text-3xl'>어떤 데이터가 공유되었나요?</h1>
                             </button>
                         </li> */}
                     </ul>
                 </div>
 
-                <div className='border border-purple-500 col-start-1 col-end-13 row-start-2 row-end-13 bg-slate-600'>
+                <div className='col-start-1 col-end-13 row-start-2 md:row-start-3 row-end-13 bg-slate-600'>
                     <div id="fullWidthTabContent" className="border-2 border-gray-200 dark:border-gray-600">
-                        <div
+                        {/* <div
                             className={`p-0 bg-white rounded-lg md:p-0 dark:bg-gray-800 ${activeTab === 'serviceDetails' ? '' : 'hidden'
                                 }`}
                             id="serviceDetails"
@@ -92,7 +92,7 @@ const CardFullWidthTabs = () => {
                         >
                             <ServiceDetailsCard />
                         </div>
-
+ */}
 
                         <div
                             className={`p-0 bg-white rounded-lg md:p-0 dark:bg-gray-800 ${activeTab === 'services' ? '' : 'hidden'

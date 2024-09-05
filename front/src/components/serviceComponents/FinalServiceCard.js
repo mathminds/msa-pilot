@@ -7,30 +7,22 @@ import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
 import ServiceRejectCard from '../serviceComponents/ServiceRejectCard';
 
 const FinalServiceCard = (props) => {
-    const {serviceData}=props
+    const {serviceData, handleOpenModal, handleOpenRejectModal}=props
+
+    const handleModal=()=>{
+        handleOpenModal(serviceData)
+    };
+
+    const handleRejectModal=()=>{
+        handleOpenRejectModal(serviceData)
+    };
 
     const { id, title, serviceProvider, dataProviders, details, thirdPartySharing, thirdPartySharedData, thirdPartyRecipients } = serviceData;
     const [isFlipped, setIsFlipped] = useState(false);
 
-    const [isModalOpen, setIsModalOpen] = useState(null);
-    const [isModalReject, setIsModalReject] = useState(null);
 
+    console.log(serviceData);
 
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
-
-    const handleOpenRejectModal = () => {
-        setIsModalReject(true);
-    };
-
-    const handleCloseRejectModal = () => {
-        setIsModalReject(false);
-    };
     const handleFlip = () => {
         setIsFlipped(!isFlipped);
     };
@@ -44,21 +36,8 @@ const FinalServiceCard = (props) => {
     return (
 
         <>
-        {isModalReject && (
-            <div className='w-full h-full bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-50'>
-                <Modal isOpen={isModalReject} onClose={handleCloseRejectModal}>
-                    <ServiceRejectCard serviceData={serviceData} />
-                </Modal>
-            </div>
-        )}
+        
 
-        {isModalOpen && (
-            <div className='w-full h-full bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-50'>
-                <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-                    <ServiceDetailsCard serviceData={serviceData} />
-                </Modal>
-            </div>
-        )}
         <div className="flip-card-container ">
             <div className={`flip-card h-[150px] w-[300px] md:h-[200px] md:w-[400px] ${isFlipped ? 'flipped' : ''} `}>
                 <div className="flip-card-front md:flip-card-front-md grid grid-cols-12 grid-rows-12 ">
@@ -72,10 +51,10 @@ const FinalServiceCard = (props) => {
                         </ul>
                         <div className='py-2 border-white bg-white w-full col-start-1 col-end-13 row-start-9 row-end-13 flex justify-center gap-1 md:justify-between items-end'>
                             {/* <div className='grid grid-cols-12 grid-rows-2'> */}
-                                <div className='bg-blue-500 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-1 col-end-5' onClick={handleOpenModal}>
+                                <div className='bg-blue-500 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-1 col-end-5' onClick={handleModal}>
                                     서비스 상세보기
                                 </div>
-                                <div className='bg-red-500 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-5 col-end-9' onClick={handleOpenRejectModal}>
+                                <div className='bg-red-500 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-5 col-end-9' onClick={handleRejectModal}>
                                     서비스 철회하기
                                 </div>
                                 {thirdPartyRecipients.length > 0 ? 

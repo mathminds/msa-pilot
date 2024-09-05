@@ -9,6 +9,10 @@ import FinalServiceCard from '../serviceComponents/FinalServiceCard';
 // import ServiceFrontCard from '../serviceComponents/ServiceFrontCard';
 // import ServiceBackCard from '../serviceComponents/ServiceBackCard';
 import exampleServices from '../../data/exampleServices';
+import Modal from '../modals/Modal';
+import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
+import ServiceRejectCard from '../serviceComponents/ServiceRejectCard';
+
 
 const services = exampleServices;
 console.log(services);
@@ -145,35 +149,80 @@ const dataProviders = [
 ];
 
 const ServicesContainer = () => {
-
+    const serviceData = null;
     const newServices = services.slice(0, 7);
     const lastMonthServices = services.slice(0, 15);
     const rejectedServices = services.slice(16, 19);
 
+    const [isModalOpen, setIsModalOpen] = React.useState(null);
+    const [currentServiceData, setCurrentServiceData] = React.useState(null);
+    const [isModalReject, setIsModalReject] = React.useState(null);
 
 
+    
+    const handleOpenModal = (serviceData) => {
+        setIsModalReject(false);
+        setIsModalOpen(true);
+        
+        setCurrentServiceData(serviceData);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setIsModalReject(false);
+        setCurrentServiceData(null);
+    };
+    
+
+    const handleOpenRejectModal = (serviceData) => {
+        setIsModalOpen(false);
+        setIsModalReject(true);
+        setCurrentServiceData(serviceData);
+    };
+
+    const handleCloseRejectModal = () => {
+        setIsModalOpen(false);
+        setIsModalReject(false);
+        setCurrentServiceData(null);
+    };
+    
 
     return (
 
         
-        
+        <>
+        {isModalOpen && (
+            <div className='w-full h-full bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-50'>
+                <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+                    <ServiceDetailsCard serviceData={currentServiceData} handleOpenRejectModal={handleOpenRejectModal} />
+                </Modal>
+            </div>
+        )}
+
+        {isModalReject && (
+            <div className='w-full h-full bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-50'>
+                <Modal isOpen={isModalReject} onClose={handleCloseRejectModal}>
+                    <ServiceRejectCard serviceData={currentServiceData} />
+                </Modal>
+            </div>
+        )}
         <div className='z-10'>
             
 
-        <div className="bg-[#48ABFB] px-2 md:px-4 w-fill h-fill pt-2 md:pt-4">
+        <div className="bg-[#48ABFB] px-2 sm:px-4 w-fill h-fill py-2 sm:py-4">
             <p>
-                <span className='text-xl md:text-4xl font-bold ml-2 md:ml-4 text-white '>내가 최근 가입한 서비스</span>
-                <br className='block md:hidden' />
-                <span className='text-base md:text-2xl mx-2 md:mx-4 text-white '>2024년 7월 23일 ~ 현재</span>
+                <span className='text-xl sm:text-4xl font-bold ml-2 sm:ml-4 text-white '>내가 최근 가입한 서비스</span>
+                <br className='block sm:hidden' />
+                <span className='text-base sm:text-2xl mx-2 sm:mx-4 text-white '>2024년 7월 23일 ~ 현재</span>
             </p>
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 md:space-x-4 p-2 md:p-4">
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
             {newServices.map((service) => (
 
 
 
           <div id={`new-service${service.id}`} className="carousel-item">
-            <FinalServiceCard serviceData={service} />
+            <FinalServiceCard serviceData={service} handleOpenModal={handleOpenModal} handleOpenRejectModal={handleOpenRejectModal} />
                                 
             </div>
 
@@ -187,7 +236,7 @@ const ServicesContainer = () => {
 
         </div>
         
-        <div className="hidden md:flex w-full justify-center gap-1 py-1 md:py-2">
+        <div className="hidden sm:flex w-full justify-center gap-1 py-1 sm:py-2">
             {newServices.map((service) => (
                  <a href={`#new-service${service.id}`} className="btn btn-xs">{service.id}</a>            
             ))}
@@ -200,21 +249,21 @@ const ServicesContainer = () => {
         
         
         
-        <div className="bg-[#8AD0FB] px-2 md:px-4 w-fill h-fill pt-2 md:pt-4">
+        <div className="bg-[#8AD0FB] px-2 sm:px-4 w-fill h-fill py-2 sm:py-4">
             <p>
-                <span className='text-xl md:text-4xl font-bold ml-2 md:ml-4 text-[#085195] '>내가 이용중인 서비스</span>
-                <br className='block md:hidden' />
-                <span className='text-base md:text-2xl mx-2 md:mx-4text-[#085195]'> 2023년 6월 1일 ~ 현재</span>
+                <span className='text-xl sm:text-4xl font-bold ml-2 sm:ml-4 text-[#085195] '>내가 이용중인 서비스</span>
+                <br className='block sm:hidden' />
+                <span className='text-base sm:text-2xl mx-2 sm:mx-4text-[#085195]'> 2023년 6월 1일 ~ 현재</span>
             </p>
 
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 md:space-x-4 p-2 md:p-4">
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
             {lastMonthServices.map((service) => (
             
 
           <div id={`service${service.id}`} className="carousel-item h-[159]">
             
-            <FinalServiceCard serviceData={service} />
+            <FinalServiceCard serviceData={service} handleOpenModal={handleOpenModal}  handleOpenRejectModal={handleOpenRejectModal} />
 
 
             </div>
@@ -222,7 +271,7 @@ const ServicesContainer = () => {
         ))}
         </div>
         
-        <div className="hidden md:flex w-full justify-center gap-1 py-1 md:py-2">
+        <div className="hidden sm:flex w-full justify-center gap-1 py-1 sm:py-2">
             
             {lastMonthServices.map((service) => (
                  <a href={`#service${service.id}`} className="btn btn-xs">{service.id-3}</a>            
@@ -233,13 +282,13 @@ const ServicesContainer = () => {
 
         </div>
         
-        <div className="bg-[#D6F1FF] px-2 md:px-4 w-fill h-fill pt-2 md:pt-4">
+        <div className="bg-[#D6F1FF] px-2 sm:px-4 w-fill h-fill py-2 sm:py-4">
             <p>
-                <span className='text-xl md:text-4xl font-bold ml-2 md:ml-4 text-[#085195] '>내가 철회한 서비스</span>
-                <br className='block md:hidden' />
-                <span className='text-base md:text-2xl mx-2 md:mx-4text-[#085195]'> 2024년 2월 25일 ~ 현재</span>
+                <span className='text-xl sm:text-4xl font-bold ml-2 sm:ml-4 text-[#085195] '>내가 철회한 서비스</span>
+                <br className='block sm:hidden' />
+                <span className='text-base sm:text-2xl mx-2 sm:mx-4text-[#085195]'> 2024년 2월 25일 ~ 현재</span>
             </p>
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 md:space-x-4 p-2 md:p-4">
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
             {rejectedServices.map((service) => (
             
@@ -260,7 +309,7 @@ const ServicesContainer = () => {
         ))}
         </div>
         
-        <div className="hidden md:flex w-full justify-center gap-1 py-2">
+        <div className="hidden sm:flex w-full justify-center gap-1 py-2">
             
             {rejectedServices.map((service) => (
                  <a href={`#rejected-service${service.id}`} className="btn btn-xs">{service.id-9}</a>            
@@ -271,7 +320,7 @@ const ServicesContainer = () => {
 
         </div>
 </div>
-     
+</>
 
 
 );
