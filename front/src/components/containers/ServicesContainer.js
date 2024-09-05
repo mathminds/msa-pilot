@@ -187,7 +187,7 @@ const ServicesContainer = () => {
 
         </div>
         
-        <div className="flex w-full justify-center gap-1 py-1 md:py-2">
+        <div className="hidden md:flex w-full justify-center gap-1 py-1 md:py-2">
             {newServices.map((service) => (
                  <a href={`#new-service${service.id}`} className="btn btn-xs">{service.id}</a>            
             ))}
@@ -222,7 +222,7 @@ const ServicesContainer = () => {
         ))}
         </div>
         
-        <div className="flex w-full justify-center gap-1 py-1 md:py-2">
+        <div className="hidden md:flex w-full justify-center gap-1 py-1 md:py-2">
             
             {lastMonthServices.map((service) => (
                  <a href={`#service${service.id}`} className="btn btn-xs">{service.id-3}</a>            
@@ -260,7 +260,7 @@ const ServicesContainer = () => {
         ))}
         </div>
         
-        <div className="flex w-full justify-center gap-1 py-2">
+        <div className="hidden md:flex w-full justify-center gap-1 py-2">
             
             {rejectedServices.map((service) => (
                  <a href={`#rejected-service${service.id}`} className="btn btn-xs">{service.id-9}</a>            
