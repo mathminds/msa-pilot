@@ -39,7 +39,7 @@ const FinalServiceCard = (props) => {
         
 
         <div className="flip-card-container ">
-            <div className={`flip-card h-[150px] w-[300px] md:h-[200px] md:w-[400px] ${isFlipped ? 'flipped' : ''} `}>
+            <div className={`flip-card h-[9.375rem] w-[18.75rem] md:h-[12.5rem] md:w-[25rem] ${isFlipped ? 'flipped' : ''} `}>
                 <div className="flip-card-front md:flip-card-front-md grid grid-cols-12 grid-rows-12 ">
                     {/* <FrontCard serviceData={serviceData} /> */}
                     <div className='pt-2 md:pt-4  border-red-500  bg-white px-4 text-black w-full h-full grid grid-cols-12 grid-rows-12 rounded-xl'>
@@ -62,7 +62,7 @@ const FinalServiceCard = (props) => {
                                     제3자 제공내역
                                 </div>
                                 :
-                                <div className='bg-gray-200 text-white font-bold btn btn-xs px-1 md:btn-sm col-start-9 col-end-13'>
+                                <div className='bg-gray-200 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-9 col-end-13'>
                                     제3자 제공내역
                                 </div>
 }
