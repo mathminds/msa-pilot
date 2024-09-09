@@ -51,18 +51,18 @@ const FinalServiceCard = (props) => {
                         </ul>
                         <div className='py-2 border-white bg-white w-full col-start-1 col-end-13 row-start-9 row-end-13 flex justify-center gap-1 md:justify-between items-end'>
                             {/* <div className='grid grid-cols-12 grid-rows-2'> */}
-                                <div className='bg-blue-500 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-1 col-end-5' onClick={handleModal}>
+                                <div className='bg-blue-500 text-white font-bold btn btn-xs md:btn-sm col-start-1 col-end-5' onClick={handleModal}>
                                     서비스 상세보기
                                 </div>
-                                <div className='bg-red-500 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-5 col-end-9' onClick={handleRejectModal}>
+                                <div className='bg-red-500 text-white font-bold btn btn-xs md:btn-sm col-start-5 col-end-9' onClick={handleRejectModal}>
                                     서비스 철회하기
                                 </div>
                                 {thirdPartyRecipients.length > 0 ? 
-                                <div className='bg-yellow-500 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-9 col-end-13' onClick={handleFlip}>
+                                <div className='bg-yellow-500 text-white font-bold btn btn-xs md:btn-sm col-start-9 col-end-13' onClick={handleFlip}>
                                     제3자 제공내역
                                 </div>
                                 :
-                                <div className='bg-gray-200 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-9 col-end-13'>
+                                <div className='bg-gray-200 text-white font-bold btn btn-xs md:btn-sm col-start-9 col-end-13'>
                                     제3자 제공내역
                                 </div>
 }
