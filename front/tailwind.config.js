@@ -36,6 +36,30 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [CustomStyle,require('daisyui'),
-    require('@tailwindcss/aspect-ratio')],
+  plugins: [
+    CustomStyle,require('daisyui'),
+    require('@tailwindcss/aspect-ratio'),
+    
+  
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.font-smoothing-antialiased': {
+          '-webkit-font-smoothing': 'antialiased',
+          '-moz-osx-font-smoothing': 'grayscale',
+        },
+        '.font-smoothing-auto': {
+          '-webkit-font-smoothing': 'auto',
+          '-moz-osx-font-smoothing': 'auto',
+        },
+        '.text-render-optimize': {
+          'text-rendering': 'optimizeLegibility',
+        },
+        '.text-render-geometric': {
+          'text-rendering': 'geometricPrecision',
+        },
+      }
+
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }  
+  ],
 }

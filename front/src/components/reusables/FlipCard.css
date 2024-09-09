@@ -1,4 +1,5 @@
 .flip-card-container {
+  font-family: sans-serif;
   display: flex;
   flex-direction: column;
   align-items: start;

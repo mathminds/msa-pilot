@@ -9,7 +9,7 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <div className="App bg-white">
+      <div className="App bg-white font-smoothing-antialiased text-render-optimize">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/service" element={<Service />} />
