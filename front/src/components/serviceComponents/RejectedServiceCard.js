@@ -54,7 +54,7 @@ const RejectedServiceCard = (props) => {
             </div>
         )}
         <div className="flip-card-container shadow-lg hover:shadow-xl transition-all duration-200">
-            <div className={`flip-card h-[150px] w-[300px] md:h-[200px] md:w-[400px] ${isFlipped ? 'flipped' : ''} `}>
+            <div className={`flip-card h-[150px]  w-[24.75rem] md:h-[12.5rem] md:w-[28rem] ${isFlipped ? 'flipped' : ''} `}>
                 <div className="flip-card-front md:flip-card-front-md grid grid-cols-12 grid-rows-12 ">
                     {/* <FrontCard serviceData={serviceData} /> */}
                     <div className='pt-2 md:pt-4  border-red-500  bg-white px-2 md:px-4 text-black w-full h-full grid grid-cols-12 grid-rows-12 rounded-xl gap-3'>
