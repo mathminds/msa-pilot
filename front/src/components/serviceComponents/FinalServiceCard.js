@@ -51,18 +51,18 @@ const FinalServiceCard = (props) => {
                         </ul>
                         <div className='py-2 border-white bg-white w-full col-start-1 col-end-13 row-start-9 row-end-13 flex justify-center gap-1 md:justify-between items-end'>
                             {/* <div className='grid grid-cols-12 grid-rows-2'> */}
-                                <button className='bg-blue-500 text-white font-bold btn-xs md:btn-sm col-start-1 col-end-5' onClick={handleModal}>
+                                <button className='bg-blue-500 text-white font-bold text-nowrap btn-xs md:btn-sm col-start-1 col-end-5' onClick={handleModal}>
                                     서비스 상세보기
                                 </button>
-                                <button className='bg-red-500 text-white font-bold btn-xs md:btn-sm col-start-5 col-end-9' onClick={handleRejectModal}>
+                                <button className='bg-red-500 text-white font-bold text-nowrap btn-xs md:btn-sm col-start-5 col-end-9' onClick={handleRejectModal}>
                                     서비스 철회하기
                                 </button>
                                 {thirdPartyRecipients.length > 0 ? 
-                                <button className='bg-yellow-500 text-white font-bold btn-xs md:btn-sm col-start-9 col-end-13' onClick={handleFlip}>
+                                <button className='bg-yellow-500 text-white font-bold text-nowrap btn-xs md:btn-sm col-start-9 col-end-13' onClick={handleFlip}>
                                     제3자 제공내역
                                 </button>
                                 :
-                                <button className='bg-gray-200 text-white font-bold btn-xs md:btn-sm col-start-9 col-end-13'>
+                                <button className='bg-gray-200 text-white font-bold text-nowrap btn-xs md:btn-sm col-start-9 col-end-13'>
                                     제3자 제공내역
                                 </button>
 }
