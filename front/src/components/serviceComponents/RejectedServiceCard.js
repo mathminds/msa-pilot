@@ -53,31 +53,30 @@ const RejectedServiceCard = (props) => {
                 </Modal>
             </div>
         )}
-        <div className="flip-card-container ">
+        <div className="flip-card-container shadow-lg hover:shadow-xl transition-all duration-200">
             <div className={`flip-card h-[150px] w-[300px] md:h-[200px] md:w-[400px] ${isFlipped ? 'flipped' : ''} `}>
                 <div className="flip-card-front md:flip-card-front-md grid grid-cols-12 grid-rows-12 ">
                     {/* <FrontCard serviceData={serviceData} /> */}
-                    <div className='pt-2 md:pt-4  border-red-500  bg-white px-2 md:px-4 text-black w-full h-full grid grid-cols-12 grid-rows-12 rounded-xl'>
+                    <div className='pt-2 md:pt-4  border-red-500  bg-white px-2 md:px-4 text-black w-full h-full grid grid-cols-12 grid-rows-12 rounded-xl gap-3'>
                         <h3 className='font-bold text-lg md:text-2xl row-start-1 row-end-3 col-start-1 col-end-13 text-gray-400'>[철회] {title}</h3>
-                        <ul className='row-start-3 row-end-9 col-start-1 col-end-13 text-gray-400'>
+                        <ul className='list-disc list-inside row-start-3 row-end-9 col-start-1 col-end-13 text-gray-400'>
                         <li className='text-sm md:text-xl pt-1 row-start-3 row-end-5 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis '>정보수신자: {serviceProvider}</li>
                         <li className='text-sm md:text-xl pt-1 col-start-1 col-end-13 row-start-5 row-end-7 overflow-hidden whitespace-nowrap overflow-ellipsis '>활용데이터: {details.join(', ')}</li>
                         <li className='text-sm md:text-xl pt-1 col-start-1 col-end-13 row-start-7 row-end-9 overflow-hidden whitespace-nowrap overflow-ellipsis '>정보전송자: 신한은행, 우리은행, 현대카드 등</li>
                         </ul>
-                        <div className='py-2 border-black bg-white w-full col-start-1 col-end-13 row-start-9 row-end-13 flex justify-center gap-1 md:justify-between items-end '>
+                        <div className='py-2  border-white  col-start-1 col-end-13 row-start-9 row-end-12 flex justify-between gap-4'>
                             {/* <div className='grid grid-cols-12 grid-rows-2'> */}
-                                <div className='bg-blue-500 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-1 col-end-5' onClick={handleOpenModal}>
-                                    서비스 상세보기
+                              
+                                <div className='bg-blue-500 text-white font-bold w-full btn-xs md:btn-sm rounded text-center flex items-center justify-center'>
+                                서비스 상세보기
                                 </div>
-                                <div className='bg-white text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-5 col-end-9 border-0'>
-                                    서비스 철회하기
-                                </div>
+                        
                                 {thirdPartyRecipients.length > 0 ? 
-                                <div className='bg-yellow-500 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-9 col-end-13' onClick={handleFlip}>
+                                <div className='bg-yellow-500 text-white font-bold  w-full btn-xs md:btn-sm rounded text-center items-center justify-center' onClick={handleFlip}>
                                     제3자 제공내역
                                 </div>
                                 :
-                                <div className='bg-gray-200 text-white font-bold btn btn-xs px-1.5 md:btn-sm col-start-9 col-end-13'>
+                                <div className='bg-gray-200 text-white font-bold w-full btn-xs md:btn-sm rounded text-center flex items-center justify-center'>
                                     제3자 제공내역
                                 </div>
 }

@@ -211,9 +211,9 @@ const ServicesContainer = () => {
 
         <div className="bg-[#48ABFB] px-2 sm:px-4 w-fill h-fill py-2 sm:py-4">
             <p>
-                <span className='text-xl sm:text-4xl font-bold ml-2 sm:ml-4 text-white '>내가 최근 가입한 서비스</span>
+                <span className='text-xl sm:text-2xl font-bold ml-2 sm:ml-4 text-white '>내가 최근 가입한 서비스</span>
                 <br className='block sm:hidden' />
-                <span className='text-base sm:text-2xl mx-2 sm:mx-4 text-white '>2024년 7월 23일 ~ 현재</span>
+                <span className='text-base sm:text-lg mx-2 sm:mx-4 text-white '>2024년 7월 23일 ~ 현재</span>
             </p>
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
@@ -251,9 +251,9 @@ const ServicesContainer = () => {
         
         <div className="bg-[#8AD0FB] px-2 sm:px-4 w-fill h-fill py-2 sm:py-4">
             <p>
-                <span className='text-xl sm:text-4xl font-bold ml-2 sm:ml-4 text-[#085195] '>내가 이용중인 서비스</span>
+                <span className='text-xl sm:text-2xl font-bold ml-2 sm:ml-4 text-[#085195] '>내가 이용중인 서비스</span>
                 <br className='block sm:hidden' />
-                <span className='text-base sm:text-2xl mx-2 sm:mx-4text-[#085195]'> 2023년 6월 1일 ~ 현재</span>
+                <span className='text-base sm:text-lg mx-2 sm:mx-4  text-[#085195]'> 2023년 6월 1일 ~ 현재</span>
             </p>
 
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
@@ -284,9 +284,9 @@ const ServicesContainer = () => {
         
         <div className="bg-[#D6F1FF] px-2 sm:px-4 w-fill h-fill py-2 sm:py-4">
             <p>
-                <span className='text-xl sm:text-4xl font-bold ml-2 sm:ml-4 text-[#085195] '>내가 철회한 서비스</span>
+                <span className='text-xl sm:text-2xl font-bold ml-2 sm:ml-4 text-[#085195] '>내가 철회한 서비스</span>
                 <br className='block sm:hidden' />
-                <span className='text-base sm:text-2xl mx-2 sm:mx-4text-[#085195]'> 2024년 2월 25일 ~ 현재</span>
+                <span className='text-base sm:text-lg mx-2 sm:mx-4 text-[#085195]'> 2024년 2월 25일 ~ 현재</span>
             </p>
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
