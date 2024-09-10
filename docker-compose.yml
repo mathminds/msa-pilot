@@ -21,6 +21,18 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
       - ALLOW_PLAINTEXT_LISTENER=yes
+
+  api:
+    build: ./api/
+    networks:
+      - app-tier
+    depends_on:
+      - kafka
+    restart: on-failure
+    ports:
+      - '8000:8000'
+
+
   microservice-dc:
     build: ./ms1/
     networks:
@@ -28,6 +40,8 @@ services:
     depends_on:
       - kafka
     restart: on-failure
+    env_file:
+      - ./ms1/.env
 
   microservice-da:
     build: ./ms2/
@@ -36,3 +50,23 @@ services:
     depends_on:
       - kafka
     restart: on-failure
+    env_file:
+      - ./ms2/.env
+
+  # # db-collection:
+  # #   image: postgres:latest
+  # #   networks:
+  # #     - app-tier
+  # #   environment:
+  # #     POSTGRES_USER: user
+  # #     POSTGRES_PASSWORD: password
+  # #     POSTGRES_DB: collection
+
+  # # db-analysis:
+  # #   image: postgres:latest
+  # #   networks:
+  # #     - app-tier
+  # #   environment:
+  # #     POSTGRES_USER: user
+  # #     POSTGRES_PASSWORD: password
+  # #     POSTGRES_DB: analysis

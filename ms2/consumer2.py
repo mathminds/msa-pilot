@@ -1,6 +1,13 @@
 from kafka.structs import TopicPartition
 import json
 from kafka import KafkaConsumer
+from dotenv import load_dotenv, find_dotenv
+import os
+
+load_dotenv(find_dotenv())
+
+LISTENING_KAFKA_TOPIC=os.getenv("COLLECTION_KAFKA_TOPIC")
+PRODUCING_KAFKA_TOPIC=os.getenv("ANALYSIS_KAFKA_TOPIC")
 
 # Create a KafkaConsumer instance
 consumer = KafkaConsumer(
@@ -11,14 +18,14 @@ consumer = KafkaConsumer(
 )
 
 # Subscribe to a specific topic
-consumer.subscribe(topics=['data_collection'])
+consumer.subscribe(topics=[LISTENING_KAFKA_TOPIC])
 
 # Poll for new messages
 while True:
     msg = consumer.poll(timeout_ms=1000)
 
     if msg:
-        inner_msg=msg[TopicPartition(topic='data_collection', partition=0)]
+        inner_msg=msg[TopicPartition(topic=LISTENING_KAFKA_TOPIC, partition=0)]
         for key, value in msg.items():
             d = value[0].value['data']
             for e in d:

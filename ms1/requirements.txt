@@ -1,2 +1,4 @@
 kafka-python
 faker
+python-dotenv
+requests

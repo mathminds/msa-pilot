@@ -1,8 +1,15 @@
+import requests
 import json 
 from kafka import KafkaProducer
 import time
+from dotenv import load_dotenv, find_dotenv
+import os
 
-from example_data import e_data
+load_dotenv(find_dotenv())
+
+KAFKA_TOPIC=os.getenv("COLLECTION_KAFKA_TOPIC")
+API_SERVER=os.getenv("API_SERVER")
+
 
 
 producer = KafkaProducer(
@@ -11,10 +18,24 @@ producer = KafkaProducer(
     max_block_ms=1000
 )
 
+api_response = requests.post(f"{API_SERVER}/support/request/history")
+services_raw = api_response.json()['service_list']
+# print(api_response.json())
+#TODO fetch data to map api_response to e_data
+from convert_api_response import convert_api_response
+# e_data = convert(api_response.json())
+e_data = convert_api_response(services_raw)
+
+
+
+
+# from example_data import e_data
+
+
 
 while True:
     try:
-        producer.send("data_collection", value={"data":e_data})
+        producer.send(KAFKA_TOPIC, value={"data":e_data})
         producer.flush()
         print("Message sent successfully")
     except Exception as e:

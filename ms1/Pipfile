@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 kafka-python = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
