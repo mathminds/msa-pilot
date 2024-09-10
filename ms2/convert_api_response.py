@@ -23,7 +23,7 @@ def convert_api_response(services_list):
                 if r['request_ymd'] > last_consent_date:
                     last_consent_date = r['request_ymd']
         collected_service_dict['id']=str(i)
-        collected_service_dict['service_cd'] = service_name
+        collected_service_dict['service_code'] = service_name
         collected_service_dict['title'] = f'TITLE_{service_name}'
         collected_service_dict['serviceProvider'] = f'SERVICE_PROVIDER_{service_name}'
         collected_service_dict['data_providers'] = data_providers

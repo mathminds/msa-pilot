@@ -22,9 +22,9 @@ api_response = requests.post(f"{API_SERVER}/support/request/history")
 services_raw = api_response.json()['service_list']
 # print(api_response.json())
 #TODO fetch data to map api_response to e_data
-from convert_api_response import convert_api_response
+# from convert_api_response import convert_api_response
 # e_data = convert(api_response.json())
-e_data = convert_api_response(services_raw)
+# e_data = convert_api_response(services_raw)
 
 
 
@@ -35,11 +35,11 @@ e_data = convert_api_response(services_raw)
 
 while True:
     try:
-        producer.send(KAFKA_TOPIC, value={"data":e_data})
+        producer.send(KAFKA_TOPIC, value={"data":services_raw})
         producer.flush()
-        print("Message sent successfully")
+        print("[MS1] Message sent successfully")
     except Exception as e:
-        print("Failed to send message")
+        print("[MS1] Failed to send message")
         print(e)
 
-    time.sleep(5)
+    time.sleep(10)

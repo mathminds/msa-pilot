@@ -1,2 +1,7 @@
 kafka-python
 faker
+python-dotenv
+psycopg2-binary
+sqlalchemy
+fastapi
+uvicorn
