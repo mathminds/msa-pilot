@@ -45,9 +45,9 @@ const FinalServiceCard = (props) => {
                     <div className='pt-2 md:pt-4 border-red-500  bg-white px-4 text-black w-full h-full grid grid-cols-12 grid-rows-12 rounded-xl gap-3'>
                         <h3 className='font-bold text-lg md:text-2xl row-start-1 row-end-3 col-start-1 col-end-13'>{title}</h3>
                         <ul className='list-disc list-inside row-start-3 row-end-9 col-start-1 col-end-13 '>
-                        <li className='text-sm md:text-xl pt-1 ml-sm row-start-3 row-end-5 col-start-1 col-end-13 mr-1 overflow-hidden whitespace-nowrap overflow-ellipsis'>정보수신자: {serviceProvider}</li>
-                        <li className='text-sm md:text-xl pt-1 row-start-5 row-end-7 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>활용데이터: {dataProvidedList}</li>
-                        <li className='text-sm md:text-xl pt-1 row-start-7 row-end-9 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>정보전송자: {dataProvidersList}</li>
+                        <li className='text-sm md:text-xl pt-1 ml-sm row-start-3 row-end-5 col-start-1 col-end-13 mr-1 overflow-hidden whitespace-nowrap overflow-ellipsis'>[정보수신자] {serviceProvider}</li>
+                        <li className='text-sm md:text-xl pt-1 row-start-5 row-end-7 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>[활용데이터] {dataProvidedList}</li>
+                        <li className='text-sm md:text-xl pt-1 row-start-7 row-end-9 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>[정보전송자] {dataProvidersList}</li>
                         </ul>
                         <div className='py-2  border-white  col-start-1 col-end-13 row-start-9 row-end-12 flex justify-between gap-2  '>
                             {/* <div className='grid grid-cols-12 grid-rows-2'> */}
@@ -71,7 +71,7 @@ const FinalServiceCard = (props) => {
                     </div>
                 </div>
                 <div className="flip-card-back md:flip-card-back-md grid grid-cols-12 grid-rows-12 text-black" onClick={handleFlip}>
-                <div className="consent-card h-[150px] w-[300px] md:h-[200px] md:w-[400px] col-start-2 col-end-12">
+                <div className="consent-card h-[9.375rem] w-[24.75rem] md:h-[12.5rem] md:w-[28rem] col-start-2 col-end-12">
       <div className="text-lg md:text-2xl consent-header row-start-1 row-end-2 pb-1 md:pb-2">
         [동의 일자] 2024년 8월 13일 18:32
       </div>
