@@ -8,7 +8,7 @@ export default function ServiceDetailsCard(props) {
         handleOpenRejectModal(serviceData);
     };
 
-    if (!serviceData) {
+    if (serviceData) {
         return (
             <div className="w-fit h-fit bg-white grid grid-cols-12 grid-rows-12 z-50">
 

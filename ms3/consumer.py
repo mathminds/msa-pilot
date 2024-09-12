@@ -31,7 +31,7 @@ consumer.assign(tps)
 consumer.seek_to_beginning()
 # Poll for new messages
 while True:
-    msg = consumer.poll(timeout_ms=1000)
+    msg = consumer.poll(timeout_ms=100)
 
     if msg:
         print("[MS3] New messages received from MS2")
