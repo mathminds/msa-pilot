@@ -3,7 +3,7 @@
 networks:
   kafka-network:
     driver: bridge
-  ms3-db_network:
+  ms4-db_network:
     driver: bridge
   api-network:
     driver: bridge
@@ -31,7 +31,7 @@ services:
     build: ./api/
     networks:
       - api-network
-    restart: on-failure
+    # restart: on-failure
     ports:
       - '8000:8000'
 
@@ -43,7 +43,7 @@ services:
       - api-network
     depends_on:
       - kafka
-    restart: on-failure
+    # restart: on-failure
     env_file:
       - ./ms1/.env
 
@@ -53,7 +53,7 @@ services:
       - kafka-network
     depends_on:
       - kafka
-    restart: on-failure
+    # restart: on-failure
     env_file:
       - ./ms2/.env
 
@@ -61,23 +61,35 @@ services:
     build: ./ms3/
     networks:
       - kafka-network
-      - ms3-db_network
+      # - ms3-db_network
     depends_on:
       - kafka
-    restart: on-failure
+    # restart: on-failure
     env_file:
       - ./ms3/.env
+  ms4:
+    build: ./ms4/
+    networks:
+      - kafka-network
+      - ms4-db_network
+    depends_on:
+      - kafka
+    # restart: on-failure
+    env_file:
+      - ./ms4/.env
+    ports:
+      - '8001:8001'
 
-  # ms3-db:
-  #   image: postgres:latest
-  #   networks:
-  #     - ms3-db_network
-  #   environment:
-  #     POSTGRES_USER: user
-  #     POSTGRES_PASSWORD: password
-  #     POSTGRES_DB: ms3 
-  #   ports:
-  #     - '5432:5432'
+  ms4-db:
+    image: postgres:latest
+    networks:
+      - ms4-db_network
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ms4
+    ports:
+      - '5432:5432'
     
   # ms3-db-admin:
   #   image: adminer
