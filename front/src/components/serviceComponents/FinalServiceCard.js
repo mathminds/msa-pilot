@@ -5,6 +5,7 @@ import '../reusables/FlipCard.css'; // Import the CSS file for styles
 import Modal from '../modals/Modal';
 import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
 import ServiceRejectCard from '../serviceComponents/ServiceRejectCard';
+import { getServiceThirdPartyDetails } from '../../data/externalDataServices';
 
 const FinalServiceCard = (props) => {
     const {serviceData, handleOpenModal, handleOpenRejectModal}=props
@@ -17,20 +18,23 @@ const FinalServiceCard = (props) => {
         handleOpenRejectModal(serviceData)
     };
 
-    const { id, title, serviceProvider, dataProviders, details, thirdPartySharing, thirdPartySharedData, thirdPartyRecipients } = serviceData;
+    const { id, service_code, title, serviceProvider, data_providers, last_consent_date, third_party_sharing, share_requests } = serviceData;
     const [isFlipped, setIsFlipped] = useState(false);
 
 
     console.log(serviceData);
-
-    const handleFlip = () => {
+    
+    const [thirdPartyRecipients, setThirdPartyRecipients]= useState([]);
+    const handleFlip =  () => {
+        getServiceThirdPartyDetails(service_code).then(setThirdPartyRecipients)
+        // setThirdPartyRecipients(tpr);
         setIsFlipped(!isFlipped);
     };
+
     
 
-
-    const dataProvidersList = (dataProviders.length > 0 ? dataProviders.map((provider) => provider.provider).join(', ') : '정보전송자: 신한은행, 우리은행, 현대카드 등');
-    const dataProvidedList= [... new Set(dataProviders.flatMap(provider => provider.providedData))].join(', ');
+    const dataProvidersList = (data_providers.length > 0 ? data_providers.map((provider) => provider.provider).join(', ') : '정보전송자: 신한은행, 우리은행, 현대카드 등');
+    const dataProvidedList= [... new Set(data_providers.flatMap(provider => provider.providedData))].join(', ');
     // console.log(dataProvidedList);
 
     return (
@@ -57,7 +61,7 @@ const FinalServiceCard = (props) => {
                                 <button className='bg-red-500 text-white font-bold   w-full btn-xs md:btn-sm  rounded' onClick={handleRejectModal}>
                                     서비스 철회하기
                                 </button>
-                                {thirdPartyRecipients.length > 0 ? 
+                                {third_party_sharing ? 
                                 <button className='bg-yellow-500 text-white font-bold  w-full btn-xs md:btn-sm   rounded' onClick={handleFlip}>
                                     제3자 제공내역
                                 </button>
@@ -80,18 +84,19 @@ const FinalServiceCard = (props) => {
           <div className="text-sm md:text-lg consent-cell header-cell">제3자 제공기관</div>
           <div className="text-sm md:text-lg consent-cell header-cell">제공 데이터</div>
         </div>
-        {thirdPartySharing.map((item, index) => (
+        {thirdPartyRecipients.length>0 ?
+        thirdPartyRecipients.map((item) => (
           <div className="consent-row">
             <div className="text-sm md:text-lg consent-cell">{item.recipient}</div>
-            <div className="text-sm md:text-lg consent-cell">{item.sharedData}</div>
+            <div className="text-sm md:text-lg consent-cell">{item.sharedData.join(', ')}</div>
           </div>    
-        ))}
-        {/* {thirdPartyRecipients.map((recipient, index) => (
-          <div className="consent-row">
-            <div className="consent-cell">{recipient}</div>
-            <div className="consent-cell">{thirdPartySharedData[index]}</div>
-          </div>    
-        ))} */}
+        ))
+        :
+        <div className="consent-row">
+          <div className="text-sm md:text-lg consent-cell header-cell">제3자 제공기관</div>
+          <div className="text-sm md:text-lg consent-cell header-cell">제공 데이터</div>
+        </div>
+}
         
       </div>
     </div>

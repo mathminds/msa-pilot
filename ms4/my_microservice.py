@@ -1,6 +1,7 @@
 from db_handler.db_handler import to_sql, read_sql
 import pandas as pd
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 import json
@@ -66,10 +67,18 @@ def consume_messages():
                     for d in message_data[topic]:
                         data = {}
                         for k,v in d.items():
-                            if type(v)==str:
+                            if type(v)==(str|bool):
                                 data[k]=v
-                            else:
-                                continue#data[k]=json.dumps(v)
+                            elif k=='data_providers':
+                                df_data_providers = pd.DataFrame(v)
+                                df_data_providers['service_code'] = d['service_code']
+                                to_sql(df_data_providers, 'data_providers')
+                                continue
+                            elif k=='share_requests':
+                                df_share_requests = pd.DataFrame(v)
+                                df_share_requests['service_code'] = d['service_code']
+                                to_sql(df_share_requests, 'share_requests')
+                                continue
                         
                         records.append(data)
                     df_active_services=pd.DataFrame(records)
@@ -109,6 +118,19 @@ app = FastAPI()
 # class MessageResponse(BaseModel):
 #     key: Optional[str] = None
 #     value: Optional[str] = None
+# from fastapi import FastAPI
+
+
+# app = FastAPI()
+
+# Add CORS Middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Allow the frontend's origin
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
 @app.get("/latest_message")#, response_model=MessageResponse)
 async def get_latest_message():
@@ -119,19 +141,26 @@ async def get_latest_message():
 @app.get("/new_services")#, response_model=MessageResponse)
 async def get_new_services():
     try:
-        df=read_sql('new_services')
+        df=read_sql('active_services')
+        services = df.to_dict(orient='records')
+        for s in services:
+            s['data_providers']=read_sql('data_providers')
+            s['share_requests']=read_sql('share_requests')
     except:
         df=pd.DataFrame()
-    return df.to_dict(orient='records')
+
+    
+    return services
     # Return the latest message as a JSON response
 
 @app.get("/active_services")#, response_model=MessageResponse)
 async def get_active_services():
-    try:
-        df=read_sql('active_services')
-    except:
-        df=pd.DataFrame()
-    return df.to_dict(orient='records')
+    return message_data['active_services']
+    # try:
+    #     df=read_sql('active_services')
+    # except:
+    #     df=pd.DataFrame()
+    # return df.to_dict(orient='records')
     # Return the latest message as a JSON response
 
 @app.get("/revoked_data_providers")#, response_model=MessageResponse)
@@ -146,3 +175,20 @@ async def get_revoked_data_providers():
 # @app.get("/service_details")
 # async def get_service_details(service_id: int):
 #     producer=KafkaProducer(bootstrap_servers=['kafka:9092'], value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+
+@app.get("/service_third_party_details/{service_id}")
+async def get_service_third_party_details(service_id):
+    return [
+            {
+                'recipient': '트립어드바이저',
+                'sharedData': ['여행 일정']
+            },
+            {
+                'recipient': '에어비앤비',
+                'sharedData': ['예약 내역']
+            },
+            {
+                'recipient': '여행스케줄러',
+                'sharedData': ['일정 내역']
+            }
+        ]

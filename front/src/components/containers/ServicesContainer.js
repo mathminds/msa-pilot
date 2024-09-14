@@ -12,147 +12,23 @@ import exampleServices from '../../data/exampleServices';
 import Modal from '../modals/Modal';
 import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
 import ServiceRejectCard from '../serviceComponents/ServiceRejectCard';
-
+import { getActiveServices, getNewServices, getRevokedDataProviders } from '../../data/externalDataServices';
 
 const services = exampleServices;
-console.log(services);
-console.log(typeof(services));
+// console.log(services);
+// console.log(typeof(services));
 
-const dataProviders = [
-
-{
-    id: 3,
-    title: 'KT',
-    sector: '통신',
-    details: '인터넷, 휴대폰 서비스 제공',
-    linked_service_titles: ['[엘지유플러스] 요금제 추천 서비스', '[네이버쇼핑] 멤버십 및 포인트 관리 서비스']
-},
-{
-    id: 4,
-    title: '삼성병원',
-    sector: '의료',
-    details: '진료정보, 예약 서비스',
-    linked_service_titles: ['[동양생명] 보험 상품 추천 서비스']
-},
-{
-    id: 5,
-    title: '서울시',
-    sector: '공공',
-    details: '도시정보, 공공서비스 제공',
-    linked_service_titles: ['[티몬] 할인 쿠폰 제공 서비스']
-},
-{
-    id: 6,
-    title: '롯데마트',
-    sector: '유통',
-    details: '마트 상품 정보, 할인 서비스',
-    linked_service_titles: ['[마켓컬리] 장보기 팁 제공 서비스']
-},
-{
-    id: 7,
-    title: '신한은행',
-    sector: '금융',
-    details: '은행 서비스, 금융상품 제공',
-    linked_service_titles: ['[신항은행] 신용정보조회, 대출정보제공 서비스']
-},
-{
-    id: 8,
-    title: 'KT',
-    sector: '통신',
-    details: '인터넷, 휴대폰 서비스 제공',
-    linked_service_titles: ['[엘지유플러스] 요금제 추천 서비스', '[네이버쇼핑] 멤버십 및 포인트 관리 서비스']
-},
-{
-    id: 9,
-    title: '삼성병원',
-    sector: '의료',
-    details: '진료정보, 예약 서비스',
-    linked_service_titles: ['[동양생명] 보험 상품 추천 서비스']
-},
-{
-    id: 10,
-    title: '서울시',
-    sector: '공공',
-    details: '도시정보, 공공서비스 제공',
-    linked_service_titles: ['[티몬] 할인 쿠폰 제공 서비스']
-},
-{
-    id: 11,
-    title: '롯데마트',
-    sector: '유통',
-    details: '마트 상품 정보, 할인 서비스',
-    linked_service_titles: ['[마켓컬리] 장보기 팁 제공 서비스']
-},
-{
-    id: 12,
-    title: '신한은행',
-    sector: '금융',
-    details: '은행 서비스, 금융상품 제공',
-    linked_service_titles: ['[신항은행] 신용정보조회, 대출정보제공 서비스']
-},
-{
-    id: 13,
-    title: 'KT',
-    sector: '통신',
-    details: '인터넷, 휴대폰 서비스 제공',
-    linked_service_titles: ['[엘지유플러스] 요금제 추천 서비스', '[네이버쇼핑] 멤버십 및 포인트 관리 서비스']
-},
-{
-    id: 14,
-    title: '삼성병원',
-    sector: '의료',
-    details: '진료정보, 예약 서비스',
-    linked_service_titles: ['[동양생명] 보험 상품 추천 서비스']
-},
-{
-    id: 15,
-    title: '서울시',
-    sector: '공공',
-    details: '도시정보, 공공서비스 제공',
-    linked_service_titles: ['[티몬] 할인 쿠폰 제공 서비스']
-},
-{
-    id: 16,
-    title: '롯데마트',
-    sector: '유통',
-    details: '마트 상품 정보, 할인 서비스',
-    linked_service_titles: ['[마켓컬리] 장보기 팁 제공 서비스']
-},
-{
-    id: 17,
-    title: '신한은행',
-    sector: '금융',
-    details: '은행 서비스, 금융상품 제공',
-    linked_service_titles: ['[신항은행] 신용정보조회, 대출정보제공 서비스']
-},
-{
-    id: 18,
-    title: 'KT',
-    sector: '통신',
-    details: '인터넷, 휴대폰 서비스 제공',
-    linked_service_titles: ['[엘지유플러스] 요금제 추천 서비스', '[네이버쇼핑] 멤버십 및 포인트 관리 서비스']
-},
-{
-    id: 19,
-    title: '삼성병원',
-    sector: '의료',
-    details: '진료정보, 예약 서비스',
-    linked_service_titles: ['[동양생명] 보험 상품 추천 서비스']
-},
-{
-    id: 20,
-    title: '서울시',
-    sector: '공공',
-    details: '도시정보, 공공서비스 제공',
-    linked_service_titles: ['[티몬] 할인 쿠폰 제공 서비스']
-}
-];
+const newServices = await getNewServices();
+const lastMonthServices = await getActiveServices();
+const rejectedDataProviders = await getRevokedDataProviders();
+// console.log(newServices);
+console.log(lastMonthServices);
 
 const ServicesContainer = () => {
     const serviceData = null;
-    const newServices = services.slice(0, 7);
-    const lastMonthServices = services.slice(0, 15);
-    const rejectedServices = services.slice(16, 19);
+    // console.log(newServices);
+    // const lastMonthServices = getActiveServices();
+    // const rejectedServices = getRevokedDataProviders();
 
     const [isModalOpen, setIsModalOpen] = React.useState(null);
     const [currentServiceData, setCurrentServiceData] = React.useState(null);
@@ -290,28 +166,31 @@ const ServicesContainer = () => {
             </p>
             <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
-            {rejectedServices.map((service) => (
-            
+            {rejectedDataProviders.map((item, index) => {
+                return (
 
-          <div id={`rejected-service${service.id}`} className="carousel-item">
-                 <div className="indicator z-0">
-            
-                {/* <span className="indicator-item indicator-top indicator-center badge bg-green-500 text-white h-8 w-24 z-40"> */}
-                    {/* < aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-white" /> */}
-                    {/* 철회 성공 */}
-                {/* </span> */}
-            
-                <RejectedServiceCard serviceData={service} />
 
-            </div>
-            </div>
-                
-        ))}
+                    <div id={`rejected-service${index}`} className="carousel-item">
+                        <div className="indicator z-0">
+
+                            {/* <span className="indicator-item indicator-top indicator-center badge bg-green-500 text-white h-8 w-24 z-40"> */}
+                            {/* < aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-white" /> */}
+                            {/* 철회 성공 */}
+                            {/* </span> */}
+
+                            
+                            <RejectedServiceCard id={index} rejectedData={item} handleOpenModal={handleOpenModal}  />
+
+                        </div>
+                    </div>
+
+                );
+            })}
         </div>
         
         <div className="hidden sm:flex w-full justify-center gap-1 py-2">
             
-            {rejectedServices.map((service) => (
+            {rejectedDataProviders.map((service) => (
                  <a href={`#rejected-service${service.id}`} className="btn btn-xs">{service.id-9}</a>            
             ))}
                     
