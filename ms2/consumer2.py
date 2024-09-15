@@ -52,7 +52,34 @@ while True:
 
                 revoked_data_providers = extract_revoked_data_providers(s)
                 for r in revoked_data_providers['revoked_data_providers']:
-                    revoked_data_providers_list.append({"service_code":revoked_data_providers['service_cd'], "share_request_data":r})
+                    consent_id=r["request_msg_id"]
+                    data_provider_code=r["prv_inst_cd"]
+
+                    if r["request_stcd"] == "0":
+                        consent_status = "ACTIVE"
+                    elif r["request_stcd"] == "1":
+                        consent_status = "REVOKED"
+                    elif r["request_stcd"] == "2":
+                        consent_status = "EXPIRED"
+                    else:
+                        consent_status = "UNKNOWN"
+
+                    third_party_sharing_allowed = True if r["prov_consent_yn"]=="Y" else False
+                    expires_at = r["request_end_ymd"]
+                    started_at = r["request_ymd"]
+                    revoked_at = r["request_revoke_ymd"] if "request_revoke_ymd" in r else ""
+
+                    
+                    revoked_data_providers_list.append({"id":consent_id+data_provider_code,
+                                                        "service_code":revoked_data_providers['service_cd'],
+                                                        "consent_id":consent_id,
+                                                        "data_provider_code":data_provider_code,
+                                                        "consent_status":consent_status,
+                                                        "third_party_sharing_allowed":third_party_sharing_allowed,
+                                                        "expires_at":expires_at,
+                                                        "started_at":started_at,
+                                                        "revoked_at":revoked_at
+                                                        })
                 
                 producer = KafkaProducer(
                     bootstrap_servers=['kafka:9092'],

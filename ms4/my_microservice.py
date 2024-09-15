@@ -61,27 +61,34 @@ def consume_messages():
                 
                 if topic==NEW_SERVICES_TOPIC:
                     df_new_services=pd.DataFrame(message_data[topic])
+                    df_new_services.set_index('service_code', inplace=True)
+
+                    df_new_services.drop_duplicates(keep='last', inplace=True)
                     to_sql(df_new_services, 'new_services')
                 elif topic==ACTIVE_SERVICES_TOPIC:
-                    records  = []
-                    for d in message_data[topic]:
-                        data = {}
-                        for k,v in d.items():
-                            if type(v)==(str|bool):
-                                data[k]=v
-                            elif k=='data_providers':
-                                df_data_providers = pd.DataFrame(v)
-                                df_data_providers['service_code'] = d['service_code']
-                                to_sql(df_data_providers, 'data_providers')
-                                continue
-                            elif k=='share_requests':
-                                df_share_requests = pd.DataFrame(v)
-                                df_share_requests['service_code'] = d['service_code']
-                                to_sql(df_share_requests, 'share_requests')
-                                continue
+                    # records  = []
+                    # for d in :
+                    #     # data = {}
+                    #     # for k,v in d.items():
+                    #     #     if type(v)==(str|bool):
+                    #     #         data[k]=v
+                    #     #     elif k=='data_providers':
+                    #     #         df_data_providers = pd.DataFrame(v)
+                    #     #         df_data_providers['service_code'] = d['service_code']
+                    #     #         to_sql(df_data_providers, 'data_providers')
+                    #     #         continue
+                    #     #     elif k=='share_requests':
+                    #     #         df_share_requests = pd.DataFrame(v)
+                    #     #         df_share_requests['service_code'] = d['service_code']
+                    #     #         to_sql(df_share_requests, 'share_requests')
+                    #     #         continue
                         
-                        records.append(data)
-                    df_active_services=pd.DataFrame(records)
+                    #     records.append(d)
+                    df_active_services=pd.DataFrame(message_data[topic])
+                    # df_active_services.set_index('service_code', inplace=True)
+                    print(df_active_services.shape)
+                    df_active_services.drop_duplicates(keep='last', inplace=True)
+                    print(df_active_services.shape)
                     # df_active_services=df_active_services.apply(lambda x: json.dumps(x) if type(x)==(dict|list) else x)
                     # print(df_active_services)
                     # df_active_services.drop_duplicates(subset=['service_code'], keep='last', inplace=True)
@@ -89,13 +96,13 @@ def consume_messages():
 
                     to_sql(df_active_services, 'active_services')
                 elif topic==REVOKED_DATA_PROVIDERS_TOPIC:
-                    records = []
-                    for d in message_data[topic]:
-                        data = d['share_request_data']
-                        data['service_code'] = d['service_code']
-                        records.append(data)
-                    df_revoked_data_providers=pd.DataFrame(records)
-                    df_revoked_data_providers.drop_duplicates(subset=['prv_inst_cd'], keep='last', inplace=True)
+                    # records = []
+                    # for d in message_data[topic]:
+                    #     d['id']=d['consent_id']+d['data_provider_code']
+                    #     records.append(d)
+                    df_revoked_data_providers=pd.DataFrame(message_data[topic])
+                    df_revoked_data_providers.set_index('id', inplace=True)
+                    df_revoked_data_providers.drop_duplicates(keep='last', inplace=True)
                     # print(df_revoked_data_providers.dtypes)
                     to_sql(df_revoked_data_providers, 'revoked_data_providers')
                 
@@ -140,27 +147,37 @@ async def get_latest_message():
 
 @app.get("/new_services")#, response_model=MessageResponse)
 async def get_new_services():
+    # return message_data['new_services']
     try:
-        df=read_sql('active_services')
+        df=read_sql('new_services')
         services = df.to_dict(orient='records')
+
         for s in services:
-            s['data_providers']=read_sql('data_providers')
-            s['share_requests']=read_sql('share_requests')
+            s['data_providers']=json.loads(s['data_providers'])
+            s['share_requests']=json.loads(s['share_requests'])
+        return services
     except:
-        df=pd.DataFrame()
+        return []
 
     
-    return services
+    
     # Return the latest message as a JSON response
 
 @app.get("/active_services")#, response_model=MessageResponse)
 async def get_active_services():
-    return message_data['active_services']
-    # try:
-    #     df=read_sql('active_services')
-    # except:
-    #     df=pd.DataFrame()
-    # return df.to_dict(orient='records')
+    # return message_data['active_services']
+    try:
+        df=read_sql('active_services')
+        services = df.to_dict(orient='records')
+
+        for s in services:
+            s['data_providers']=json.loads(s['data_providers'])
+            s['share_requests']=json.loads(s['share_requests'])
+        return services
+    except:
+        # df=pd.DataFrame()
+        return []
+    
     # Return the latest message as a JSON response
 
 @app.get("/revoked_data_providers")#, response_model=MessageResponse)

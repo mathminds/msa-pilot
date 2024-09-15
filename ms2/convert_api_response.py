@@ -1,3 +1,4 @@
+import json 
 def convert_api_response(services_list):
     converted_services = []
     for i,s in enumerate(services_list):
@@ -14,7 +15,32 @@ def convert_api_response(services_list):
                 "providedData":[f"PROVIDED_DATA_{r['prv_inst_cd']}"]
             }
             )
-            share_requests.append(r)
+           
+            consent_id=r["request_msg_id"]
+            data_provider_code=r["prv_inst_cd"]
+
+            if r["request_stcd"] == "0":
+                consent_status = "ACTIVE"
+            elif r["request_stcd"] == "1":
+                consent_status = "REVOKED"
+            elif r["request_stcd"] == "2":
+                consent_status = "EXPIRED"
+            else:
+                consent_status = "UNKNOWN"
+
+            third_party_sharing_allowed = True if r["prov_consent_yn"]=="Y" else False
+            expires_at = r["request_end_ymd"]
+            started_at = r["request_ymd"]
+            revoked_at = r["request_revoke_ymd"] if "request_revoke_ymd" in r else ""
+            share_requests.append({"consent_id":consent_id,
+                                                    "data_provider_code":data_provider_code,
+                                                    "consent_status":consent_status,
+                                                    "third_party_sharing_allowed":third_party_sharing_allowed,
+                                                    "expires_at":expires_at,
+                                                    "started_at":started_at,
+                                                    "revoked_at":revoked_at
+                                                    })
+
             if r['prov_consent_yn'] == 'Y':
                 third_party_sharing = True
             if last_consent_date == '':
@@ -26,10 +52,10 @@ def convert_api_response(services_list):
         collected_service_dict['service_code'] = service_name
         collected_service_dict['title'] = f'TITLE_{service_name}'
         collected_service_dict['serviceProvider'] = f'SERVICE_PROVIDER_{service_name}'
-        collected_service_dict['data_providers'] = data_providers
+        collected_service_dict['data_providers'] = json.dumps(data_providers)
         collected_service_dict['last_consent_date'] = last_consent_date
         collected_service_dict['third_party_sharing'] = third_party_sharing
-        collected_service_dict['share_requests'] = share_requests
+        collected_service_dict['share_requests'] = json.dumps(share_requests)
         converted_services.append(collected_service_dict)
         
     return converted_services

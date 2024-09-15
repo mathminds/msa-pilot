@@ -4,22 +4,38 @@ import axios from "axios";
 
 // 파일 조회하기
 export const getNewServices = async () => {
+  try {
     const response = await axios.get(`http://localhost:8001/new_services`, {
     });
     return response.data;
-  };
+  } catch (error) {
+    console.error("Error during retrieving new services:", error);
+    return [];
+  }
+};
 
 export const getActiveServices = async () => {
+  try {
     const response = await axios.get(`http://localhost:8001/active_services`, {
     });
     return response.data;
-  };
+  
+  } catch (error) {
+    console.error("Error during retrieving active services:", error);
+    return [];
+  }
+};
 
 export const getRevokedDataProviders = async () => {
+  try {
     const response = await axios.get(`http://localhost:8001/revoked_data_providers`, {
     });
     return response.data;
+  } catch (error) {
+    console.error("Error during retrieving revoked data providers:", error);
+    return [];
   }
+};
 
 export const getServiceThirdPartyDetails = async (serviceId) => {
     const response = await axios.get(`http://localhost:8001/service_third_party_details/${serviceId}`, {

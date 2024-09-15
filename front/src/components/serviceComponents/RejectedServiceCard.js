@@ -14,7 +14,7 @@ const RejectedServiceCard = (props) => {
         handleOpenModal(rejectedData)
     };
 
-    const { request_msg_id, prv_inst_cd, request_stcd, prov_consent_yn, request_end_ymd, request_ymd, request_revoke_ymd,service_code } = rejectedData;
+    const { service_code, consent_id, data_provider_code, consent_status, third_party_sharing_allowed, expires_at, started_at, revoked_at } = rejectedData;
     const [isFlipped, setIsFlipped] = useState(false);
 
     console.log(rejectedData);
@@ -43,9 +43,9 @@ const RejectedServiceCard = (props) => {
                     <div className='pt-2 md:pt-4  border-red-500  bg-white px-4 text-black w-full h-full grid grid-cols-12 grid-rows-12 rounded-xl gap-3'>
                         <h3 className='font-bold text-lg md:text-2xl row-start-1 row-end-3 col-start-1 col-end-13'>{service_code}</h3>
                         <ul className='row-start-3 row-end-9 col-start-1 col-end-13'>
-                        <li className='text-sm md:text-xl pt-1 row-start-3 row-end-5 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>철회날짜: {request_revoke_ymd}</li>
-                        <li className='text-sm md:text-xl pt-1 row-start-5 row-end-7 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>전송요구서ID: {request_msg_id}</li>
-                        <li className='text-sm md:text-xl pt-1 row-start-7 row-end-9 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>정보전송자: {prv_inst_cd}</li>
+                        <li className='text-sm md:text-xl pt-1 row-start-3 row-end-5 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>철회날짜: {revoked_at}</li>
+                        <li className='text-sm md:text-xl pt-1 row-start-5 row-end-7 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>전송요구서ID: {consent_id}</li>
+                        <li className='text-sm md:text-xl pt-1 row-start-7 row-end-9 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>정보전송자: {data_provider_code}</li>
                         </ul>
                         <div className='py-2  border-white  col-start-1 col-end-13 row-start-9 row-end-12 flex justify-between gap-2  '>
                             {/* <div className='grid grid-cols-12 grid-rows-2'> */}
@@ -55,7 +55,7 @@ const RejectedServiceCard = (props) => {
                                 <button className='bg-white text-white font-bold   w-full btn-xs md:btn-sm  rounded'>
                                     서비스 철회하기
                                 </button>
-                                {prov_consent_yn=='y' ? 
+                                {third_party_sharing_allowed ? 
                                 <button className='bg-yellow-500 text-white font-bold  w-full btn-xs md:btn-sm   rounded' onClick={handleFlip}>
                                     제3자 제공내역
                                 </button>
@@ -71,7 +71,7 @@ const RejectedServiceCard = (props) => {
                 <div className="flip-card-back md:flip-card-back-md grid grid-cols-12 grid-rows-12 text-black" onClick={handleFlip}>
                 <div className="consent-card h-[150px] w-[300px] md:h-[200px] md:w-[400px] col-start-2 col-end-12">
       <div className="text-lg md:text-2xl consent-header row-start-1 row-end-2 pb-1 md:pb-2">
-        [동의 일자] 2024년 8월 13일 18:32
+        [동의 일자] {started_at}
       </div>
       <div className="consent-table">
         <div className="consent-row">
