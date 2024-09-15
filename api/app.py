@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Header, Body
 from pydantic import BaseModel
 from typing import Optional, List
-from services_list import example_services
+
 
 app = FastAPI()
 
@@ -27,6 +27,7 @@ class ResponseBody(BaseModel):
 # Mock endpoint for `/support/request/history`
 @app.post("/support/request/history")
 async def mock_api():
+    from data.services_list import example_services
     # Log incoming request details (optional for debugging)
     # print(f"Authorization: {authorization}")
     # print(f"X_Src_Inst_Cd: {X_Src_Inst_Cd}")
@@ -42,7 +43,23 @@ async def mock_api():
         "service_cnt": 10,
         "service_list": example_services}
 
-# Run with: uvicorn filename:app --reload
+
+@app.get("/service_third_party_details/{service_id}")
+async def get_service_third_party_details(service_id):
+    return [
+            {
+                'recipient': '트립어드바이저',
+                'sharedData': ['여행 일정']
+            },
+            {
+                'recipient': '에어비앤비',
+                'sharedData': ['예약 내역']
+            },
+            {
+                'recipient': '여행스케줄러',
+                'sharedData': ['일정 내역']
+            }
+        ]
 
 
 if __name__ == "__main__":

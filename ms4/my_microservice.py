@@ -45,10 +45,10 @@ def consume_messages():
                 print(f"[MS4] No new messages")
                 continue
 
-            print(type(msg))
+            # print(type(msg))
             # print(msg)
             topics = [t.topic for t in list(msg.keys())]
-            print(topics)
+            # print(topics)
             for i,topic in enumerate(topics):
                 if topic not in message_data:
                     message_data[topic] = []
@@ -57,13 +57,14 @@ def consume_messages():
                     # print(type(v.value['data']))
                     # print(v.value['data'])
                     # print(v.keys())
-                    message_data[topic]+=v.value['data']
+                    message_data[topic]=v.value['data']
                 
                 if topic==NEW_SERVICES_TOPIC:
                     df_new_services=pd.DataFrame(message_data[topic])
-                    df_new_services.set_index('service_code', inplace=True)
+                    # df_new_services.set_index('service_code', inplace=True)
 
                     df_new_services.drop_duplicates(keep='last', inplace=True)
+                    message_data[topic]=df_new_services.to_dict(orient='records')
                     to_sql(df_new_services, 'new_services')
                 elif topic==ACTIVE_SERVICES_TOPIC:
                     # records  = []
@@ -93,7 +94,7 @@ def consume_messages():
                     # print(df_active_services)
                     # df_active_services.drop_duplicates(subset=['service_code'], keep='last', inplace=True)
                     # print(df_active_services.dtypes)
-
+                    message_data[topic]=df_active_services.to_dict(orient='records')
                     to_sql(df_active_services, 'active_services')
                 elif topic==REVOKED_DATA_PROVIDERS_TOPIC:
                     # records = []
@@ -104,6 +105,7 @@ def consume_messages():
                     df_revoked_data_providers.set_index('id', inplace=True)
                     df_revoked_data_providers.drop_duplicates(keep='last', inplace=True)
                     # print(df_revoked_data_providers.dtypes)
+                    message_data[topic]=df_revoked_data_providers.to_dict(orient='records')
                     to_sql(df_revoked_data_providers, 'revoked_data_providers')
                 
 
