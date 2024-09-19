@@ -43,9 +43,9 @@ const RejectedServiceCard = (props) => {
                     <div className='pt-2 md:pt-4  border-red-500  bg-white px-4 text-black w-full h-full grid grid-cols-12 grid-rows-12 rounded-xl gap-3'>
                         <h3 className='font-bold text-lg md:text-2xl row-start-1 row-end-3 col-start-1 col-end-13'>{service_code}</h3>
                         <ul className='list-disc list-inside row-start-3 row-end-9 col-start-1 col-end-13'>
-                        <li className='text-sm md:text-xl pt-1 row-start-3 row-end-5 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>철회날짜: {revoked_at}</li>
-                        <li className='text-sm md:text-xl pt-1 row-start-5 row-end-7 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>전송요구서ID: {consent_id}</li>
-                        <li className='text-sm md:text-xl pt-1 row-start-7 row-end-9 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>정보전송자: {data_provider_code}</li>
+                        <li className='text-sm md:text-xl pt-1 row-start-3 row-end-5 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>[철회날짜] {revoked_at}</li>
+                        <li className='text-sm md:text-xl pt-1 row-start-5 row-end-7 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>[전송요구서ID] {consent_id}</li>
+                        <li className='text-sm md:text-xl pt-1 row-start-7 row-end-9 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>[정보전송자] {data_provider_code}</li>
                         </ul>
                         <div className='py-2  border-white  col-start-1 col-end-13 row-start-9 row-end-12 flex justify-between gap-2  '>
                             {/* <div className='grid grid-cols-12 grid-rows-2'> */}
@@ -56,7 +56,7 @@ const RejectedServiceCard = (props) => {
                                     서비스 철회하기
                                 </button>
                                 {third_party_sharing_allowed ? 
-                                <button className='bg-yellow-500 text-white font-bold  w-full btn-xs md:btn-sm   rounded' onClick={handleFlip}>
+                                <button className='bg-yellow-500 text-white font-bold  w-full btn-xs md:btn-sm   rounded' onCliock={handleFlip}>
                                     제3자 제공내역
                                 </button>
                                 :

@@ -89,7 +89,7 @@ const ServicesContainer = () => {
             <p>
                 <span className='text-xl sm:text-4xl font-bold ml-2 sm:ml-4 text-white '>내가 최근 가입한 서비스</span>
                 <br className='block sm:hidden' />
-                <span className='text-base sm:text-2xl mx-2 sm:mx-4 text-white '>2024년 7월 23일 ~ 현재</span>
+                <span className='text-base sm:text-2xl mx-2 sm:mx-4 text-white '>2024년 8월 2일 ~ 2024년 9월 2일 (30일)</span>
             </p>
             <div id='carousel-1' className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
@@ -140,7 +140,7 @@ const ServicesContainer = () => {
             <p>
                 <span className='text-xl sm:text-4xl font-bold ml-2 sm:ml-4 text-[#085195] '>내가 이용중인 서비스</span>
                 <br className='block sm:hidden' />
-                <span className='text-base sm:text-2xl mx-2 sm:mx-4text-[#085195]'> 2023년 6월 1일 ~ 현재</span>
+                <span className='text-base sm:text-2xl mx-2 sm:mx-4text-[#085195]'> 2023년 9월 3일 ~ 2024년 9월 2일 (1년)</span>
             </p>
 
             <div id='carousel-2' className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
@@ -183,7 +183,7 @@ const ServicesContainer = () => {
             <p>
                 <span className='text-xl sm:text-4xl font-bold ml-2 sm:ml-4 text-[#085195] '>내가 철회한 서비스</span>
                 <br className='block sm:hidden' />
-                <span className='text-base sm:text-2xl mx-2 sm:mx-4text-[#085195]'> 2024년 2월 25일 ~ 현재</span>
+                <span className='text-base sm:text-2xl mx-2 sm:mx-4text-[#085195]'> 2023년 9월 3일 ~ 2024년 9월 2일 (1년)</span>
             </p>
             <div id='carousel-3' className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
