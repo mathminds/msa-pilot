@@ -5,13 +5,15 @@ const Details = ({ serviceName, infoReceiver, transmissionDate, requestNumber })
     return (
         <div className="grid-container grid grid-rows-12 grid-cols-12">
             {/* Header Section */}
-            <div className="grid-item row-start-1 row-end-2 col-start-1 col-end-13 title">
-                철회하기
+            <div className="flex justify-between w-full br">
+            <div className="grid-item row-start-1 row-end-2 col-start-1 col-end-7">
+            서비스명: {serviceName}
             </div>
 
             {/* Service Information Section */}
-            <div className="grid-item row-start-2 row-end-3 col-start-1 col-end-13 sub-header">
-                서비스명: {serviceName} {/* Example: 스패머리 분석 서비스 */}
+            <div className="grid-item row-start-1 row-end-2 col-start-7 col-end-13 sub-header">
+            정보수신자: {infoReceiver} {/* Example: 스패머리 분석 서비스 */}
+            </div>
             </div>
             
             <div className="grid-item row-start-3 row-end-4 col-start-1 col-end-13">
@@ -19,15 +21,15 @@ const Details = ({ serviceName, infoReceiver, transmissionDate, requestNumber })
             </div>
             
             <div className="grid-item row-start-4 row-end-5 col-start-1 col-end-13">
-                정보수신자: {infoReceiver} {/* Example: 신한은행 */}
+                정보전송자: {infoReceiver} {/* Example: 신한은행 */}
             </div>
 
             <div className="grid-item row-start-5 row-end-6 col-start-1 col-end-7">
-                전송일자: {transmissionDate} {/* Example: 2024-08-02 */}
+                전송요구 시작일자: {transmissionDate} {/* Example: 2024-08-02 */}
             </div>
             
             <div className="grid-item row-start-5 row-end-6 col-start-7 col-end-13">
-                전송완료일: {/* Placeholder for this field */}
+                전송요구 만료일자: {/* Placeholder for this field */}
             </div>
 
             {/* Cancellation Section */}

@@ -17,7 +17,8 @@ API_SERVER=os.getenv("API_SERVER")
 producer = KafkaProducer(
     bootstrap_servers=["kafka:9092"],
     value_serializer=lambda v: json.dumps(v).encode("utf-8"),
-    max_block_ms=1000
+    max_block_ms=1000,
+    acks="all"
 )
 
 

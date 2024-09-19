@@ -51,6 +51,7 @@ services:
       - api-network
     depends_on:
       - kafka
+        
     # restart: on-failure
     env_file:
       - ./ms1/.env
@@ -62,6 +63,7 @@ services:
       - ms2-db_network
     depends_on:
       - kafka
+        
     # restart: on-failure
     env_file:
       - ./ms2/.env
@@ -94,6 +96,7 @@ services:
       - ms4-db_network
     depends_on:
       - kafka
+        
     # restart: on-failure
     env_file:
       - ./ms4/.env

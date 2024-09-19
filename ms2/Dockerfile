@@ -11,4 +11,6 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /app
 
-CMD ["python","consumer2.py"]
+
+CMD ["sh", "-c", "sleep 30 && python consumer2.py"]
+# CMD ["python","consumer2.py"]

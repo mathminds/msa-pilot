@@ -46,6 +46,7 @@ def get_data_provider_name(data_provider_cd):
 
 service_mapper = None
 data_provider_mapper = None
+personal_data=[]
 # Poll for new messages
 while True:
     msg = consumer.poll(timeout_ms=1000)
@@ -58,7 +59,7 @@ while True:
                 if topic_partition.topic == SERVICE_MAPPER_KAFKA_TOPIC:
                     print("[MS2] Service Mapper data received")
                     df_service_mapper=pd.DataFrame(messages[0].value['data'])
-                    print(df_service_mapper.columns)
+                    # print(df_service_mapper.columns)
                     to_sql(df_service_mapper, "service_mapper")
                     service_mapper=read_sql("service_mapper")
 
@@ -66,7 +67,7 @@ while True:
                 elif topic_partition.topic == DATA_PROVIDER_MAPPER_KAFKA_TOPIC:
                     print("[MS2] Data Provider Mapper data received")
                     df_data_provider_mapper=pd.DataFrame(messages[0].value['data'])
-                    print(df_data_provider_mapper.columns)
+                    # print(df_data_provider_mapper.columns)
                     to_sql(df_data_provider_mapper, "data_provider_mapper")
                     data_provider_mapper=read_sql("data_provider_mapper")
 
@@ -83,8 +84,19 @@ while True:
                     #         sleep(1)
                     #         print("[MS2] Service Mapper data not yet available")
                     # print(messages)
-                                               
-                    d = messages[0].value['data']
+                    d=personal_data                        
+                    d += messages[0].value['data']
+                    try:
+                        # dp_mapper= read_sql("data_provider_mapper")
+                        # service_mapper= read_sql("service_mapper")
+                        if data_provider_mapper.shape[0]==0 or service_mapper.shape[0]==0:
+                            personal_data=d
+                            continue
+                    except Exception as e:
+                        print(e)
+                        personal_data=d
+                        continue
+
 
                     new_services = []
                     active_services = []
@@ -146,7 +158,7 @@ while True:
                     producer.send(ACTIVE_SERVICES_TOPIC, value=active_services)
                     producer.send(REVOKED_DATA_PROVIDERS_TOPIC, value=revoked_data_providers_list)
                     producer.flush()
-
+                    personal_data=[]
                     print("[MS2] Analyzed data sent")
 
         else:

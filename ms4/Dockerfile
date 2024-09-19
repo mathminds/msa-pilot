@@ -21,4 +21,7 @@ COPY . /app/
 EXPOSE 8001
 
 # Define the entry point for the container
-CMD ["uvicorn", "my_microservice:app", "--host", "0.0.0.0", "--port", "8001"]
+
+CMD ["sh", "-c", "sleep 35 && uvicorn my_microservice:app --host 0.0.0.0 --port 8001"]
+
+# CMD ["uvicorn", "my_microservice:app", "--host", "0.0.0.0", "--port", "8001"]
