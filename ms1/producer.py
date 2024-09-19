@@ -8,6 +8,7 @@ import os
 load_dotenv(find_dotenv())
 
 KAFKA_TOPIC=os.getenv("COLLECTION_KAFKA_TOPIC")
+SERVICE_MAPPER_TOPIC=os.getenv("SERVICE_MAPPER_KAFKA_TOPIC")
 API_SERVER=os.getenv("API_SERVER")
 
 
@@ -18,8 +19,9 @@ producer = KafkaProducer(
     max_block_ms=1000
 )
 
-api_response = requests.post(f"{API_SERVER}/support/request/history")
-services_raw = api_response.json()['service_list']
+
+service_mapper = requests.get(f"{API_SERVER}/service_mapping")
+# print(service_mapper.json())
 # print(api_response.json())
 #TODO fetch data to map api_response to e_data
 # from convert_api_response import convert_api_response
@@ -35,11 +37,23 @@ services_raw = api_response.json()['service_list']
 
 while True:
     try:
+
+        api_response = requests.post(f"{API_SERVER}/support/request/history")
+        services_raw = api_response.json()['service_list']
         producer.send(KAFKA_TOPIC, value={"data":services_raw})
         producer.flush()
-        print("[MS1] Message sent successfully")
+        print("[MS1] PERSONAL_DATA sent successfully")
     except Exception as e:
         print("[MS1] Failed to send message")
         print(e)
 
+    try:
+
+        service_mapper = requests.get(f"{API_SERVER}/service_mapping")
+        producer.send(SERVICE_MAPPER_TOPIC, value={"data":service_mapper.json()})
+        producer.flush()
+        print("[MS1] SERVICE_MAPPER sent successfully")
+    except Exception as e:
+        print("[MS1] Failed to send message")
+        print(e)
     time.sleep(10)

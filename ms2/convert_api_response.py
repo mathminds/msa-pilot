@@ -1,9 +1,18 @@
 import json 
-def convert_api_response(services_list):
+def convert_api_response(services_list, service_mapper):
+
+    def get_service_name(service_cd):
+        df = service_mapper[service_mapper.service_code==service_cd]
+        return df.title.values[0]
+    
+    def get_service_provider(service_cd):
+        df = service_mapper[service_mapper.service_code==service_cd]
+        return df.serviceProvider.values[0]
+
     converted_services = []
     for i,s in enumerate(services_list):
         collected_service_dict={}
-        service_name = s['service_cd']
+        
         requests = s['request_list']
         last_consent_date = ''
         third_party_sharing = False
@@ -49,9 +58,9 @@ def convert_api_response(services_list):
                 if r['request_ymd'] > last_consent_date:
                     last_consent_date = r['request_ymd']
         collected_service_dict['id']=str(i)
-        collected_service_dict['service_code'] = service_name
-        collected_service_dict['title'] = f'TITLE_{service_name}'
-        collected_service_dict['serviceProvider'] = f'SERVICE_PROVIDER_{service_name}'
+        collected_service_dict['service_code'] = s['service_cd']
+        collected_service_dict['title'] = get_service_name(s['service_cd'])
+        collected_service_dict['serviceProvider'] = get_service_provider(s['service_cd'])
         collected_service_dict['data_providers'] = json.dumps(data_providers)
         collected_service_dict['last_consent_date'] = last_consent_date
         collected_service_dict['third_party_sharing'] = third_party_sharing

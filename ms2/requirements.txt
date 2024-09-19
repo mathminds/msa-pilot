@@ -1,3 +1,7 @@
 kafka-python
 faker
 python-dotenv
+pandas
+sqlalchemy
+
+psycopg2-binary

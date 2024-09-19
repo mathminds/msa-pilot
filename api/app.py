@@ -1,3 +1,4 @@
+import pandas as pd
 from fastapi import FastAPI, Header, Body
 from pydantic import BaseModel
 from typing import Optional, List
@@ -61,6 +62,12 @@ async def get_service_third_party_details(service_id):
             }
         ]
 
+@app.get("/service_mapping")
+async def get_service_mapping():
+    df = pd.read_csv('data/services_map.csv', header=[0])
+    result = df.to_dict('records')
+    # print(result)
+    return result
 
 if __name__ == "__main__":
     import uvicorn

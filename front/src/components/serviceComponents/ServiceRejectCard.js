@@ -1,5 +1,6 @@
 import React from "react";
 import RejectModal from "../modals/RejectModal";
+import Details from "../pages/Details";
 
 export default function ServiceDetailsCard(props) {
 
@@ -7,6 +8,10 @@ export default function ServiceDetailsCard(props) {
     const { id, service_code, title, serviceProvider, data_providers, last_consent_date, third_party_sharing, share_requests } = serviceData;
 
     const [showRevokeService, setShowRevokeService] = React.useState(false);
+
+    const [currentItem, setCurrentItem] = React.useState(null);
+
+    const items = share_requests;
 
     const handleRevokeScreen = () => {
         setShowRevokeService(!showRevokeService);
@@ -23,36 +28,36 @@ export default function ServiceDetailsCard(props) {
 
     if (serviceData) {
         return (
-            <div className="w-fit h-fit bg-white grid grid-cols-12 grid-rows-12 z-50">
-
-            <div className="col-start-1 col-end-13 row-start-1 row-end-2 bg-slate-300 z-50">
-                {title}
+            <div className="grid-container grid grid-rows-12 grid-cols-12">
+            {/* <div className='h-[10%]'>a</div> */}
+            {/* <div className="grid-item row-start-1 row-end-5 col-start-2 col-end-3">1</div> */}
+            <div className="grid-item row-start-1 row-end-2 col-start-1 col-end-13">{title}</div>
+            <div className="grid-item row-start-2 row-end-3 col-start-1 col-end-13">{serviceProvider}</div>
+            <div className="grid-item row-start-3 row-end-13 col-start-5 col-end-13">
+                {currentItem &&
+                <Details serviceName={title} infoReceiver={serviceProvider} transmissionDate={currentItem.started_at} requestNumber={currentItem.consent_id} />
+                }
             </div>
-            <div className="col-start-1 col-end-13 row-start-2 row-end-3 bg-slate-400 text-black z-50">
-                {serviceProvider} 
-            </div>
-            <div className="col-start-1 col-end-13 row-start-3 row-end-12 bg-slate-500 z-50">
-                <div className="flex col-start-1 col-end-13 ">
-                <ui className='col-start-1 col-end-7 row-start-3 row-end-12'>
-                {share_requests.map((request) => {
-                    return (
-                        <li className="px-2 flex justify-between items-center br h-20">
-                            <div className="">{request.data_provider_code}</div>    
-                            <div className="">{request.started_at}</div>    
-                            {request.consent_status=="ACTIVE" ? 
-                            <button className="btn bg-blue-500" onClick={handleRevokeScreen}> 철회하기 </button> :
-                            
-                            <div className="">{request.revoked_at}</div>    
-                            }
-                        </li>
-                    );
-                })}
+            <div className="grid-item row-start-3 row-end-13 col-start-1 col-end-5">
+                <ui>
+                    {items.map((item) => {
+                        const handleClick = () => {
+                            // const item = items.find((item) => item.prv_inst_cd === e.target.value);
+                            setCurrentItem(item);
+                        }
+                        return (
+                            <li className="px-2 flex justify-between items-center br h-20">
+                                <div className="">{item.prv_inst_cd}</div>
+                                <div className="">{item.request_ymd}</div>
+                                <button className="btn bg-blue-500" onClick={handleClick}> 철회하기 </button> :
+                                                            </li>
+                        );
+                    })}
                 </ui>
-                {showRevokeService && (
-                <div className="col-start-7 col-end-13 row-start-3 row-end-12 w-60"> REVOKE DETAILS</div>)}
-                </div>
+
             </div>
-            </div>
+            
+        </div>
         );
     }
     return null;
