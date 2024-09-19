@@ -3,7 +3,7 @@ import './DataPage.css'; // Ensure you have the CSS for styling the grid
 
 const Details = ({ serviceName, infoReceiver, transmissionDate, requestNumber }) => {
     return (
-        <div className="grid-container grid grid-rows-12 grid-cols-12">
+        <div className="grid grid-rows-12 grid-cols-12">
             {/* Header Section */}
             <div className="flex justify-between w-full br">
             <div className="grid-item row-start-1 row-end-2 col-start-1 col-end-7">
