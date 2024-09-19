@@ -48,7 +48,7 @@ const FinalServiceCard = (props) => {
                     {/* <FrontCard serviceData={serviceData} /> */}
                     <div className='pt-2 md:pt-4  border-red-500  bg-white px-4 text-black w-full h-full grid grid-cols-12 grid-rows-12 rounded-xl gap-3'>
                         <h3 className='font-bold text-lg md:text-2xl row-start-1 row-end-3 col-start-1 col-end-13'>{title}</h3>
-                        <ul className='row-start-3 row-end-9 col-start-1 col-end-13'>
+                        <ul className='list-disc list-inside row-start-3 row-end-9 col-start-1 col-end-13'>
                         <li className='text-sm md:text-xl pt-1 row-start-3 row-end-5 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>정보수신자: {serviceProvider}</li>
                         <li className='text-sm md:text-xl pt-1 row-start-5 row-end-7 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>활용데이터: {dataProvidedList}</li>
                         <li className='text-sm md:text-xl pt-1 row-start-7 row-end-9 col-start-1 col-end-13 overflow-hidden whitespace-nowrap overflow-ellipsis'>정보전송자: {dataProvidersList}</li>
