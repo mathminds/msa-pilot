@@ -32,6 +32,18 @@ consumer = KafkaConsumer(
 # Subscribe to a specific topic
 consumer.subscribe(topics=[LISTENING_KAFKA_TOPIC, SERVICE_MAPPER_KAFKA_TOPIC, DATA_PROVIDER_MAPPER_KAFKA_TOPIC])
 
+    
+def get_service_name(service_cd):
+    service_mapper=read_sql("service_mapper")
+    # print("GETTING SERVICE NAME")
+    df = service_mapper[service_mapper.service_code==service_cd]
+    return df.title.values[0]
+def get_data_provider_name(data_provider_cd):
+    data_provider_mapper=read_sql("data_provider_mapper")
+    # print("GETTING DATA PROVIDER NAME")
+    df = data_provider_mapper[data_provider_mapper.data_provider_code==data_provider_cd]
+    return df.data_provider_name.values[0]
+
 service_mapper = None
 data_provider_mapper = None
 # Poll for new messages
@@ -113,9 +125,10 @@ while True:
 
                             
                             revoked_data_providers_list.append({"id":consent_id+data_provider_code,
-                                                                "service_code":revoked_data_providers['service_cd'],
+                                                                "service_code":get_service_name(revoked_data_providers['service_cd']),
                                                                 "consent_id":consent_id,
-                                                                "data_provider_code":data_provider_code,
+                                                                "data_provider_code":get_data_provider_name(data_provider_code),
+                                                                
                                                                 "consent_status":consent_status,
                                                                 "third_party_sharing_allowed":third_party_sharing_allowed,
                                                                 "expires_at":expires_at,

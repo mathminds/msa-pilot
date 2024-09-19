@@ -91,7 +91,7 @@ const ServicesContainer = () => {
                 <br className='block sm:hidden' />
                 <span className='text-base sm:text-2xl mx-2 sm:mx-4 text-white '>2024년 7월 23일 ~ 현재</span>
             </p>
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
+            <div id='carousel-1' className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
             {newServices.map((service) => (
 
@@ -112,13 +112,24 @@ const ServicesContainer = () => {
 
         </div>
         
-        <div className="hidden sm:flex w-full justify-center gap-1 py-1 sm:py-2">
-            {newServices.map((service, index) => (
-                 <a href={`#new-service${service.id}`} className="btn btn-xs">{index+1}</a>            
-            ))}
-                    
-         </div>
+                {/* Navigation Buttons */}
+                <div className="hidden sm:flex justify-center gap-4 mt-0">
+                    {/* Left Arrow */}
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-400 text-white rounded-full p-1"
+                        onClick={() => document.getElementById('carousel-1').scrollBy({ left: -200, behavior: 'smooth' })}
+                    >
+                        &#x276E;
+                    </button>
 
+                    {/* Right Arrow */}
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-400 text-white rounded-full p-1"
+                        onClick={() => document.getElementById('carousel-1').scrollBy({ left: 200, behavior: 'smooth' })}
+                    >
+                        &#x276F;
+                    </button>
+                </div>
 
         </div>
 
@@ -132,7 +143,7 @@ const ServicesContainer = () => {
                 <span className='text-base sm:text-2xl mx-2 sm:mx-4text-[#085195]'> 2023년 6월 1일 ~ 현재</span>
             </p>
 
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
+            <div id='carousel-2' className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
             {lastMonthServices.map((service) => (
             
@@ -147,13 +158,23 @@ const ServicesContainer = () => {
         ))}
         </div>
         
-        <div className="hidden sm:flex w-full justify-center gap-1 py-1 sm:py-2">
-            
-            {lastMonthServices.map((service, index) => (
-                 <a href={`#service${service.id}`} className="btn btn-xs">{index+1}</a>            
-            ))}
-                    
-         </div>
+        <div className="hidden sm:flex justify-center gap-4 mt-0">
+                    {/* Left Arrow */}
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-400 text-white rounded-full p-1"
+                        onClick={() => document.getElementById('carousel-2').scrollBy({ left: -200, behavior: 'smooth' })}
+                    >
+                        &#x276E;
+                    </button>
+
+                    {/* Right Arrow */}
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-400 text-white rounded-full p-1"
+                        onClick={() => document.getElementById('carousel-2').scrollBy({ left: 200, behavior: 'smooth' })}
+                    >
+                        &#x276F;
+                    </button>
+                </div>
  
 
         </div>
@@ -164,7 +185,7 @@ const ServicesContainer = () => {
                 <br className='block sm:hidden' />
                 <span className='text-base sm:text-2xl mx-2 sm:mx-4text-[#085195]'> 2024년 2월 25일 ~ 현재</span>
             </p>
-            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
+            <div id='carousel-3' className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
             {rejectedDataProviders.map((item, index) => {
                 return (
@@ -188,14 +209,25 @@ const ServicesContainer = () => {
             })}
         </div>
         
-        <div className="hidden sm:flex w-full justify-center gap-1 py-2">
-            
-            {rejectedDataProviders.map((item, index) => (
-                 <a href={`#rejected-service${index}`} className="btn btn-xs">{index+1}</a>            
-            ))}
-                    
-         </div>
+        {/* <div className="hidden sm:flex w-full justify-center gap-1 py-2"></div> */}
+        <div className="hidden sm:flex justify-center gap-4 mt-0">
+                    {/* Left Arrow */}
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-400 text-white rounded-full p-1"
+                        onClick={() => document.getElementById('carousel-3').scrollBy({ left: -200, behavior: 'smooth' })}
+                    >
+                        &#x276E;
+                    </button>
 
+                    {/* Right Arrow */}
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-400 text-white rounded-full p-1"
+                        onClick={() => document.getElementById('carousel-3').scrollBy({ left: 200, behavior: 'smooth' })}
+                    >
+                        &#x276F;
+                    </button>
+                </div>
+ 
 
         </div>
 </div>

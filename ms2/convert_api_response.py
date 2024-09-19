@@ -11,22 +11,22 @@ def convert_api_response(services_list):
     
     
     def get_data_provider_name(data_provider_cd):
-        print("GETTING DATA PROVIDER NAME")
+        # print("GETTING DATA PROVIDER NAME")
         df = data_provider_mapper[data_provider_mapper.data_provider_code==data_provider_cd]
         return df.data_provider_name.values[0]
     
     def get_data_provided(data_provider_cd):
-        print("GETTING DATA PROVIDED")
+        # print("GETTING DATA PROVIDED")
         df = data_provider_mapper[data_provider_mapper.data_provider_code==data_provider_cd]
         return df.data_provided.values[0]
 
     def get_service_name(service_cd):
-        print("GETTING SERVICE NAME")
+        # print("GETTING SERVICE NAME")
         df = service_mapper[service_mapper.service_code==service_cd]
         return df.title.values[0]
     
     def get_service_provider(service_cd):
-        print("GETTING SERVICE PROVIDER")
+        # print("GETTING SERVICE PROVIDER")
         df = service_mapper[service_mapper.service_code==service_cd]
         return df.serviceProvider.values[0]
 
