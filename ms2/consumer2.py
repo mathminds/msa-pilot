@@ -13,6 +13,7 @@ load_dotenv(find_dotenv())
 
 LISTENING_KAFKA_TOPIC=os.getenv("COLLECTION_KAFKA_TOPIC")
 SERVICE_MAPPER_KAFKA_TOPIC=os.getenv("SERVICE_MAPPER_KAFKA_TOPIC")
+DATA_PROVIDER_MAPPER_KAFKA_TOPIC=os.getenv("DATA_PROVIDER_MAPPER_KAFKA_TOPIC")
 PRODUCING_KAFKA_TOPIC=os.getenv("ANALYSIS_KAFKA_TOPIC")
 
 NEW_SERVICES_TOPIC=os.getenv("NEW_SERVICES_TOPIC")
@@ -29,9 +30,10 @@ consumer = KafkaConsumer(
 )
 
 # Subscribe to a specific topic
-consumer.subscribe(topics=[LISTENING_KAFKA_TOPIC, SERVICE_MAPPER_KAFKA_TOPIC])
+consumer.subscribe(topics=[LISTENING_KAFKA_TOPIC, SERVICE_MAPPER_KAFKA_TOPIC, DATA_PROVIDER_MAPPER_KAFKA_TOPIC])
 
 service_mapper = None
+data_provider_mapper = None
 # Poll for new messages
 while True:
     msg = consumer.poll(timeout_ms=1000)
@@ -49,12 +51,18 @@ while True:
                     service_mapper=read_sql("service_mapper")
 
                     # print(service_mapper_data)
+                elif topic_partition.topic == DATA_PROVIDER_MAPPER_KAFKA_TOPIC:
+                    print("[MS2] Data Provider Mapper data received")
+                    df_data_provider_mapper=pd.DataFrame(messages[0].value['data'])
+                    print(df_data_provider_mapper.columns)
+                    to_sql(df_data_provider_mapper, "data_provider_mapper")
+                    data_provider_mapper=read_sql("data_provider_mapper")
 
 
                     # print(msg[TopicPartition(topic=SERVICE_MAPPER_KAFKA_TOPIC, partition=0)])
                 elif topic_partition.topic == LISTENING_KAFKA_TOPIC:
                     print("[MS2] Personal Data received")
-                    inner_msg=msg[TopicPartition(topic=LISTENING_KAFKA_TOPIC, partition=0)]
+                    # inner_msg=msg[TopicPartition(topic=LISTENING_KAFKA_TOPIC, partition=0)]
                     # for key, value in msg.items():
                     # while service_mapper is None:
                     #     try:
@@ -62,19 +70,20 @@ while True:
                     #     except Exception as e:
                     #         sleep(1)
                     #         print("[MS2] Service Mapper data not yet available")
+                    # print(messages)
                                                
                     d = messages[0].value['data']
 
                     new_services = []
                     active_services = []
                     revoked_data_providers_list = []
+                    try:
+                        converted_services=convert_api_response(d)
+                    except Exception as e:
 
-                    if service_mapper is not None:
-
-                        converted_services=convert_api_response(d, service_mapper)
-                    else:
+                        print("CONVERTING",e)
                         continue
-
+                    
                     print("[MS2] Analyzing data...")
                     for i,s in enumerate(d):
                         if determine_if_service_is_new(s):

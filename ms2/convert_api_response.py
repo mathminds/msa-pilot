@@ -1,11 +1,32 @@
 import json 
-def convert_api_response(services_list, service_mapper):
+from db_handler.db_handler import read_sql
+
+def convert_api_response(services_list):
+    try:
+        service_mapper=read_sql("service_mapper")
+        data_provider_mapper=read_sql("data_provider_mapper")
+    except Exception as e:
+        print(e)
+        return []
+    
+    
+    def get_data_provider_name(data_provider_cd):
+        print("GETTING DATA PROVIDER NAME")
+        df = data_provider_mapper[data_provider_mapper.data_provider_code==data_provider_cd]
+        return df.data_provider_name.values[0]
+    
+    def get_data_provided(data_provider_cd):
+        print("GETTING DATA PROVIDED")
+        df = data_provider_mapper[data_provider_mapper.data_provider_code==data_provider_cd]
+        return df.data_provided.values[0]
 
     def get_service_name(service_cd):
+        print("GETTING SERVICE NAME")
         df = service_mapper[service_mapper.service_code==service_cd]
         return df.title.values[0]
     
     def get_service_provider(service_cd):
+        print("GETTING SERVICE PROVIDER")
         df = service_mapper[service_mapper.service_code==service_cd]
         return df.serviceProvider.values[0]
 
@@ -19,9 +40,11 @@ def convert_api_response(services_list, service_mapper):
         data_providers = []
         share_requests = []
         for r in requests:
+            data_provider_name=get_data_provider_name(r['prv_inst_cd'])
+            data_provided=get_data_provided(r['prv_inst_cd']).split('_')
             data_providers.append({
-                "provider":r['prv_inst_cd'],
-                "providedData":[f"PROVIDED_DATA_{r['prv_inst_cd']}"]
+                "provider":data_provider_name,
+                "providedData":data_provided
             }
             )
            
@@ -43,6 +66,8 @@ def convert_api_response(services_list, service_mapper):
             revoked_at = r["request_revoke_ymd"] if "request_revoke_ymd" in r else ""
             share_requests.append({"consent_id":consent_id,
                                                     "data_provider_code":data_provider_code,
+                                                    "data_provider":data_provider_name,
+                                                    'data_provided':data_provided,
                                                     "consent_status":consent_status,
                                                     "third_party_sharing_allowed":third_party_sharing_allowed,
                                                     "expires_at":expires_at,

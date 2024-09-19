@@ -1,3 +1,4 @@
+import json
 import pandas as pd
 from fastapi import FastAPI, Header, Body
 from pydantic import BaseModel
@@ -65,6 +66,14 @@ async def get_service_third_party_details(service_id):
 @app.get("/service_mapping")
 async def get_service_mapping():
     df = pd.read_csv('data/services_map.csv', header=[0])
+    result = df.to_dict('records')
+    # print(result)
+    return result
+
+@app.get('/data_provider_mapping')
+async def get_data_provider_mapping():
+    df = pd.read_csv('data/dp_map.csv', header=[0])
+    # df['data_provided'] = df['data_provided'].apply(lambda x: json.dumps(x.split(',')))
     result = df.to_dict('records')
     # print(result)
     return result

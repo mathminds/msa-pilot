@@ -9,6 +9,10 @@ networks:
     driver: bridge
   api-network:
     driver: bridge
+volumes:
+  ms2-data:
+  ms4-data:
+
 
 
 services:
@@ -70,6 +74,8 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: ms2
+    volumes:
+      - ms2-data:/var/lib/postgresql/data
     
   ms3:
     build: ./ms3/
@@ -102,19 +108,34 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: ms4
-    
-  # ms3-db-admin:
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 8080:8080
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: chris.lee@finetune.life
-  #     PGADMIN_DEFAULT_PASSWORD: aaaa1111
-  #   volumes:
-  #     - pgadmin-data:/var/lib/pgadmin
-  #   networks:
-  #     - ms3-db_network
+    volumes:
+      - ms4-data:/var/lib/postgresql/data
+
+  ms2-db-admin:
+    image: adminer
+    restart: always
+    ports:
+      - 8082:8080
+    environment:
+      PGADMIN_DEFAULT_EMAIL: chris.lee@finetune.life
+      PGADMIN_DEFAULT_PASSWORD: aaaa1111
+    volumes:
+      - ms2-data:/var/lib/pgadmin
+    networks:
+      - ms2-db_network
+
+  ms4-db-admin:
+    image: adminer
+    restart: always
+    ports:
+      - 8084:8080
+    environment:
+      PGADMIN_DEFAULT_EMAIL: chris.lee@finetune.life
+      PGADMIN_DEFAULT_PASSWORD: aaaa1111
+    volumes:
+      - ms4-data:/var/lib/pgadmin
+    networks:
+      - ms4-db_network
 
 
 
