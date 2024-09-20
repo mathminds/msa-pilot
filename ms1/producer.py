@@ -21,22 +21,6 @@ producer = KafkaProducer(
     acks="all"
 )
 
-
-# service_mapper = requests.get(f"{API_SERVER}/service_mapping")
-# print(service_mapper.json())
-# print(api_response.json())
-#TODO fetch data to map api_response to e_data
-# from convert_api_response import convert_api_response
-# e_data = convert(api_response.json())
-# e_data = convert_api_response(services_raw)
-
-
-
-
-# from example_data import e_data
-
-
-
 while True:
     try:
 
@@ -60,7 +44,6 @@ while True:
         print(e)
 
     try:
-
         api_response = requests.post(f"{API_SERVER}/support/request/history")
         services_raw = api_response.json()['service_list']
         producer.send(KAFKA_TOPIC, value={"data":services_raw})

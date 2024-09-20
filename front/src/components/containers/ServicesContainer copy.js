@@ -1,111 +1,23 @@
 import React from 'react';
-import ServiceCard from '../serviceComponents/ServiceCard';
+// import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
+// import ServiceCard from '../serviceComponents/ServiceCard';
 import ThirdServiceCard from '../serviceComponents/ThirdServiceCard';
-import FlipCard from './reusables/FlipCard';
-import ServiceFrontCard from '../serviceComponents/ServiceFrontCard';
-import ServiceBackCard from '../serviceComponents/ServiceBackCard';
-import DropdownComponent from './reusables/DropdownComponent';
+import RejectedServiceCard from '../serviceComponents/RejectedServiceCard';
+import FlipCard from '../reusables/FlipCard';
+import FinalServiceCard from '../serviceComponents/FinalServiceCard';
+// import FlipCard from './reusables/FlipCard';
+// import ServiceFrontCard from '../serviceComponents/ServiceFrontCard';
+// import ServiceBackCard from '../serviceComponents/ServiceBackCard';
+import exampleServices from '../../data/exampleServices';
+import Modal from '../modals/Modal';
 import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
-import ParentComponent from './modals/ParentComponent';
-const services = [
-    {
-        id: 1,
-        title: '상품추천 서비스',
-        serviceProvider: '쿠팡',
-        details: ['구매내역', '위치정보'],
-        thirdPartySharedData: ['위치정보'],
-        thirdPartyRecipients: ['네이버', '카카오', '티몬']
-    },
-    {
-        id: 2,
-        title: '소비패턴 개선 서비스',
-        serviceProvider: '국민카드',
-        details: ['거래내역', '연령'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
-    
-    },
-    {
-        id: 3,
-        title: '본인 신용 정보 통합조회 서비스',
-        serviceProvider: '뱅크샐러드',
-        details: ['신용등급', '대출정보', '거래내역', '소득정보'],
-        thirdPartySharedData: ['신용등급', '대출정보'],
-        thirdPartyRecipients: ['KT', '삼성병원', '서울시', '롯데마트', '신한은행']
-    },
-    {
-        id: 4,
-        title: '요금제 추천 서비스',
-        serviceProvider: '정보수신자: 엘지유플러스',
-        details: ['통신요금내역', '요금제정보', '데이터사용량'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
-    },
-    {
-        id: 5,
-        title: '데이터 분석 서비스',
-        serviceProvider: '빅데이터 주식회사',
-        details: ['사용자 행동 데이터', '구매 기록'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
-    },
-    {
-        id: 6,
-        title: '맞춤 광고 서비스',
-        serviceProvider: '애드테크 주식회사',
-        details: ['광고 선호도', '검색 기록'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
-    },
-    {
-        id: 7,
-        title: '위치 기반 서비스',
-        serviceProvider: '로케이션 주식회사',
-        details: ['위치 정보', '주변 가게 정보'],
-        thirdPartySharedData: [],
-        thirdPartyRecipients: [],
-    },
-    {
-        id: 8,
-        title: '음악 추천 서비스',
-        serviceProvider: '뮤직테크 주식회사',
-        details: ['음악 장르 선호도', '재생 기록'],
-        thirdPartySharedData: ['음악 장르 선호도'],
-        thirdPartyRecipients: ['스포티파이', '애플 뮤직', '멜론']
-    },
-    {
-        id: 9,
-        title: '건강 관리 서비스',
-        serviceProvider: '헬스테크 주식회사',
-        details: ['운동 기록', '수면 패턴'],
-        thirdPartySharedData: ['운동 기록'],
-        thirdPartyRecipients: ['피트빗', '스트라바', '애플 헬스']
-    },
-    {
-        id: 10,
-        title: '책 추천 서비스',
-        serviceProvider: '북테크 주식회사',
-        details: ['독서 기록', '선호 장르'],
-        thirdPartySharedData: ['독서 기록'],
-        thirdPartyRecipients: ['알라딘', '교보문고', '예스24']
-    },
-    {
-        id: 11,
-        title: '영화 추천 서비스',
-        serviceProvider: '영테크 주식회사',
-        details: ['시청 기록', '선호 장르'],
-        thirdPartySharedData: ['시청 기록'],
-        thirdPartyRecipients: ['넷플릭스', '왓챠', '웨이브']
-    },
-    {
-        id: 12,
-        title: '뉴스 추천 서비스',
-        serviceProvider: '뉴스테크 주식회사',
-        details: ['클릭 기록', '선호 주제'],
-        thirdPartySharedData: ['클릭 기록'],
-        thirdPartyRecipients: ['네이버뉴스', '다음뉴스', '네이트뉴스']
-    }
-];
+import ServiceRejectCard from '../serviceComponents/ServiceRejectCard';
+// import React, { useState } from 'react';
+
+
+const services = exampleServices;
+console.log(services);
+console.log(typeof(services));
 
 const dataProviders = [
 
@@ -237,144 +149,241 @@ const dataProviders = [
 }
 ];
 
-const ServicesContainer = ({handleClick}) => {
+const ServicesContainer = () => {
+    const serviceData = null;
+    const newServices = services.slice(0, 7);
+    const lastMonthServices = services.slice(0, 15);
+    const rejectedServices = services.slice(16, 19);
 
-    const newServices = services.slice(0, 3);
-    const lastMonthServices = services.slice(3, 9);
-    const rejectedServices = services.slice(9, 12);
-    const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+    const [isModalOpen, setIsModalOpen] = React.useState(null);
+    const [currentServiceData, setCurrentServiceData] = React.useState(null);
+    const [isModalReject, setIsModalReject] = React.useState(null);
+
 
     
+    const handleOpenModal = (serviceData) => {
+        setIsModalReject(false);
+        setIsModalOpen(true);
+        
+        setCurrentServiceData(serviceData);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setIsModalReject(false);
+        setCurrentServiceData(null);
+    };
+    
+
+    const handleOpenRejectModal = (serviceData) => {
+        setIsModalOpen(false);
+        setIsModalReject(true);
+        setCurrentServiceData(serviceData);
+    };
+
+    const handleCloseRejectModal = () => {
+        setIsModalOpen(false);
+        setIsModalReject(false);
+        setCurrentServiceData(null);
+    };
+    
+
     return (
-        <div className='border border-red-500 flex flex-col bg-black'>
 
+        
+        <>
+        {isModalOpen && (
+            <div className='w-full h-full bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-50'>
+                <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+                    <ServiceDetailsCard serviceData={currentServiceData} handleOpenRejectModal={handleOpenRejectModal} />
+                </Modal>
+            </div>
+        )}
+
+        {isModalReject && (
+            <div className='w-full h-full bg-white border border-blue-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-50'>
+                <Modal isOpen={isModalReject} onClose={handleCloseRejectModal}>
+                    <ServiceRejectCard serviceData={currentServiceData} />
+                </Modal>
+            </div>
+        )}
+        {/* <div className='z-10'>
+            
+
+        <div className="bg-[#48ABFB] px-2 sm:px-4 w-fill h-fill py-2 sm:py-4">
+            <p>
+                <span className='text-xl sm:text-2xl font-bold ml-2 sm:ml-4 text-white '>내가 최근 가입한 서비스</span>
+                <br className='block sm:hidden' />
+                <span className='text-base sm:text-lg mx-2 sm:mx-4 text-white '>2024년 7월 23일 ~ 현재</span>
+            </p>
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
+            
             {newServices.map((service) => (
+
+
+
+          <div id={`new-service${service.id}`} className="carousel-item">
+            <FinalServiceCard serviceData={service} handleOpenModal={handleOpenModal} handleOpenRejectModal={handleOpenRejectModal} />
+                                
+            </div>
+
+            
+
+
+        ))
+        }
+
+
+
+        </div>
+        
+        <div className="hidden sm:flex w-full justify-center gap-1 py-1 sm:py-2">
+            {newServices.map((service) => (
+                 <a href={`#new-service${service.id}`} className="btn btn-xs">{service.id}</a>            
+            ))}
+                    
+         </div>
+
+
+        </div> */}
+
+        <div className='z-10'>
+            <div className="bg-[#48ABFB] px-2 sm:px-4 w-fill h-fill py-2 sm:py-4">
+                <p>
+                    <span className='text-xl sm:text-2xl font-bold ml-2 sm:ml-4 text-white'>내가 최근 가입한 서비스</span>
+                    <br className='block sm:hidden' />
+                    <span className='text-base sm:text-lg mx-2 sm:mx-4 text-white'>2024년 7월 23일 ~ 현재</span>
+                </p>
                 
+                {/* Carousel Items */}
+                <div id="carousel" className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4 overflow-x-auto">
+                    {newServices.map((service) => (
+                        <div id={`new-service${service.id}`} className="carousel-item">
+                            <FinalServiceCard serviceData={service} handleOpenModal={handleOpenModal} handleOpenRejectModal={handleOpenRejectModal} />
+                        </div>
+                    ))}
+                </div>
 
-<div className="my-1 border border-purple-500 bg-white">
+                {/* Navigation Buttons */}
+                <div className="flex justify-center gap-4 mt-0">
+                    {/* Left Arrow */}
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-400 text-white rounded-full p-1"
+                        onClick={() => document.getElementById('carousel').scrollBy({ left: -200, behavior: 'smooth' })}
+                    >
+                        &#x276E;
+                    </button>
 
+                    {/* Right Arrow */}
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-400 text-white rounded-full p-1"
+                        onClick={() => document.getElementById('carousel').scrollBy({ left: 200, behavior: 'smooth' })}
+                    >
+                        &#x276F;
+                    </button>
+                </div>
+            </div>
+            {/* </div>         */}
+        
+        
+        <div className="bg-[#8AD0FB] px-2 sm:px-4 w-fill h-fill py-2 sm:py-4">
+            <p>
+                <span className='text-xl sm:text-2xl font-bold ml-2 sm:ml-4 text-[#085195] '>내가 이용중인 서비스</span>
+                <br className='block sm:hidden' />
+                <span className='text-base sm:text-lg mx-2 sm:mx-4  text-[#085195]'> 2023년 6월 1일 ~ 현재</span>
+            </p>
 
-<ParentComponent message={`[${service.serviceProvider}] ${service.title}`} component={<ServiceDetailsCard serviceData={service} handleClick={handleClick('services')} />} />
-{/* <DropdownComponent message={`[${service.serviceProvider}] ${service.title}`} component={<ServiceDetailsCard serviceData={service} handleClick={handleClick('services')} />} /> */}
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
+            
+            {lastMonthServices.map((service) => (
+            
 
-</div>
+          <div id={`service${service.id}`} className="carousel-item h-[159]">
+            
+            <FinalServiceCard serviceData={service} handleOpenModal={handleOpenModal}  handleOpenRejectModal={handleOpenRejectModal} />
 
-            )
-            )
-            }
 
             </div>
-//         <div>
-
-//         <div className="bg-[#78ed91]  px-4 w-fill h-fill">
-//             <h2 className='text-xl font-bold text-black pt-4'> 이번 달에 새로 이용하기 시작한 서비스 </h2>
-//             <h3 className='text-md text-gray-500'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
-
-//             <div className="  xs:dropdown xs:w-[500px] md:carousel md:carousel-center md:rounded-box">
-            
-//             {newServices.map((service) => (
-
-
-
-//           <div id={`new-service${service.id}`} className="border border-blue-500 bg-white xs:border-red-500 xs:dropdown-content md:border md:border-red-500  md:carousel-item">
-            
-//             <div className={`xs:hidden xs:visible xs:backface-hidden xs:w-screen xs:h-[100px] xs: ${document.getElementById(`new-service${service.id}`)}.className `}>
-
+          
+        ))}
+        </div>
         
-//             <ThirdServiceCard 
-//                                 title={service.title}   
-//                                 serviceProvider={service.serviceProvider}
-//                                 details={service.details}
-//                                 thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []} 
-//                                 thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []} 
-//                             />
-//             </div>
-//             </div>
-
+        {/* <div className="hidden sm:flex w-full justify-center gap-1 py-1 sm:py-2">
             
-
-
-//         ))
-//         }
-
-
-
-//         </div>
-        
-//         <div className="flex w-full justify-center gap-1 py-2">
-            
-//             {newServices.map((service) => (
-//                  <a href={`#new-service${service.id}`} className="btn btn-xs">{service.id}</a>            
-//             ))}
+            {lastMonthServices.map((service) => (
+                 <a href={`#service${service.id}`} className="btn btn-xs">{service.id-3}</a>            
+            ))}
                     
-//          </div>
-//          </div>
+         </div>
+ 
 
+        </div> */}
+
+                        {/* Navigation Buttons */}
+                        <div className="flex justify-center gap-4 mt-0">
+                    {/* Left Arrow */}
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-400 text-white rounded-full p-1"
+                        onClick={() => document.getElementById('carousel').scrollBy({ left: -200, behavior: 'smooth' })}
+                    >
+                        &#x276E;
+                    </button>
+
+                    {/* Right Arrow */}
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-400 text-white rounded-full p-1"
+                        onClick={() => document.getElementById('carousel').scrollBy({ left: 200, behavior: 'smooth' })}
+                    >
+                        &#x276F;
+                    </button>
+                </div>
+            </div>
+            {/* </div>         */}
 
         
-        
-//         <div className="bg-[#91a595] px-4 w-fill h-fill">
-//             <h2 className='text-xl font-bold text-white pt-4'> 이번 달 철회시킨 서비스가 있나요? </h2>
-//             <h3 className='text-md text-white'> 내 개인정보를 제공받고 분석 및 활용 중인 서비스 </h3>
-        
-        
-// {(windowWidth < 600) ?
-// (
-        
-//             <DropdownComponent />
-        
-//     ) :
-//     (
-//         <div>
-//             <div className="details carousel carousel-center rounded-box max-w-100 space-x-4 p-4">
+        <div className="bg-[#D6F1FF] px-2 sm:px-4 w-fill h-fill py-2 sm:py-4">
+            <p>
+                <span className='text-xl sm:text-2xl font-bold ml-2 sm:ml-4 text-[#085195] '>내가 철회한 서비스</span>
+                <br className='block sm:hidden' />
+                <span className='text-base sm:text-lg mx-2 sm:mx-4 text-[#085195]'> 2024년 2월 25일 ~ 현재</span>
+            </p>
+            <div className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
-//             {rejectedServices.map((service) => (
+            {rejectedServices.map((service) => (
             
 
-//           <div id={`rejected-service${service.id}`} className="carousel-item">
-//                  <div className="indicator">
+          <div id={`rejected-service${service.id}`} className="carousel-item">
+                 <div className="indicator z-0">
             
-//                 <span className="indicator-item indicator-bottom indicator-center badge bg-green-500 text-white h-8 w-20">
-//                     {/* < aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-white" /> */}
-//                     철회 성공
-//                 </span>
+                {/* <span className="indicator-item indicator-top indicator-center badge bg-green-500 text-white h-8 w-24 z-40"> */}
+                    {/* < aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-white" /> */}
+                    {/* 철회 성공 */}
+                {/* </span> */}
             
-//                 <ThirdServiceCard
-//                                 title={service.title}   
-//                                 serviceProvider={service.serviceProvider}
-//                                 details={service.details}
-//                                 thirdPartySharedData={service.thirdPartySharedData ? service.thirdPartySharedData : []}
-//                                 thirdPartyRecipients={service.thirdPartyRecipients ? service.thirdPartyRecipients : []}
-//                             />
+                <RejectedServiceCard serviceData={service} />
 
-//             </div>
-//             </div>
+            </div>
+            </div>
                 
-//         ))}
-//         </div>
+        ))}
+        </div>
         
-//         <div className="flex w-full justify-center gap-1 py-2">
+        <div className="hidden sm:flex w-full justify-center gap-1 py-2">
             
-//             {rejectedServices.map((service) => (
-//                  <a href={`#rejected-service${service.id}`} className="btn btn-xs">{service.id-9}</a>            
-//             ))}
+            {rejectedServices.map((service) => (
+                 <a href={`#rejected-service${service.id}`} className="btn btn-xs">{service.id-9}</a>            
+            ))}
                     
-//          </div>
+         </div>
 
 
-//         </div>
-//     )
-// }
-// </div>
-
-// </div>
-// </div>
-    );
-};
+        </div>
+</div>
+</>
 
 
-
-
+);
+}
 
 export default ServicesContainer;
 

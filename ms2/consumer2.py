@@ -34,15 +34,24 @@ consumer.subscribe(topics=[LISTENING_KAFKA_TOPIC, SERVICE_MAPPER_KAFKA_TOPIC, DA
 
     
 def get_service_name(service_cd):
-    service_mapper=read_sql("service_mapper")
-    # print("GETTING SERVICE NAME")
-    df = service_mapper[service_mapper.service_code==service_cd]
-    return df.title.values[0]
+    try:
+        service_mapper=read_sql("service_mapper")
+        # print("GETTING SERVICE NAME")
+        df = service_mapper[service_mapper.service_code==service_cd]
+        return df.title.values[0]
+    except Exception as e:
+        print(e)
+        return f"TITLE_{service_cd}"
+    
 def get_data_provider_name(data_provider_cd):
-    data_provider_mapper=read_sql("data_provider_mapper")
-    # print("GETTING DATA PROVIDER NAME")
-    df = data_provider_mapper[data_provider_mapper.data_provider_code==data_provider_cd]
-    return df.data_provider_name.values[0]
+    try:
+        data_provider_mapper=read_sql("data_provider_mapper")
+        # print("GETTING DATA PROVIDER NAME")
+        df = data_provider_mapper[data_provider_mapper.data_provider_code==data_provider_cd]
+        return df.data_provider_name.values[0]
+    except Exception as e:
+        print(e)
+        return f"DATA_PROVIDER_{data_provider_cd}"
 
 service_mapper = None
 data_provider_mapper = None
@@ -55,35 +64,21 @@ while True:
             print("[MS2] New messages received from MS1")
             for topic_partition, messages in msg.items():
                 print(f"Topic: {topic_partition.topic}")
-            # print(msg.keys())
                 if topic_partition.topic == SERVICE_MAPPER_KAFKA_TOPIC:
                     print("[MS2] Service Mapper data received")
                     df_service_mapper=pd.DataFrame(messages[0].value['data'])
-                    # print(df_service_mapper.columns)
                     to_sql(df_service_mapper, "service_mapper")
                     service_mapper=read_sql("service_mapper")
 
-                    # print(service_mapper_data)
                 elif topic_partition.topic == DATA_PROVIDER_MAPPER_KAFKA_TOPIC:
                     print("[MS2] Data Provider Mapper data received")
                     df_data_provider_mapper=pd.DataFrame(messages[0].value['data'])
-                    # print(df_data_provider_mapper.columns)
                     to_sql(df_data_provider_mapper, "data_provider_mapper")
                     data_provider_mapper=read_sql("data_provider_mapper")
 
 
-                    # print(msg[TopicPartition(topic=SERVICE_MAPPER_KAFKA_TOPIC, partition=0)])
                 elif topic_partition.topic == LISTENING_KAFKA_TOPIC:
                     print("[MS2] Personal Data received")
-                    # inner_msg=msg[TopicPartition(topic=LISTENING_KAFKA_TOPIC, partition=0)]
-                    # for key, value in msg.items():
-                    # while service_mapper is None:
-                    #     try:
-                    #         service_mapper = read_sql("service_mapper")
-                    #     except Exception as e:
-                    #         sleep(1)
-                    #         print("[MS2] Service Mapper data not yet available")
-                    # print(messages)
                     d=personal_data                        
                     d += messages[0].value['data']
                     try:

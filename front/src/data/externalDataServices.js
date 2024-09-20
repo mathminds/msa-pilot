@@ -1,11 +1,11 @@
 import axios from "axios";
-// axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 
 
 // 파일 조회하기
 export const getNewServices = async () => {
   try {
-    const response = await axios.get(`http://localhost:8001/new_services`, {
+    const response = await axios.get(`/new_services`, {
     });
     return response.data;
   } catch (error) {
@@ -16,7 +16,7 @@ export const getNewServices = async () => {
 
 export const getActiveServices = async () => {
   try {
-    const response = await axios.get(`http://localhost:8001/active_services`, {
+    const response = await axios.get(`/active_services`, {
     });
     return response.data;
   
@@ -28,7 +28,7 @@ export const getActiveServices = async () => {
 
 export const getRevokedDataProviders = async () => {
   try {
-    const response = await axios.get(`http://localhost:8001/revoked_data_providers`, {
+    const response = await axios.get(`/revoked_data_providers`, {
     });
     return response.data;
   } catch (error) {
@@ -38,7 +38,7 @@ export const getRevokedDataProviders = async () => {
 };
 
 export const getServiceThirdPartyDetails = async (serviceId) => {
-    const response = await axios.get(`http://localhost:8001/service_third_party_details/${serviceId}`, {
+    const response = await axios.get(`/service_third_party_details/${serviceId}`, {
     });
     return response.data;
   } 

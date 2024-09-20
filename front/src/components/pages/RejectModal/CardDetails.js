@@ -11,6 +11,7 @@ const CardDetails = ({ selectedCard }) => {
 
     const { consent_id, consent_status, data_provided, data_provider, data_provider_code, expires_at, revoked_at, started_at, third_party_sharing_allowed } = selectedCard;
     return (
+        <div className="w-1000">
         <div className="grid grid-rows-12 grid-cols-12">
             {/* Header Section */}
             {/* <div className="flex justify-between w-full br"> */}
@@ -63,6 +64,7 @@ const CardDetails = ({ selectedCard }) => {
             <div className="grid-item row-start-9 row-end-10 col-start-5 col-end-9">
                 <div className="btn w-full">철회</div>
             </div>
+        </div>
         </div>
     );
 };

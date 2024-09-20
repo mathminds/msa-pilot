@@ -9,13 +9,23 @@ networks:
     driver: bridge
   api-network:
     driver: bridge
+  ms4-api-network:
+    driver: bridge
 volumes:
   ms2-data:
   ms4-data:
 
-
-
 services:
+
+  frontend:
+    build: ./front/
+    env_file:
+      - ./front/.env
+    ports:
+      - '3000:3000'
+    networks:
+      - ms4-api-network
+
   kafka:
     image: 'bitnami/kafka:latest'
     ports:
@@ -37,7 +47,6 @@ services:
     build: ./api/
     networks:
       - api-network
-    # restart: on-failure
     ports:
       - '8000:8000'
     volumes:
@@ -51,8 +60,6 @@ services:
       - api-network
     depends_on:
       - kafka
-        
-    # restart: on-failure
     env_file:
       - ./ms1/.env
 
@@ -63,8 +70,6 @@ services:
       - ms2-db_network
     depends_on:
       - kafka
-        
-    # restart: on-failure
     env_file:
       - ./ms2/.env
 
@@ -79,25 +84,14 @@ services:
     volumes:
       - ms2-data:/var/lib/postgresql/data
     
-  ms3:
-    build: ./ms3/
-    networks:
-      - kafka-network
-      # - ms3-db_network
-    depends_on:
-      - kafka
-    # restart: on-failure
-    env_file:
-      - ./ms3/.env
   ms4:
     build: ./ms4/
     networks:
       - kafka-network
       - ms4-db_network
+      - ms4-api-network
     depends_on:
       - kafka
-        
-    # restart: on-failure
     env_file:
       - ./ms4/.env
     ports:
@@ -141,23 +135,3 @@ services:
       - ms4-db_network
 
 
-
-# volumes:
-#   pgadmin-data:
-  # # db-collection:
-  # #   image: postgres:latest
-  # #   networks:
-  # #     - app-tier
-  # #   environment:
-  # #     POSTGRES_USER: user
-  # #     POSTGRES_PASSWORD: password
-  # #     POSTGRES_DB: collection
-
-  # # db-analysis:
-  # #   image: postgres:latest
-  # #   networks:
-  # #     - app-tier
-  # #   environment:
-  # #     POSTGRES_USER: user
-  # #     POSTGRES_PASSWORD: password
-  # #     POSTGRES_DB: analysis

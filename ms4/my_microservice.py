@@ -42,7 +42,7 @@ def consume_messages():
 
             # Assume the message value is JSON
             if msg=={}:
-                print(f"[MS4] No new messages")
+                # print(f"[MS4] No new messages")
                 continue
 
             # print(type(msg))
@@ -135,7 +135,7 @@ app = FastAPI()
 # Add CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Allow the frontend's origin
+    allow_origins=["*"],  # Allow the frontend's origin
     allow_credentials=True,
     allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers
