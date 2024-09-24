@@ -6,7 +6,7 @@ from typing import Optional, List
 
 
 df_services = pd.read_csv('data/services_map.csv', header=[0])
-df_data_providers = pd.read_csv('data/data_providers_map.csv', header=[0])
+df_data_providers = pd.read_csv('data/dp_map.csv', header=[0])
 app = FastAPI()
 
 
@@ -38,56 +38,97 @@ class NewServiceRequestBody(BaseModel):
 
 from data.services_list import example_services
 
-
-
-@app.post("/services")
-async def add_services(request_body: NewServiceRequestBody):
-    global example_services, df_services, df_data_providers
-    # current_services = example_services 
-    # add services in the request body to the example_services list while making sure to update existing services
-    new_services = request_body.services
-    print(new_services)
-    services_mapping = pd.DataFrame(request_body.services_mapping)
-    # add service_mapping to df_services
-    cur_service_mapping_list = df_services.to_dict('records')
-    cur_service_mapping_list = cur_service_mapping_list + services_mapping.to_dict('records')
-    df_services = pd.DataFrame(cur_service_mapping_list)
-    df_services.drop_duplicates(subset=['service_code'], keep="last", inplace=True)
+use_test_data = False
 
 
 
-    data_providers_mapping = pd.DataFrame(request_body.data_providers_mapping)
-    # add data_providers_mapping to df_data_providers
-    cur_data_providers_mapping_list = df_data_providers.to_dict('records')
-    cur_data_providers_mapping_list = cur_data_providers_mapping_list + data_providers_mapping.to_dict('records')
-    df_data_providers = pd.DataFrame(cur_data_providers_mapping_list)
-    df_data_providers.drop_duplicates(subset=['data_provider_code','service_code'], keep="last", inplace=True)
 
 
-    for service in new_services:
-        service_code = service.service_cd
-        service_request_list = service.request_list
-        print(type(service_request_list))
-        print(service_request_list)
-        service_cnt = str(len(service.request_list)) if not service.request_cnt else service.request_cnt
-        cur_service = {
-            "service_cd": service_code,
-            "request_cnt": service_cnt,
-            "request_list": service_request_list
-        }
+# Mock endpoint for `/support/request/history`
+@app.post("/support/request/history")
+async def mock_api():
+    global use_test_data
+    if not use_test_data:
+        return {
+        "X_Api_Tx_Id": "TEST-123456",
+        "rsp_code": "00000",  # Example response code
+        "rsp_msg": "Request successful",  # Example success message
+        "service_cnt": 0,
+        "service_list": []}
+    
+    # Log incoming request details (optional for debugging)
+    # print(f"Authorization: {authorization}")
+    # print(f"X_Src_Inst_Cd: {X_Src_Inst_Cd}")
+    # print(f"X_Dst_Inst_Cd: {X_Dst_Inst_Cd}")
+    # print(f"X_Api_Tx_Id: {X_Api_Tx_Id}")
+    # print(f"Request Body: {request_body}")
+    
+    # Return a mock response
+    return {
+        "X_Api_Tx_Id": "TEST-123456",
+        "rsp_code": "00000",  # Example response code
+        "rsp_msg": "Request successful",  # Example success message
+        "service_cnt": 10,
+        "service_list": example_services}
 
-        if service_code in [s['service_cd'] for s in example_services]:
-            print(f"Service {service_code} already exists... updating...")  
-            for s in example_services:
-                if s['service_cd'] == service_code:
-                    example_services.remove(s)
+
+@app.post("/test_data_activate")
+async def add_services(activate_test_data: Optional[bool] = False):
+    global example_services, df_services, df_data_providers, use_test_data
+    if activate_test_data:
+        use_test_data = True
+        return {"message": "Test data activated"}
+    else:
+        use_test_data = False
+        return {"message": "Test data deactivated"}
+    # # current_services = example_services 
+    # # add services in the request body to the example_services list while making sure to update existing services
+    # new_services = request_body.services
+    # print(new_services)
+    # services_mapping = pd.DataFrame(request_body.services_mapping)
+    # # add service_mapping to df_services
+    # cur_service_mapping_list = df_services.to_dict('records')
+    # cur_service_mapping_list = cur_service_mapping_list + services_mapping.to_dict('records')
+    # df_services = pd.DataFrame(cur_service_mapping_list)
+    # df_services.drop_duplicates(subset=['service_code'], keep="last", inplace=True)
+
+@app.get("/test_data_status")
+async def get_test_data_status():
+    global use_test_data
+    return use_test_data
+
+    # data_providers_mapping = pd.DataFrame(request_body.data_providers_mapping)
+    # # add data_providers_mapping to df_data_providers
+    # cur_data_providers_mapping_list = df_data_providers.to_dict('records')
+    # cur_data_providers_mapping_list = cur_data_providers_mapping_list + data_providers_mapping.to_dict('records')
+    # df_data_providers = pd.DataFrame(cur_data_providers_mapping_list)
+    # df_data_providers.drop_duplicates(subset=['data_provider_code','service_code'], keep="last", inplace=True)
+
+
+    # for service in new_services:
+    #     service_code = service.service_cd
+    #     service_request_list = service.request_list
+    #     print(type(service_request_list))
+    #     print(service_request_list)
+    #     service_cnt = str(len(service.request_list)) if not service.request_cnt else service.request_cnt
+    #     cur_service = {
+    #         "service_cd": service_code,
+    #         "request_cnt": service_cnt,
+    #         "request_list": service_request_list
+    #     }
+
+    #     if service_code in [s['service_cd'] for s in example_services]:
+    #         print(f"Service {service_code} already exists... updating...")  
+    #         for s in example_services:
+    #             if s['service_cd'] == service_code:
+    #                 example_services.remove(s)
             
-        example_services=[cur_service]+example_services
+    #     example_services=[cur_service]+example_services
         
 
     
     
-    return {"message": "Services added successfully", "services": example_services}
+    # return {"message": "Services added successfully", "services": example_services}
         # if df_services[df_services['service_cd'] == service['service_cd']].shape[0] == 0:
         #     try:
         #         title = services_mapping[services_mapping['service_cd'] == service['service_cd']]['title'].values[0]
@@ -108,31 +149,12 @@ async def add_services(request_body: NewServiceRequestBody):
             
 
 
-
-
-
-# Mock endpoint for `/support/request/history`
-@app.post("/support/request/history")
-async def mock_api():
-    
-    # Log incoming request details (optional for debugging)
-    # print(f"Authorization: {authorization}")
-    # print(f"X_Src_Inst_Cd: {X_Src_Inst_Cd}")
-    # print(f"X_Dst_Inst_Cd: {X_Dst_Inst_Cd}")
-    # print(f"X_Api_Tx_Id: {X_Api_Tx_Id}")
-    # print(f"Request Body: {request_body}")
-    
-    # Return a mock response
-    return {
-        "X_Api_Tx_Id": "TEST-123456",
-        "rsp_code": "00000",  # Example response code
-        "rsp_msg": "Request successful",  # Example success message
-        "service_cnt": 10,
-        "service_list": example_services}
-
-
 @app.get("/service_third_party_details/{service_id}")
 async def get_service_third_party_details(service_id):
+    global use_test_data
+    if not use_test_data:
+        return []
+    
     return [
             {
                 'recipient': '트립어드바이저',
@@ -150,12 +172,18 @@ async def get_service_third_party_details(service_id):
 
 @app.get("/service_mapping")
 async def get_service_mapping():
+    global use_test_data
+    if not use_test_data:
+        return {}
     result = df_services.to_dict('records')
     # print(result)
     return result
 
 @app.get('/data_provider_mapping')
 async def get_data_provider_mapping():
+    global use_test_data
+    if not use_test_data:
+        return {}
     # df = pd.read_csv('data/dp_map.csv', header=[0])
     # df['data_provided'] = df['data_provided'].apply(lambda x: json.dumps(x.split(',')))
     result = df_data_providers.to_dict('records')

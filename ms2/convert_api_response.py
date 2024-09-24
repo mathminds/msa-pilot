@@ -6,17 +6,20 @@ def convert_api_response(services_list):
         service_mapper=read_sql("service_mapper")
     except Exception as e:
         service_mapper = None
+        return []
     try:
         data_provider_mapper=read_sql("data_provider_mapper")
     except Exception as e:
         data_provider_mapper = None
+        return []
     
     
     def get_data_provider_name(data_provider_cd):
         # print("GETTING DATA PROVIDER NAME")
         try:
             df = data_provider_mapper[data_provider_mapper.data_provider_code==data_provider_cd]
-            return df.data_provider_name.values[0]
+            if df.shape[0]!=0:
+                return df.data_provider_name.values[0]
         except Exception as e:
             return f"DATA_PROVIDER_NAME_{data_provider_cd}"
     

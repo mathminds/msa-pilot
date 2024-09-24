@@ -42,6 +42,8 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
       - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1
 
   api:
     build: ./api/
@@ -69,6 +71,7 @@ services:
       - kafka-network
       - ms2-db_network
     depends_on:
+      - ms1
       - kafka
     env_file:
       - ./ms2/.env
@@ -77,6 +80,8 @@ services:
     image: postgres:latest
     networks:
       - ms2-db_network
+    ports:
+      - '5433:5432'
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
