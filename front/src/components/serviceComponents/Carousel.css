@@ -1,0 +1,60 @@
+.data-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 600px; /* Fixed width to fit 3 items */
+  margin: 0 auto;
+  height: fill; /* Increased height to avoid cutoff */
+  overflow: hidden; /* Ensure scaled items are visible */
+}
+
+.data-carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Smooth sliding */
+}
+
+.data-carousel-item {
+  aspect-ratio: '9/16';
+  width: 200px;
+  /* width: 150px; */
+  /* height: 150px; */
+  margin: 0 10px;
+  flex-shrink: 0; /* Prevent shrinking */
+  opacity: 0.5;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  position: relative; /* Add position relative for z-index */
+}
+
+.data-carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.data-carousel-item.active {
+  transform: scale(1.5);
+  opacity: 1;
+  z-index: 10; /* Ensure active item is on top */
+}
+
+.data-carousel-button {
+  background-color: rgba(0, 0, 0, 0.5); /* Add some background to make buttons visible */
+  color: white;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20; /* Ensure buttons are on top */
+}
+
+.data-carousel-button.left {
+  left: -2px;
+  /* left: -40px; Adjust positioning */
+}
+
+.data-carousel-button.right {
+  right: -2px; /* Adjust positioning */
+}

@@ -1,8 +1,11 @@
 import React from "react";
+import Carousel from "./Carousel";
 
 export default function ServiceDetailsCard(props) {
 
     const { serviceData, handleOpenRejectModal } = props;
+
+    console.log(serviceData);
 
     const handleReject = () => {
         handleOpenRejectModal(serviceData);
@@ -10,16 +13,35 @@ export default function ServiceDetailsCard(props) {
 
     if (serviceData) {
         return (
-            <div className="w-fit h-fit bg-white grid grid-cols-12 grid-rows-12 z-50">
+            <div className="w-fit h-full bg-white grid grid-cols-12 grid-rows-12 z-50">
 
-            <div className="col-start-1 col-end-13 row-start-1 row-end-2 bg-slate-300 z-50">
-                TITLE
+            <div className="col-start-1 col-end-13 row-start-1 row-end-2 bg-slate-300 z-50 text-4xl">
+                {serviceData.title}
             </div>
-            <div className="col-start-1 col-end-13 row-start-2 row-end-3 bg-slate-400 text-black z-50">
-                PROVIDER
+            <div className="col-start-1 col-end-13 row-start-2 row-end-3 bg-slate-400 text-black z-50 text-4xl">
+                {serviceData.serviceProvider}
             </div>
-            <div className="col-start-1 col-end-5 row-start-3 row-end-12 bg-slate-500 z-50">
-                서비스 상세 설명
+            <div className="col-start-1 col-end-13 row-start-3 row-end-12 bg-slate-500 z-50">
+                <Carousel items={serviceData.share_requests} />
+            {/* <div id='carousel-1' className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
+            
+                {serviceData.share_requests.map((item) => (
+                    <div className="flex flex-col items-center justify-center bg-slate-200 rounded-box p-2 sm:p-4 bb h-[600px] w-[600px]">
+                        <div className="flex flex-col items-center justify-center">
+                            <div className="text-black text-center font-bold text-4xl">
+                                {item.data_provider}
+                            </div>
+                            <ul className="">
+                                {item.data_provided.map((dataItem) => (
+                                    <li className="text-black text-center">
+                                        {dataItem}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
+            </div> */}
             </div>
             <div className="col-start-5 col-end-13 row-start-3 row-end-12 bg-orange-500">
                 <img src='/sb.png' className='w-full  overflow-cover' alt="no service data" />
