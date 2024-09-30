@@ -172,6 +172,22 @@ while True:
                     data_provider_mapper = None
                     personal_data=None
                     print("[MS2] All user data deleted successfully.")
+                    new_services = []
+                    active_services = []
+                    revoked_data_providers_list = []
+                    producer = KafkaProducer(
+                        bootstrap_servers=['kafka:9092'],
+                        value_serializer=lambda x: json.dumps({"data":x}).encode('utf-8'),
+                        max_block_ms=1000
+                    )
+                    producer.send(NEW_SERVICES_TOPIC, value=new_services)
+                    # print("[MS2] NEW SERVICES event published")
+                    producer.send(ACTIVE_SERVICES_TOPIC, value=active_services)
+                    # print("[MS2] ACTIVE SERVICES event published")
+                    producer.send(REVOKED_DATA_PROVIDERS_TOPIC, value=revoked_data_providers_list)
+                    # print("[MS2] REVOKED DATA PROVIDERS event published")
+                    producer.flush()
+                    
                     continue
                         
 
