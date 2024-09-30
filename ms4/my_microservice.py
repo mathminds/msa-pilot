@@ -1,4 +1,4 @@
-from db_handler.db_handler import to_sql, read_sql
+from db_handler.db_handler import to_sql, read_sql, delete_tables
 import pandas as pd
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -24,7 +24,7 @@ consumer = KafkaConsumer(
     enable_auto_commit=False,
     value_deserializer=json.loads,
 )
-tps = [TopicPartition(topic, 0) for topic in [NEW_SERVICES_TOPIC, ACTIVE_SERVICES_TOPIC, REVOKED_DATA_PROVIDERS_TOPIC]]
+tps = [TopicPartition(topic, 0) for topic in [NEW_SERVICES_TOPIC, ACTIVE_SERVICES_TOPIC, REVOKED_DATA_PROVIDERS_TOPIC, 'delete']]
 
 consumer.assign(tps)
 # consumer.subscribe(tps)
@@ -48,6 +48,13 @@ def consume_messages():
             # print(type(msg))
             # print(msg)
             topics = [t.topic for t in list(msg.keys())]
+            if 'delete' in topics:
+                delete_tables("new_services")
+                delete_tables("active_services")
+                delete_tables("revoked_data_providers")
+                print("[MS4] Tables deleted")
+                continue
+
             # print(topics)
             for i,topic in enumerate(topics):
                 if topic not in message_data:
@@ -58,6 +65,7 @@ def consume_messages():
                     # print(v.value['data'])
                     # print(v.keys())
                     message_data[topic]=v.value['data']
+                # print(message_data)'
                 
                 if topic==NEW_SERVICES_TOPIC:
                     df_new_services=pd.DataFrame(message_data[topic])
