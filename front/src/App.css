@@ -36,26 +36,35 @@ header.header button:nth-child(2) {
 
 .dashboard {
   background-color: #ffffff;
-  padding: 1rem;
+  /* margin-top: 2rem; */
+  /* padding: 1rem; */
 }
 
 .summary,.details, .data-sharing {
   display: flex;
-  width: 100%;
-  justify-content: space-evenly;
+  /* width:  */
+  justify-content: items-left;
   align-items: center;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 
   
 }
 
+.bb{
+  border: 1px solid #000000;
+}
+
+.br {
+  border: 1px solid #ff0000;
+}
+
 .card {
-  background-color: #d4aeaf;
+  background-color: #F0D8EB;
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1rem;
   /* margin-right: auto; */
-  width: 90%;
+  /* width: %; */
 }
 
 .card h3 {
@@ -77,8 +86,19 @@ header.header button:nth-child(2) {
 .card button {
   margin-right: 0.5rem;
   padding: 0.5rem 1rem;
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
   cursor: pointer;
   border-radius: 4px;
   width: 100%;
 }
+
+
+.expanding-card {
+  background-color: #F0D8EB;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  /* margin-right: auto; */
+  /* width: %; */
+}
+

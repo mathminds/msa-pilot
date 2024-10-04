@@ -1,0 +1,11 @@
+kafka-python
+faker
+python-dotenv
+requests
+
+pandas
+sqlalchemy
+psycopg2-binary
+
+fastapi
+uvicorn
