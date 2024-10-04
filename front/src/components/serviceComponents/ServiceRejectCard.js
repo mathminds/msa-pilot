@@ -1,6 +1,4 @@
 import React from "react";
-import RejectModal from "../modals/RejectModal";
-import Details from "../pages/Details";
 import Reject from "../pages/RejectModal/Reject";
 
 export default function ServiceDetailsCard(props) {

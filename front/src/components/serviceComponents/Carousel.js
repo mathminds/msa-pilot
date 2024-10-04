@@ -1,9 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Carousel.css';
 import DataCard from './DataCard';
 
 const Carousel = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const carouselElement = document.querySelector('.data-carousel');
+      if (carouselElement) {
+        setContainerWidth(carouselElement.offsetWidth);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial call to set the container width
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -18,18 +36,8 @@ const Carousel = ({ items }) => {
   };
 
   const getTranslateValue = () => {
-    const itemWidthWithMargin = 150 + 20; // Item width (150px) + margin (10px on each side)
-    const visibleItems = 3; // Number of items visible at a time
-
-    // Calculate the width of the container showing the visible items
-    // const containerWidth = visibleItems * itemWidthWithMargin;
-    const containerWidth = 600;
-
-    // Calculate how much we need to translate the container to center the active item
-    const translateX = 0
-      -(currentIndex * 1.5*itemWidthWithMargin) + 1.5*itemWidthWithMargin;
-      //  + (containerWidth / 2 - itemWidthWithMargin / 2);
-
+    const itemWidthWithMargin = 400 + 20; // Item width (400px) + margin (10px on each side)
+    const translateX = containerWidth/2 - currentIndex * itemWidthWithMargin+itemWidthWithMargin;
     return translateX;
   };
 
@@ -40,7 +48,7 @@ const Carousel = ({ items }) => {
         className="data-carousel-container"
         style={{
           transform: `translateX(${getTranslateValue()}px)`,
-          width: `${items.length * (150 + 20)}px`, // Dynamically set the container width
+          width: `${items.length * (400 + 20)}px`, // Dynamically set the container width
         }}
       >
         {items.map((item, index) => (

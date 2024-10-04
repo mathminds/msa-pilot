@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import '../reusables/FlipCard.css'; // Import the CSS file for styles
 // import ConsentCard from './ConsentCard';
 
-import Modal from '../modals/Modal';
-import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
-import ServiceRejectCard from '../serviceComponents/ServiceRejectCard';
 import { getServiceThirdPartyDetails } from '../../data/externalDataServices';
+import ConsentCard from '../reusables/ConsentCard';
 
 const FinalServiceCard = (props) => {
     const {serviceData, handleOpenModal, handleOpenRejectModal}=props
@@ -76,7 +74,8 @@ const FinalServiceCard = (props) => {
                 </div>
                 <div className="flip-card-back md:flip-card-back-md grid grid-cols-12 grid-rows-12 text-black" onClick={handleFlip}>
                 <div className="consent-card h-[150px] w-[300px] md:h-[200px] md:w-[400px] col-start-2 col-end-12">
-      <div className="text-lg md:text-2xl consent-header row-start-1 row-end-2 pb-1 md:pb-2">
+                    <ConsentCard serviceData={serviceData} thirdPartyRecipients={thirdPartyRecipients} />
+      {/* <div className="text-lg md:text-2xl consent-header row-start-1 row-end-2 pb-1 md:pb-2">
         [동의 일자] 2024년 8월 13일 18:32
       </div>
       <div className="consent-table">
@@ -96,13 +95,13 @@ const FinalServiceCard = (props) => {
           <div className="text-sm md:text-lg consent-cell header-cell">제3자 제공기관</div>
           <div className="text-sm md:text-lg consent-cell header-cell">제공 데이터</div>
         </div>
-}
+} */}
         
       </div>
     </div>
                 </div>
             </div>
-        </div>
+        {/* </div> */}
         </>
     );
 };

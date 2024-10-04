@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import '../reusables/FlipCard.css'; // Import the CSS file for styles
 // import ConsentCard from './ConsentCard';
 
-import Modal from '../modals/Modal';
-import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
-import ServiceRejectCard from '../serviceComponents/ServiceRejectCard';
 import { getServiceThirdPartyDetails } from '../../data/externalDataServices';
 
 const RejectedServiceCard = (props) => {
@@ -80,8 +77,8 @@ const RejectedServiceCard = (props) => {
         </div>
 
         {thirdPartyRecipients.length>0 ?
-        thirdPartyRecipients.map((item) => (
-          <div className="consent-row">
+        thirdPartyRecipients.map((item, index) => (
+          <div className="consent-row" key={index}>
             <div className="text-sm md:text-lg consent-cell">{item.recipient}</div>
             <div className="text-sm md:text-lg consent-cell">{item.sharedData.join(', ')}</div>
           </div>    

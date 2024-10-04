@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 // import ProductsList from './ProductsList';
 // import RowsOfSnippets from './RowsOfSnippets';
-import DataTypesContainer from '../containers/DataTypesContainer';
+// import DataTypesContainer from '../containers/DataTypesContainer';
 import ServicesContainer from '../containers/ServicesContainer';
 // import Card from './Card';
 // import DataCard from './DataCard';
-import DataProvidersContainer from '../containers/DataProvidersContainer';
-import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
+// import DataProvidersContainer from '../containers/DataProvidersContainer';
+// import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
 // import DataTypesContainer from './DataTypesContainer';
 
 const CardFullWidthTabs = () => {

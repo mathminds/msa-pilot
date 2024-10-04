@@ -1,7 +1,8 @@
-kafka-python
-faker
-python-dotenv
-psycopg2-binary
-sqlalchemy
 fastapi
 uvicorn
+kafka-python
+python-dotenv
+pandas
+sqlalchemy
+
+psycopg2-binary

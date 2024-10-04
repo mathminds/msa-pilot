@@ -13,7 +13,7 @@ export default function ServiceDetailsCard(props) {
 
     if (serviceData) {
         return (
-            <div className="w-fit h-full bg-white grid grid-cols-12 grid-rows-12 z-50">
+            <div className="w-full h-full bg-white grid grid-cols-12 grid-rows-12 z-50">
 
             <div className="col-start-1 col-end-13 row-start-1 row-end-2 bg-slate-300 z-50 text-4xl">
                 {serviceData.title}
@@ -21,7 +21,7 @@ export default function ServiceDetailsCard(props) {
             <div className="col-start-1 col-end-13 row-start-2 row-end-3 bg-slate-400 text-black z-50 text-4xl">
                 {serviceData.serviceProvider}
             </div>
-            <div className="col-start-1 col-end-13 row-start-3 row-end-12 bg-slate-500 z-50">
+            <div className="col-start-1 col-end-13 row-start-3 row-end-13 bg-slate-500 z-50">
                 <Carousel items={serviceData.share_requests} />
             {/* <div id='carousel-1' className="details carousel carousel-center rounded-box max-w-100 space-x-2 sm:space-x-4 p-2 sm:p-4">
             
@@ -43,14 +43,14 @@ export default function ServiceDetailsCard(props) {
                 ))}
             </div> */}
             </div>
-            <div className="col-start-5 col-end-13 row-start-3 row-end-12 bg-orange-500">
+            {/* <div className="col-start-5 col-end-13 row-start-3 row-end-12 bg-orange-500">
                 <img src='/sb.png' className='w-full  overflow-cover' alt="no service data" />
-            </div>
+            </div> */}
             {/* <div className="col-start-9 col-end-13 row-start-3 row-end-10 bg-red-500">
                 SERVICE CATEGORY
             </div> */}
 
-
+{/* 
             <div className="col-start-1 col-end-13 row-start-11 row-end-13 bg-purple-500">
                 <div className="grid grid-cols-12">
                     <div className="bg-green-500 text-white font-bold btn btn-xs  row-start-12 row-end-13 col-start-1 col-end-5 m-1 mx-3">
@@ -63,7 +63,7 @@ export default function ServiceDetailsCard(props) {
                         데이터 흐름보기
                     </div>
                 </div>
-            </div>
+            </div> */}
         
         </div>
         )

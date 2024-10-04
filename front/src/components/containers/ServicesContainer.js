@@ -1,20 +1,20 @@
 import React from 'react';
 // import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
 // import ServiceCard from '../serviceComponents/ServiceCard';
-import ThirdServiceCard from '../serviceComponents/ThirdServiceCard';
+// import ThirdServiceCard from '../serviceComponents/ThirdServiceCard';
 import RejectedServiceCard from '../serviceComponents/RejectedServiceCard';
-import FlipCard from '../reusables/FlipCard';
+// import FlipCard from '../reusables/FlipCard';
 import FinalServiceCard from '../serviceComponents/FinalServiceCard';
 // import FlipCard from './reusables/FlipCard';
 // import ServiceFrontCard from '../serviceComponents/ServiceFrontCard';
 // import ServiceBackCard from '../serviceComponents/ServiceBackCard';
-import exampleServices from '../../data/exampleServices';
+// import exampleServices from '../../data/exampleServices';
 import Modal from '../modals/Modal';
 import ServiceDetailsCard from '../serviceComponents/ServiceDetailsCard';
 import ServiceRejectCard from '../serviceComponents/ServiceRejectCard';
 import { getActiveServices, getNewServices, getRevokedDataProviders } from '../../data/externalDataServices';
 
-const services = exampleServices;
+// const services = exampleServices;
 // console.log(services);
 // console.log(typeof(services));
 

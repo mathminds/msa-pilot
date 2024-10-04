@@ -1,38 +1,34 @@
 # version: '3'
 
 networks:
-  kafka-network:
+  micrservices-network:
+    driver: bridge
+
+  internal-api-network:
+    driver: bridge
+  external-api-network:
+    driver: bridge
+
+  ms1-db_network:
     driver: bridge
   ms2-db_network:
     driver: bridge
-  ms4-db_network:
+  ms3-db_network:
     driver: bridge
-  api-network:
-    driver: bridge
-  ms4-api-network:
-    driver: bridge
+
 volumes:
-  ms2-data:
-  ms4-data:
+  ms1data:
+  ms2data:
+  ms3data:
 
 services:
-
-  frontend:
-    build: ./front/
-    env_file:
-      - ./front/.env
-    ports:
-      - '3000:3000'
-    networks:
-      - ms4-api-network
-
   kafka:
     image: 'bitnami/kafka:latest'
     ports:
       - '9092:9092'
       - '9094:9094'
     networks:
-      - kafka-network
+      - micrservices-network
     environment:
       - KAFKA_CFG_NODE_ID=0
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
@@ -48,7 +44,7 @@ services:
   api:
     build: ./api/
     networks:
-      - api-network
+      - internal-api-network
     ports:
       - '8000:8000'
     volumes:
@@ -58,61 +54,84 @@ services:
   ms1:
     build: ./ms1/
     networks:
-      - kafka-network
-      - api-network
+      - micrservices-network
+      - ms1-db_network
+      - internal-api-network
+    ports:
+      - '8001:8000'
     depends_on:
       - kafka
     env_file:
       - ./ms1/.env
 
+
   ms2:
     build: ./ms2/
     networks:
-      - kafka-network
+      - micrservices-network
       - ms2-db_network
     depends_on:
-      - ms1
       - kafka
     env_file:
       - ./ms2/.env
+
+  ms3:
+    build: ./ms3/
+    networks:
+      - micrservices-network
+      - ms3-db_network
+      - external-api-network
+    depends_on:
+      - kafka
+    env_file:
+      - ./ms3/.env
+    ports:
+      - '8003:8000'
+
+  frontend:
+    build: ./front/
+    env_file:
+      - ./front/.env
+    ports:
+      - '3000:3000'
+    networks:
+      - external-api-network
+
+  ms1-db:
+    image: postgres:latest
+    networks:
+      - ms1-db_network
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ms1
+    volumes:
+      - ms1data:/var/lib/postgresql/data
+
+  ms1-db-admin:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    environment:
+      PGADMIN_DEFAULT_EMAIL: chris.lee@finetune.life
+      PGADMIN_DEFAULT_PASSWORD: aaaa1111
+    volumes:
+      - ms1data:/var/lib/pgadmin
+    networks:
+      - ms1-db_network
 
   ms2-db:
     image: postgres:latest
     networks:
       - ms2-db_network
-    ports:
-      - '5433:5432'
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: ms2
     volumes:
-      - ms2-data:/var/lib/postgresql/data
+      - ms2data:/var/lib/postgresql/data
     
-  ms4:
-    build: ./ms4/
-    networks:
-      - kafka-network
-      - ms4-db_network
-      - ms4-api-network
-    depends_on:
-      - kafka
-    env_file:
-      - ./ms4/.env
-    ports:
-      - '8001:8001'
-
-  ms4-db:
-    image: postgres:latest
-    networks:
-      - ms4-db_network
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: ms4
-    volumes:
-      - ms4-data:/var/lib/postgresql/data
-
   ms2-db-admin:
     image: adminer
     restart: always
@@ -122,21 +141,31 @@ services:
       PGADMIN_DEFAULT_EMAIL: chris.lee@finetune.life
       PGADMIN_DEFAULT_PASSWORD: aaaa1111
     volumes:
-      - ms2-data:/var/lib/pgadmin
+      - ms2data:/var/lib/pgadmin
     networks:
       - ms2-db_network
 
-  ms4-db-admin:
+  ms3-db:
+    image: postgres:latest
+    networks:
+      - ms3-db_network
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ms3
+    volumes:
+      - ms3data:/var/lib/postgresql/data
+  ms3-db-admin:
     image: adminer
     restart: always
     ports:
-      - 8084:8080
+      - 8083:8080
     environment:
       PGADMIN_DEFAULT_EMAIL: chris.lee@finetune.life
       PGADMIN_DEFAULT_PASSWORD: aaaa1111
     volumes:
-      - ms4-data:/var/lib/pgadmin
+      - ms3data:/var/lib/pgadmin
     networks:
-      - ms4-db_network
+      - ms3-db_network
 
 

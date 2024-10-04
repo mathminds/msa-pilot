@@ -32,10 +32,8 @@ def to_sql(df, table_name):
     try:
         df.to_sql(table_name, session.connection(), if_exists='replace', index=False)
         session.commit()
-        # print(f"[MS2-db_handler] Data inserted into {table_name}")
     except Exception as e:
         print(e)
-        print(f"[MS2-db_handler] ERROR INSERTING INTO {table_name}")
         session.rollback()
     finally:
         session.close()
@@ -47,7 +45,6 @@ def read_sql(table_name):
         df = pd.read_sql_table(table_name, session.connection())
     except Exception as e:
         print(e)
-        print(f"[MS2-db_handler] ERROR reading from {table_name}")
     finally:
         session.close()
     return df
@@ -60,10 +57,10 @@ def delete_tables(table_name):
         # Drop the table using SQLAlchemy
         session.execute(text(f"DROP TABLE IF EXISTS {table_name} CASCADE"))
         session.commit()
-        # print(f"[MS2-db_handler] Table {table_name} deleted successfully")
+        # print(f"[MS3-db_handler] Table {table_name} deleted successfully")
     except Exception as e:
         print(e)
-        print(f"[MS2-db_handler] ERROR deleting table {table_name}")
+        print(f"[MS3-db_handler] ERROR deleting table {table_name}")
         session.rollback()
     finally:
         session.close()
