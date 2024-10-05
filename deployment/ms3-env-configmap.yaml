@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  ACTIVE_SERVICES_TOPIC: active_services
+  DB_HOST: ms3-db
+  DB_NAME: ms3
+  DB_PASSWORD: password
+  DB_PORT: "5432"
+  DB_USER: user
+  NEW_SERVICES_TOPIC: new_services
+  REVOKED_DATA_PROVIDERS_TOPIC: revoked_data_providers
+kind: ConfigMap
+metadata:
+  labels:
+    io.kompose.service: ms3-ms3-env
+  name: ms3-env

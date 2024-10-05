@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.34.0 (HEAD)
+  labels:
+    io.kompose.service: ms1
+  name: ms1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: ms1
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.34.0 (HEAD)
+      labels:
+        io.kompose.service: ms1
+    spec:
+      containers:
+        - env:
+            - name: API_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  key: API_SERVER
+                  name: ms1-env
+            - name: COLLECTION_KAFKA_TOPIC
+              valueFrom:
+                configMapKeyRef:
+                  key: COLLECTION_KAFKA_TOPIC
+                  name: ms1-env
+            - name: DATA_PROVIDER_MAPPER_KAFKA_TOPIC
+              valueFrom:
+                configMapKeyRef:
+                  key: DATA_PROVIDER_MAPPER_KAFKA_TOPIC
+                  name: ms1-env
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_HOST
+                  name: ms1-env
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_NAME
+                  name: ms1-env
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_PASSWORD
+                  name: ms1-env
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_PORT
+                  name: ms1-env
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_USER
+                  name: ms1-env
+            - name: SERVICE_MAPPER_KAFKA_TOPIC
+              valueFrom:
+                configMapKeyRef:
+                  key: SERVICE_MAPPER_KAFKA_TOPIC
+                  name: ms1-env
+          image: gcr.io/mathminds-418514/ms1-image
+          name: ms1
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+      restartPolicy: Always
