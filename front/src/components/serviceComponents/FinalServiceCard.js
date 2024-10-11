@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../reusables/FlipCard.css'; // Import the CSS file for styles
 // import ConsentCard from './ConsentCard';
 
-import { getServiceThirdPartyDetails } from '../../data/externalDataServices';
+// import { getServiceThirdPartyDetails } from '../../data/externalDataServices';
 import ConsentCard from '../reusables/ConsentCard';
 
 const FinalServiceCard = (props) => {
@@ -20,11 +20,11 @@ const FinalServiceCard = (props) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
 
-    console.log(serviceData);
+    console.log("[FinalServiceCard] service_code", service_code);
     
-    const [thirdPartyRecipients, setThirdPartyRecipients]= useState([]);
+    // const [thirdPartyRecipients, setThirdPartyRecipients]= useState([]);
     const handleFlip =  () => {
-        getServiceThirdPartyDetails(service_code).then(setThirdPartyRecipients)
+        // getServiceThirdPartyDetails(service_code).then(setThirdPartyRecipients)
         // setThirdPartyRecipients(tpr);
         setIsFlipped(!isFlipped);
     };
@@ -74,7 +74,7 @@ const FinalServiceCard = (props) => {
                 </div>
                 <div className="flip-card-back md:flip-card-back-md grid grid-cols-12 grid-rows-12 text-black" onClick={handleFlip}>
                 <div className="consent-card h-[150px] w-[300px] md:h-[200px] md:w-[400px] col-start-2 col-end-12">
-                    <ConsentCard serviceData={serviceData} thirdPartyRecipients={thirdPartyRecipients} />
+                    <ConsentCard serviceCode={service_code} />
       {/* <div className="text-lg md:text-2xl consent-header row-start-1 row-end-2 pb-1 md:pb-2">
         [동의 일자] 2024년 8월 13일 18:32
       </div>

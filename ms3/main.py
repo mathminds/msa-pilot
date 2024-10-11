@@ -1,21 +1,37 @@
+from pydantic import BaseModel
+import requests
+
 import os
 import json
 import asyncio
 import pandas as pd
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from kafka import KafkaConsumer, TopicPartition
+from kafka import KafkaProducer, KafkaConsumer, TopicPartition
 from dotenv import load_dotenv
 from db_handler.db_handler import to_sql, read_sql, delete_tables
 
 class MS3Service:
     def __init__(self):
         load_dotenv()
+
+
         self.NEW_SERVICES_TOPIC = os.getenv("NEW_SERVICES_TOPIC")
         self.ACTIVE_SERVICES_TOPIC = os.getenv("ACTIVE_SERVICES_TOPIC")
         self.REVOKED_DATA_PROVIDERS_TOPIC = os.getenv("REVOKED_DATA_PROVIDERS_TOPIC")
 
+        self.ms1_api_server = os.getenv("MS1_API_SERVER")
+        self.REQUEST_LISTENER_KAFKA_TOPIC = os.getenv("REQUEST_LISTENER_KAFKA_TOPIC")
+        self.REVOKE_LISTENER_KAFKA_TOPIC = os.getenv("REVOKE_LISTENER_KAFKA_TOPIC")
+
         print(self.NEW_SERVICES_TOPIC, self.ACTIVE_SERVICES_TOPIC, self.REVOKED_DATA_PROVIDERS_TOPIC)
+
+        self.producer = KafkaProducer(
+            bootstrap_servers=["kafka:9092"],
+            value_serializer=lambda v: json.dumps(v).encode("utf-8"),
+            max_block_ms=1000,
+            acks="all"
+        )   
 
         self.consumer = KafkaConsumer(
             bootstrap_servers=['kafka:9092'], 
@@ -128,6 +144,14 @@ class MS3Service:
             # except Exception as e:
             #     print(f"[MS3] Error consuming message: {e}")
 
+    def handler_third_party_details(self, request_msg_id):
+        response = requests.post(f"{self.ms1_api_server}/support/agreements", json={"request_msg_id": request_msg_id})
+        return response.json()
+
+        # self.producer.send(self.REQUEST_LISTENER_KAFKA_TOPIC, value={"request_msg_id": request_msg_id})
+        # self.producer.flush()
+        # print(f"[MS3] Request for third party details sent to MS1")
+
 
 app = FastAPI()
 
@@ -174,20 +198,29 @@ async def get_revoked_data_providers():
         df = pd.DataFrame()
     return df.to_dict(orient='records')
 
-@app.get("/service_third_party_details/{service_id}")
-async def get_service_third_party_details(service_id):
-    #TODO 내부 API로부터 실제 제3자 제공내역을 가져와야 함
-    return [
-        {
-            'recipient': '트립어드바이저',
-            'sharedData': ['여행 일정']
-        },
-        {
-            'recipient': '에어비앤비',
-            'sharedData': ['예약 내역']
-        },
-        {
-            'recipient': '여행스케줄러',
-            'sharedData': ['일정 내역']
-        }
-    ]
+
+class ThirdPartyDetailsRequest(BaseModel):
+    service_id : str
+
+@app.post("/service_third_party_details/")
+async def get_service_third_party_details(request_body: ThirdPartyDetailsRequest):
+    # print(request_body)
+    service_id = request_body.service_id
+    return ms3_service.handler_third_party_details(service_id)
+
+
+    # #TODO 내부 API로부터 실제 제3자 제공내역을 가져와야 함
+    # return [
+    #     {
+    #         'recipient': '트립어드바이저',
+    #         'sharedData': ['여행 일정']
+    #     },
+    #     {
+    #         'recipient': '에어비앤비',
+    #         'sharedData': ['예약 내역']
+    #     },
+    #     {
+    #         'recipient': '여행스케줄러',
+    #         'sharedData': ['일정 내역']
+    #     }
+    # ]

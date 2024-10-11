@@ -7,6 +7,7 @@ from typing import Optional, List
 
 df_services = pd.read_csv('data/services_map.csv', header=[0])
 df_data_providers = pd.read_csv('data/dp_map.csv', header=[0])
+df_third_party_details = pd.read_csv('data/third_party_data.csv', header=[0])
 app = FastAPI()
 
 
@@ -93,6 +94,22 @@ async def get_data_provider_mapping():
     # df['data_provided'] = df['data_provided'].apply(lambda x: json.dumps(x.split(',')))
     result = df_data_providers.to_dict('records')
     # print(result)
+    return result
+
+
+class AgreementRequestBody(BaseModel):
+    request_msg_id: str
+
+
+@app.post("/support/agreements")
+async def get_agreements(request_body: AgreementRequestBody):
+
+    global use_test_data
+    if not use_test_data:
+        return []
+    
+    cur_details = df_third_party_details[df_third_party_details['request_msg_id'] == request_body.request_msg_id]
+    result=cur_details.to_dict('records')
     return result
 
 @app.get("/service_third_party_details/{service_id}")

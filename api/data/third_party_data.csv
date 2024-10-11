@@ -1,0 +1,13 @@
+﻿request_msg_id,snd_inst_cd,once_yn,prov_consent_dtime,consent_rcv_nm,prov_consent_asset
+SU103,SU103,Y,20240909,2e Consulting,"고객정보, 계좌정보"
+SU103,SU103,Y,20240910,Solideos,"세금납부내역, 통신비납부내역"
+SU105,SU105,N,20241001,Visions,"고객정보, 계좌정보"
+SU105,SU105,Y,20240832,Finetune Life,"세금납부내역, 통신비납부내역"
+SU106,SU106,N,20240909,Immortalbits,"고객정보, 계좌정보"
+SU107,SU107,Y,20240910,Mathminds,"세금납부내역, 통신비납부내역"
+SU108,SU108,Y,20241001,OneCub,"고객정보, 계좌정보"
+SU109,SU109,Y,20240832,Digi.Me,"세금납부내역, 통신비납부내역"
+SU110,SU110,N,20240909,Meeco,"고객정보, 계좌정보"
+SU111,SU111,Y,20240910,Personium,"세금납부내역, 통신비납부내역"
+SU112,SU112,N,20241001,Fujitsu,"고객정보, 계좌정보"
+SU112,SU112,Y,20240832,Visions,"세금납부내역, 통신비납부내역"

@@ -4,5 +4,5 @@ kafka-python
 python-dotenv
 pandas
 sqlalchemy
-
+requests
 psycopg2-binary

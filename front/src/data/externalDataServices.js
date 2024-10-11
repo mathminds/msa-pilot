@@ -38,7 +38,9 @@ export const getRevokedDataProviders = async () => {
 };
 
 export const getServiceThirdPartyDetails = async (serviceId) => {
-    const response = await axios.get(`/service_third_party_details/${serviceId}`, {
+    console.log(serviceId);
+    const response = await axios.post(`/service_third_party_details/`, {
+      "service_id": serviceId
     });
     return response.data;
   } 
